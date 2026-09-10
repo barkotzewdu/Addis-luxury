@@ -1,0 +1,884 @@
+/* ========================================================================
+   ADISS — UNIFIED AUTH (SIGN IN / JOIN THE UNSEEN)
+   Dark, cinematic, museum-minimalist. Palette & type aligned to the ADISS
+   homepage: warm near-black ground, ivory typography, quiet gold accents,
+   gunmetal charcoal bars. Shared by login.html and account.html.
+   ======================================================================== */
+
+/* -----------------------------------------------------------------------
+   1. Design Tokens — mirror the homepage system
+   ----------------------------------------------------------------------- */
+:root {
+    /* Surfaces (warm cinematic dark) */
+    --auth-bg: #0b0b0c;
+    --auth-bg-warm: #0e0b08;
+    --auth-panel: #100d0a;
+    --auth-panel-raised: #131110;
+
+    /* Gunmetal charcoal bars & structure */
+    --auth-bar: #18181a;
+    --auth-bar-hover: #1d1d1f;
+    --auth-border: #222226;
+    --auth-border-strong: #2c2c31;
+
+    /* Hairlines */
+    --auth-hairline: rgba(251, 247, 241, 0.10);
+    --auth-hairline-strong: rgba(251, 247, 241, 0.20);
+
+    /* Typography */
+    --auth-ink: #f4ede2;
+    --auth-ink-strong: #f8f2e9;
+    --auth-ink-soft: #e9e1d3;
+    --auth-muted: rgba(244, 237, 226, 0.60);
+    --auth-dim: rgba(244, 237, 226, 0.36);
+
+    /* Accent — the house gold */
+    --auth-gold: #c5a059;
+    --auth-gold-bright: #d8b877;
+    --auth-gold-soft: rgba(197, 160, 89, 0.35);
+    --auth-gold-wash: rgba(197, 160, 89, 0.12);
+
+    --auth-error: #d38a80;
+    --auth-error-line: #8a3b34;
+
+    /* Typefaces (identical to homepage) */
+    --serif: 'Cormorant Garamond', 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    /* Motion */
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --fast: 0.24s var(--ease);
+    --base: 0.5s var(--ease);
+
+    --radius: 4px;
+}
+
+/* -----------------------------------------------------------------------
+   2. Reset & Baseline
+   ----------------------------------------------------------------------- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--auth-ink);
+    background-color: var(--auth-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Cinematic warm ambience behind the frame */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 16% 18%, rgba(197, 160, 89, 0.09), transparent 44%),
+        radial-gradient(circle at 84% 82%, rgba(138, 106, 63, 0.08), transparent 48%),
+        radial-gradient(circle at 50% 50%, rgba(244, 237, 226, 0.015), transparent 62%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: inherit;
+}
+
+input {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+
+::selection {
+    background: var(--auth-gold);
+    color: #0b0b0c;
+}
+
+/* -----------------------------------------------------------------------
+   3. Frame — Centered Split Screen
+   ----------------------------------------------------------------------- */
+.signup {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.signup__frame {
+    width: 100%;
+    max-width: 1180px;
+    display: grid;
+    grid-template-columns: 1.02fr 0.98fr;
+    min-height: 760px;
+    background-color: var(--auth-bg-warm);
+    border: 1px solid var(--auth-hairline);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.035),
+        inset 0 0 100px rgba(0, 0, 0, 0.55),
+        0 44px 96px rgba(0, 0, 0, 0.6);
+}
+
+/* -----------------------------------------------------------------------
+   4. Left Panel — Editorial Visual
+   ----------------------------------------------------------------------- */
+.editorial {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 42px 46px;
+    overflow: hidden;
+    isolation: isolate;
+    background-color: var(--auth-bg-warm);
+}
+
+.editorial__media {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: url('images/hero-trench-coat.jpg');
+    background-size: cover;
+    background-position: center 28%;
+    filter: grayscale(0.28) contrast(1.04) brightness(0.66) saturate(0.94);
+    transform: scale(1.02);
+    transition: transform 1.4s var(--ease);
+}
+
+.editorial:hover .editorial__media {
+    transform: scale(1.06);
+}
+
+.editorial__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(ellipse 90% 70% at 50% 40%, rgba(12, 9, 6, 0.12) 0%, rgba(12, 9, 6, 0.58) 100%),
+        linear-gradient(to top, rgba(10, 8, 5, 0.95) 0%, rgba(10, 8, 5, 0.32) 46%, rgba(10, 8, 5, 0.6) 100%),
+        linear-gradient(135deg, rgba(138, 106, 63, 0.2), rgba(11, 11, 12, 0.08));
+}
+
+/* Top bar: logo + back link */
+.editorial__topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.brand {
+    font-family: var(--serif);
+    font-size: 1.7rem;
+    font-weight: 500;
+    letter-spacing: 0.42em;
+    text-indent: 0.42em;
+    color: var(--auth-ink);
+    text-transform: uppercase;
+    line-height: 1;
+    opacity: 0.96;
+    transition: color var(--fast), opacity var(--fast);
+}
+
+.brand:hover {
+    color: #ffffff;
+    opacity: 1;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--sans);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--auth-muted);
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+    transition: color var(--fast), border-color var(--fast);
+}
+
+.back-link__arrow {
+    font-size: 1rem;
+    font-weight: 300;
+    transition: transform var(--fast);
+}
+
+.back-link:hover {
+    color: var(--auth-ink-strong);
+    border-color: var(--auth-gold-soft);
+}
+
+.back-link:hover .back-link__arrow {
+    transform: translateX(4px);
+}
+
+/* Bottom statement */
+.editorial__quote {
+    max-width: 30ch;
+}
+
+.editorial__quote p {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.5rem, 2.4vw, 2.05rem);
+    line-height: 1.34;
+    letter-spacing: 0.005em;
+    color: var(--auth-ink-strong);
+    text-shadow: 0 2px 26px rgba(0, 0, 0, 0.6);
+}
+
+.editorial__quote cite {
+    display: block;
+    margin-top: 20px;
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 0.64rem;
+    font-weight: 500;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: var(--auth-gold);
+}
+
+/* -----------------------------------------------------------------------
+   5. Right Panel — Unified Form
+   ----------------------------------------------------------------------- */
+.form-panel {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.012), transparent 42%),
+        var(--auth-panel);
+    padding: 54px 54px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.02);
+}
+
+.form-panel__inner {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.form-panel__head {
+    margin-bottom: 28px;
+}
+
+.form-panel__eyebrow {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 0.64rem;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--auth-gold);
+    margin-bottom: 16px;
+}
+
+.form-panel__title {
+    font-family: var(--serif);
+    font-size: clamp(2.3rem, 3.4vw, 3rem);
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--auth-ink);
+    margin-bottom: 12px;
+}
+
+.form-panel__subtitle {
+    font-family: var(--sans);
+    font-size: 0.84rem;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    color: var(--auth-muted);
+}
+
+.signin-link {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--auth-gold);
+    margin-left: 4px;
+    border-bottom: 1px solid var(--auth-gold-soft);
+    padding-bottom: 1px;
+    transition: color var(--fast), border-color var(--fast);
+}
+
+.signin-link:hover {
+    color: var(--auth-gold-bright);
+    border-color: var(--auth-gold-bright);
+}
+
+/* -----------------------------------------------------------------------
+   6. Inline View Switch + Animated Views
+   ----------------------------------------------------------------------- */
+.auth-switch {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    margin-bottom: 30px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--auth-hairline);
+}
+
+.auth-switch__prompt {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--auth-dim);
+}
+
+.auth-switch__link {
+    position: relative;
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--auth-gold);
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--auth-gold-soft);
+    transition: color var(--fast), border-color var(--fast);
+}
+
+.auth-switch__link:hover,
+.auth-switch__link:focus-visible {
+    color: var(--auth-gold-bright);
+    border-color: var(--auth-gold-bright);
+    outline: none;
+}
+
+.auth-views {
+    position: relative;
+    transition: height var(--base);
+}
+
+.auth-view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(14px);
+    transition: opacity 0.42s var(--ease), transform 0.42s var(--ease), visibility 0.42s;
+}
+
+.auth-view.is-active {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* -----------------------------------------------------------------------
+   7. Fields — dark charcoal bars
+   ----------------------------------------------------------------------- */
+.auth-form,
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.field__top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.field label {
+    font-family: var(--sans);
+    font-size: 0.64rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--auth-dim);
+    transition: color var(--fast);
+}
+
+.field:focus-within label {
+    color: var(--auth-gold);
+}
+
+.field__aside {
+    font-family: var(--sans);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--auth-muted);
+    transition: color var(--fast);
+}
+
+.field__aside:hover {
+    color: var(--auth-gold-bright);
+}
+
+.field input {
+    width: 100%;
+    background-color: var(--auth-bar);
+    border: 1px solid var(--auth-border);
+    border-radius: 3px;
+    padding: 15px 16px;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    color: var(--auth-ink);
+    outline: none;
+    transition: border-color var(--fast), background-color var(--fast), box-shadow var(--fast);
+}
+
+.field input::placeholder {
+    color: var(--auth-dim);
+    font-weight: 300;
+}
+
+.field input:hover {
+    border-color: var(--auth-border-strong);
+}
+
+.field input:focus {
+    border-color: var(--auth-gold);
+    background-color: var(--auth-bar-hover);
+    box-shadow: 0 0 0 3px var(--auth-gold-wash);
+}
+
+.field input.is-invalid {
+    border-color: var(--auth-error-line);
+    box-shadow: 0 0 0 3px rgba(138, 59, 52, 0.16);
+}
+
+/* Password + eye toggle */
+.password-wrap {
+    position: relative;
+}
+
+.password-wrap input {
+    padding-right: 52px;
+}
+
+.eye-toggle {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    color: var(--auth-dim);
+    transition: color var(--fast), background-color var(--fast);
+}
+
+.eye-toggle:hover {
+    color: var(--auth-gold);
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.eye-toggle:focus-visible {
+    outline: 1px solid var(--auth-gold);
+    outline-offset: 2px;
+}
+
+.eye-toggle__icon {
+    width: 19px;
+    height: 19px;
+    position: absolute;
+    transition: opacity var(--fast), transform var(--fast);
+}
+
+.eye-toggle__icon--closed {
+    opacity: 0;
+    transform: scale(0.85);
+}
+
+.eye-toggle[aria-pressed="true"] .eye-toggle__icon--open {
+    opacity: 0;
+    transform: scale(0.85);
+}
+
+.eye-toggle[aria-pressed="true"] .eye-toggle__icon--closed {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* -----------------------------------------------------------------------
+   8. Custom Checkbox
+   ----------------------------------------------------------------------- */
+.check {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+    margin-top: 2px;
+}
+
+.check input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.check__box {
+    flex-shrink: 0;
+    width: 19px;
+    height: 19px;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--auth-border-strong);
+    border-radius: 3px;
+    background-color: var(--auth-bar);
+    color: #0b0b0c;
+    transition: border-color var(--fast), background-color var(--fast), box-shadow var(--fast);
+}
+
+.check__box svg {
+    width: 13px;
+    height: 13px;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity var(--fast), transform var(--fast);
+}
+
+.check:hover .check__box {
+    border-color: var(--auth-gold);
+}
+
+.check input:focus-visible + .check__box {
+    box-shadow: 0 0 0 3px var(--auth-gold-wash);
+    border-color: var(--auth-gold);
+}
+
+.check input:checked + .check__box {
+    background-color: var(--auth-gold);
+    border-color: var(--auth-gold);
+}
+
+.check input:checked + .check__box svg {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.check input.is-invalid + .check__box {
+    border-color: var(--auth-error-line);
+    box-shadow: 0 0 0 3px rgba(138, 59, 52, 0.16);
+}
+
+.check__text {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--auth-muted);
+}
+
+.check__text a {
+    color: var(--auth-ink);
+    border-bottom: 1px solid var(--auth-border-strong);
+    transition: color var(--fast), border-color var(--fast);
+}
+
+.check__text a:hover {
+    color: var(--auth-gold-bright);
+    border-color: var(--auth-gold);
+}
+
+/* -----------------------------------------------------------------------
+   9. Primary CTA — deep charcoal, uppercase serif
+   ----------------------------------------------------------------------- */
+.btn-cultivate {
+    position: relative;
+    width: 100%;
+    margin-top: 6px;
+    padding: 18px 24px;
+    font-family: var(--serif);
+    font-size: 0.86rem;
+    font-weight: 600;
+    letter-spacing: 0.34em;
+    text-indent: 0.34em;
+    text-transform: uppercase;
+    color: var(--auth-ink);
+    background-color: var(--auth-bar);
+    border: 1px solid var(--auth-border);
+    border-radius: 3px;
+    overflow: hidden;
+    transition: border-color var(--fast), background-color var(--fast), color var(--fast),
+                transform var(--fast), box-shadow var(--fast);
+}
+
+.btn-cultivate::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 55%;
+    height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(244, 237, 226, 0.07), transparent);
+    transform: skewX(-18deg);
+    transition: left 0.8s var(--ease);
+}
+
+.btn-cultivate:hover {
+    border-color: var(--auth-gold-soft);
+    background-color: var(--auth-bar-hover);
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+}
+
+.btn-cultivate:hover::after {
+    left: 140%;
+}
+
+.btn-cultivate:active {
+    transform: translateY(0);
+}
+
+.btn-cultivate:focus-visible {
+    outline: 1px solid var(--auth-gold);
+    outline-offset: 3px;
+}
+
+.btn-cultivate:disabled {
+    cursor: default;
+    opacity: 0.6;
+    transform: none;
+    box-shadow: none;
+    color: var(--auth-muted);
+}
+
+/* -----------------------------------------------------------------------
+   10. Divider + Social Auth
+   ----------------------------------------------------------------------- */
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 6px 0 2px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--auth-hairline-strong), transparent);
+}
+
+.divider span {
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--auth-dim);
+    white-space: nowrap;
+}
+
+.social-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.btn-social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 18px;
+    font-family: var(--serif);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-indent: 0.22em;
+    text-transform: uppercase;
+    color: var(--auth-ink-soft);
+    background-color: transparent;
+    border: 1px solid var(--auth-border);
+    border-radius: 3px;
+    transition: border-color var(--fast), background-color var(--fast), color var(--fast), transform var(--fast);
+}
+
+.btn-social svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.btn-social:hover {
+    border-color: var(--auth-gold-soft);
+    background-color: rgba(197, 160, 89, 0.06);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.btn-social:focus-visible {
+    outline: 1px solid var(--auth-gold);
+    outline-offset: 2px;
+}
+
+/* -----------------------------------------------------------------------
+   11. Form Status
+   ----------------------------------------------------------------------- */
+.form-status {
+    min-height: 1.1em;
+    margin-top: 2px;
+    font-family: var(--sans);
+    font-size: 0.76rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    text-align: center;
+    color: var(--auth-muted);
+    opacity: 0;
+    transform: translateY(-3px);
+    transition: opacity var(--fast), transform var(--fast);
+}
+
+.form-status.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.form-status.is-error {
+    color: var(--auth-error);
+}
+
+.form-status.is-success {
+    color: var(--auth-gold-bright);
+}
+
+/* -----------------------------------------------------------------------
+   12. Responsive
+   ----------------------------------------------------------------------- */
+@media (max-width: 980px) {
+    .signup__frame {
+        grid-template-columns: 1fr;
+        min-height: 0;
+        max-width: 560px;
+    }
+
+    .editorial {
+        min-height: 320px;
+        padding: 32px 32px 30px;
+    }
+
+    .editorial__quote {
+        max-width: 26ch;
+    }
+
+    .editorial__quote p {
+        font-size: 1.45rem;
+    }
+
+    .form-panel {
+        padding: 46px 40px 50px;
+    }
+}
+
+@media (max-width: 560px) {
+    body {
+        padding: 0;
+    }
+
+    .signup__frame {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        min-height: 100vh;
+        box-shadow: none;
+    }
+
+    .editorial {
+        min-height: 240px;
+        padding: 26px 24px;
+    }
+
+    .editorial__quote p {
+        font-size: 1.25rem;
+    }
+
+    .form-panel {
+        padding: 38px 24px 44px;
+    }
+
+    .field-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .form-panel__title {
+        font-size: 2.2rem;
+    }
+}
+
+/* -----------------------------------------------------------------------
+   13. Reduced Motion
+   ----------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        transition-duration: 0.001ms !important;
+    }
+
+    .editorial:hover .editorial__media {
+        transform: scale(1.02);
+    }
+}
