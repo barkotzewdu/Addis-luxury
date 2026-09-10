@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <title>Sign In &amp; Create Account | ADISS</title>
     <meta name="description" content="Enter the ADISS private client portal. Sign in to your atelier account or join the unseen to begin a bespoke commission.">
@@ -19,6 +19,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="page-auth">
+
+    <div id="preloader" class="preloader" role="status" aria-live="polite" aria-label="Loading ADISS">
+        <div class="preloader__inner">
+            <span class="preloader__brand">ADISS</span>
+            <span class="preloader__bar" aria-hidden="true"><span class="preloader__bar-fill"></span></span>
+        </div>
+    </div>
 
     <main class="signup" id="auth">
         <div class="signup__frame">
@@ -142,7 +149,7 @@
                                 <div class="field-row">
                                     <div class="field">
                                         <label for="register-first">First Name</label>
-                                        <input type="text" id="register-first" name="firstName" value="Fletcher"
+                                        <input type="text" id="register-first" name="firstName"
                                                autocomplete="given-name" spellcheck="false">
                                     </div>
                                     <div class="field">

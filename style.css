@@ -121,6 +121,79 @@ input {
 }
 
 /* -----------------------------------------------------------------------
+   2b. Brand Preloader — cinematic charcoal overlay
+   ----------------------------------------------------------------------- */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--auth-bg);
+    background-image:
+        radial-gradient(circle at 50% 44%, rgba(197, 160, 89, 0.09), transparent 56%),
+        radial-gradient(circle at 50% 50%, rgba(244, 237, 226, 0.015), transparent 62%);
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.preloader.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.preloader__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.preloader__brand {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 500;
+    letter-spacing: 0.42em;
+    text-indent: 0.42em;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--auth-ink);
+    animation: adissPulse 2.1s var(--ease) infinite;
+}
+
+.preloader__bar {
+    position: relative;
+    display: block;
+    width: 152px;
+    max-width: 42vw;
+    height: 2px;
+    background-color: rgba(244, 237, 226, 0.12);
+    overflow: hidden;
+}
+
+.preloader__bar-fill {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, var(--auth-gold-soft), var(--auth-gold-bright), transparent);
+    transform: translateX(-100%);
+    animation: adissLoad 1.5s var(--ease) infinite;
+}
+
+@keyframes adissPulse {
+    0%, 100% { opacity: 0.5; }
+    50%      { opacity: 1; }
+}
+
+@keyframes adissLoad {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* -----------------------------------------------------------------------
    3. Frame — Centered Split Screen
    ----------------------------------------------------------------------- */
 .signup {
@@ -466,6 +539,7 @@ input {
 
 .field input {
     width: 100%;
+    min-height: 48px;
     background-color: var(--auth-bar);
     border: 1px solid var(--auth-border);
     border-radius: 3px;
@@ -505,16 +579,16 @@ input {
 }
 
 .password-wrap input {
-    padding-right: 52px;
+    padding-right: 62px;
 }
 
 .eye-toggle {
     position: absolute;
     top: 50%;
-    right: 8px;
+    right: 6px;
     transform: translateY(-50%);
-    width: 38px;
-    height: 38px;
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -562,6 +636,7 @@ input {
     display: flex;
     align-items: flex-start;
     gap: 12px;
+    min-height: 48px;
     cursor: pointer;
     user-select: none;
     margin-top: 2px;
@@ -646,6 +721,7 @@ input {
 .btn-cultivate {
     position: relative;
     width: 100%;
+    min-height: 48px;
     margin-top: 6px;
     padding: 18px 24px;
     font-family: var(--serif);
@@ -743,6 +819,7 @@ input {
     align-items: center;
     justify-content: center;
     gap: 10px;
+    min-height: 48px;
     padding: 14px 18px;
     font-family: var(--serif);
     font-size: 0.8rem;
@@ -833,30 +910,94 @@ input {
     }
 }
 
-@media (max-width: 560px) {
+/* Tablets & large phones — stack into a single fluid column */
+@media (max-width: 768px) {
     body {
         padding: 0;
+        align-items: stretch;
+    }
+
+    .signup {
+        align-items: stretch;
     }
 
     .signup__frame {
+        grid-template-columns: 1fr;
+        min-height: 100vh;
+        max-width: 100%;
         border-radius: 0;
         border-left: none;
         border-right: none;
-        min-height: 100vh;
         box-shadow: none;
     }
 
     .editorial {
-        min-height: 240px;
-        padding: 26px 24px;
+        min-height: 264px;
+        padding: 28px 24px 26px;
+    }
+
+    .editorial__quote {
+        max-width: 30ch;
     }
 
     .editorial__quote p {
-        font-size: 1.25rem;
+        font-size: 1.3rem;
     }
 
     .form-panel {
-        padding: 38px 24px 44px;
+        padding: 40px 28px 48px;
+    }
+
+    .form-panel__title {
+        font-size: 2.3rem;
+    }
+
+    .field input {
+        min-height: 48px;
+        font-size: 1rem;
+    }
+
+    .eye-toggle {
+        width: 48px;
+        height: 48px;
+    }
+
+    .btn-cultivate,
+    .btn-social {
+        min-height: 48px;
+    }
+
+    .auth-switch__link {
+        padding: 12px 2px;
+    }
+}
+
+/* Small phones — tightened rhythm, single-column fields & socials */
+@media (max-width: 480px) {
+    .editorial {
+        min-height: 216px;
+        padding: 22px 20px 22px;
+    }
+
+    .editorial__quote p {
+        font-size: 1.12rem;
+    }
+
+    .editorial__quote cite {
+        margin-top: 14px;
+        letter-spacing: 0.28em;
+    }
+
+    .form-panel {
+        padding: 34px 20px 44px;
+    }
+
+    .form-panel__head {
+        margin-bottom: 24px;
+    }
+
+    .form-panel__title {
+        font-size: 1.95rem;
     }
 
     .field-row {
@@ -864,8 +1005,13 @@ input {
         gap: 20px;
     }
 
-    .form-panel__title {
-        font-size: 2.2rem;
+    .social-row {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-switch {
+        gap: 6px 10px;
+        margin-bottom: 26px;
     }
 }
 

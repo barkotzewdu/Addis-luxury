@@ -8,7 +8,49 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* -------------------------------------------------------------------
-       0. Small helpers
+       0. Brand Preloader — fade out once the page has fully loaded
+       ------------------------------------------------------------------- */
+    const preloader = document.getElementById('preloader');
+
+    function dismissPreloader() {
+        if (!preloader) return;
+        preloader.classList.add('is-hidden');
+        preloader.setAttribute('aria-hidden', 'true');
+        window.setTimeout(() => {
+            preloader.style.display = 'none';
+        }, 800);
+    }
+
+    if (document.readyState === 'complete') {
+        window.setTimeout(dismissPreloader, 250);
+    } else {
+        window.addEventListener('load', () => window.setTimeout(dismissPreloader, 250));
+    }
+
+    /* -------------------------------------------------------------------
+       0b. Form State Baseline — force every input to an empty string on
+           load so restored autofill / test data (e.g. "Fletcher") cannot
+           linger in the register form.
+       ------------------------------------------------------------------- */
+    const formState = {};
+
+    document.querySelectorAll('.auth-form input, .signup-form input').forEach(field => {
+        const key = field.name || field.id;
+        if (!key) return;
+
+        if (field.type === 'checkbox') {
+            formState[key] = false;
+            return;
+        }
+
+        formState[key] = '';
+        if (field.type === 'text' || field.type === 'email' || field.type === 'password') {
+            field.value = '';
+        }
+    });
+
+    /* -------------------------------------------------------------------
+       0c. Small helpers
        ------------------------------------------------------------------- */
     const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
