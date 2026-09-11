@@ -810,6 +810,34 @@
     };
 
     /* =====================================================================
+       About — creator-card cursor glow (about.html)
+       ===================================================================== */
+    const About = {
+        init() {
+            const cards = $$('.creator-card');
+            if (!cards.length) return;
+
+            const canHover = window.matchMedia('(hover: hover) and (prefers-reduced-motion: no-preference)').matches;
+            if (!canHover) return;
+
+            cards.forEach(card => {
+                card.addEventListener('pointermove', event => {
+                    const rect = card.getBoundingClientRect();
+                    const x = ((event.clientX - rect.left) / rect.width) * 100;
+                    const y = ((event.clientY - rect.top) / rect.height) * 100;
+                    card.style.setProperty('--mx', x.toFixed(1) + '%');
+                    card.style.setProperty('--my', y.toFixed(1) + '%');
+                });
+
+                card.addEventListener('pointerleave', () => {
+                    card.style.removeProperty('--mx');
+                    card.style.removeProperty('--my');
+                });
+            });
+        }
+    };
+
+    /* =====================================================================
        Event delegation — cart interactions (CSP-safe)
        ===================================================================== */
     function bindGlobalEvents() {
@@ -873,6 +901,7 @@
         CookieConsent.init();
         Forms.init();
         Reveal.init();
+        About.init();
         bindGlobalEvents();
     }
 

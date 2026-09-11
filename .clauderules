@@ -1,0 +1,77 @@
+# ADISS — Workspace Design Rules
+
+Inherited automatically by every future AI session in this repository.
+ADISS is a luxury fashion house: restraint, precision and heritage. Design
+decisions must read as editorial, never as a template.
+
+## 1. Visual Identity & Tokens
+
+### Brand palette (canonical)
+| Role                   | Hex        | Token (implementation) |
+|------------------------|------------|------------------------|
+| Deep Onyx (ground)     | `#0a0a0a`  | `--adiss-onyx`         |
+| High-Contrast Light    | `#f5f5f5`  | `--adiss-light`        |
+| Metallic Gold (accent) | `#d4af37`  | `--adiss-gold` (= `--color-gold`) |
+| Dark Surface Overlay   | `#141414`  | `--adiss-surface`      |
+| Warm earth (heritage)  | `#2B1E1A`  | `--color-brown-dark`   |
+| Ivory ground           | `#FAF8F5`  | `--color-cream`        |
+
+- Gold is an accent, never a field. Keep gold to rules, borders, eyebrows,
+  numerals and hover states.
+- The house alternates **onyx sections** (hero, founders, closing) with
+  **warm ivory sections** (`--color-cream`) to create a cinematic rhythm.
+
+### Typography
+- Editorial high-fashion hierarchy: display serif (`--font-heading`) for
+  titles, humanist sans (`--font-body`) for UI and body copy.
+- Generous letter-spacing on subheadings, eyebrows and buttons
+  (`0.16em`–`0.36em`); tight, balanced line-heights on display type
+  (`1.02`–`1.1`). Body copy line-height `1.8`–`1.9`.
+- Fluid type only via `clamp()`; never introduce a second type scale.
+
+## 2. Component Architecture & Micro-Interactions
+
+- **Semantic HTML first**: `header`, `nav`, `main`, `section`, `article`,
+  `aside`, `footer`; one `h1` per page; label every interactive control.
+- **Standardised CSS variables in `:root`.** Reuse the existing tokens
+  (`--color-*`, `--font-*`, `--section-padding`, `--transition-*`,
+  `--adiss-*`). Do not hard-code colours, fonts or spacing in components.
+- **Card overlays** use subtle glassmorphism:
+  - `background: var(--adiss-glass)` + `backdrop-filter: blur(12px)`
+    (always ship the `-webkit-` prefix).
+  - `1px` gold accent border: `1px solid rgba(212, 175, 55, 0.45)` → solid
+    `#d4af37` on hover/focus.
+  - Micro-hover scale `transform: scale(1.03)` with
+    `cubic-bezier(0.16, 1, 0.3, 1)` easing (`--adiss-ease`).
+- **Motion** is quiet and purposeful: `0.4s–0.6s` transitions, transform/
+  opacity only. Never animate layout properties.
+
+### Accessibility (non-negotiable)
+- WCAG AA contrast for all text; gold on onyx must be checked.
+- Explicit `aria-label` on icon-only controls; `aria-hidden="true"` on
+  decorative SVGs and rules; `role="status"`/`aria-live` for async copy.
+- Minimum **44px** touch targets for every button, link-card and control.
+- Full keyboard support: visible `:focus-visible` outline in gold; logical
+  focus order. Honor `prefers-reduced-motion: reduce` in every module.
+
+## 3. Anti-Patterns (do not ship)
+
+- **Zero bloat.** No unused selectors, no duplicate rule blocks, no
+  speculative "just in case" CSS or JS.
+- **No generic boot-camp templates** — no hero + 3 feature cards + stock
+  gradient defaults, no rounded-4px every-card sameness.
+- **No conflicting framework inline styles.** No Tailwind/Bootstrap or any
+  second system. No `style="..."` attributes for anything a class can own;
+  all presentation lives in `css/*.css`.
+- No inline event handlers (`onclick`); bind via `addEventListener` and
+  event delegation (the CSP forbids `unsafe-inline` for scripts).
+- No new dependencies for effects that a few lines of vanilla JS can do.
+
+## Canonical files
+
+- Pages: root `*.html` (shared header/footer/markup is duplicated by design).
+- Styles: `css/styles.css` (design system + shared), `css/shop.css`,
+  `css/product.css`, `css/auth.css` (login).
+- Scripts: `js/main.js` (engine), `js/product.js` (PDP), `js/auth.js`
+  (login). Feature code lives in small named modules inside the IIFE and
+  reads/writes the shared `state` store.
