@@ -465,15 +465,24 @@
             const closeBtn = $('#mobile-nav-close');
             const close = () => this.close(drawer, toggle, overlay);
 
+            drawer.setAttribute('aria-hidden', 'true');
+            drawer.setAttribute('role', 'dialog');
+            drawer.setAttribute('aria-modal', 'true');
+            if (!toggle.hasAttribute('aria-controls')) {
+                toggle.setAttribute('aria-controls', 'mobile-nav-drawer');
+            }
+
             toggle.addEventListener('click', event => {
                 event.stopPropagation();
                 if (drawer.classList.contains('open')) {
                     close();
                 } else {
                     drawer.classList.add('open');
+                    drawer.setAttribute('aria-hidden', 'false');
                     toggle.setAttribute('aria-expanded', 'true');
                     document.body.classList.add('drawer-open');
                     overlay.classList.add('is-visible');
+                    if (closeBtn) closeBtn.focus();
                 }
             });
 
@@ -503,7 +512,11 @@
         close(drawer, toggle, overlay) {
             if (!drawer || !drawer.classList.contains('open')) return;
             drawer.classList.remove('open');
-            if (toggle) toggle.setAttribute('aria-expanded', 'false');
+            drawer.setAttribute('aria-hidden', 'true');
+            if (toggle) {
+                toggle.setAttribute('aria-expanded', 'false');
+                toggle.focus();
+            }
             document.body.classList.remove('drawer-open');
             if (overlay) overlay.classList.remove('is-visible');
         }

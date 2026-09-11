@@ -2409,7 +2409,7 @@ body.modal-open {
     }
 
     .shop-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
 
     .shop-sidebar {
@@ -2417,11 +2417,11 @@ body.modal-open {
     }
 
     .cart-page-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
 
     .account-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
 
     .product-grid {
@@ -2480,11 +2480,48 @@ body.modal-open {
     }
 
     .form__row {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
 
     .footer__grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cart-page-layout > *,
+    .checkout-card > * {
+        min-width: 0;
+    }
+
+    .cart-page-layout .btn,
+    .checkout-card .btn,
+    .cart-table-wrap .btn {
+        white-space: normal;
+    }
+
+    .header-icon-btn {
+        min-width: 40px;
+        min-height: 40px;
+    }
+
+    .mobile-nav-close,
+    .cart-drawer-close {
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    .cart-qty-btn {
+        min-width: 40px;
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cart-item-remove {
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 0;
     }
 
     .mobile-cta {
@@ -4026,7 +4063,7 @@ body.modal-open {
 
 @media (max-width: 860px) {
     .hm-manifesto__grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: 44px;
     }
 
@@ -4041,7 +4078,7 @@ body.modal-open {
 
     .hm-plate {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: 28px;
         row-gap: 34px;
     }
@@ -4067,17 +4104,17 @@ body.modal-open {
     }
 
     .hm-story__grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: 28px;
     }
 
     .hm-quote {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: 10px;
     }
 
     .hm-contact__grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: 56px;
     }
 }
