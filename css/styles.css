@@ -5403,41 +5403,86 @@ body {
     --adiss-ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ---- Editorial hero ---- */
+/* ---- Brand preloader (onyx + gold) ---- */
+.ab-preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    background-color: var(--adiss-onyx);
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.7s var(--adiss-ease), visibility 0.7s var(--adiss-ease);
+}
+
+.ab-preloader__word {
+    font-family: var(--font-heading);
+    font-size: clamp(2.1rem, 6vw, 3.4rem);
+    font-weight: 500;
+    letter-spacing: 0.42em;
+    text-indent: 0.42em;
+    white-space: nowrap;
+    color: var(--adiss-light);
+}
+
+.ab-preloader__bar {
+    position: relative;
+    width: min(220px, 46vw);
+    height: 1px;
+    overflow: hidden;
+    background-color: rgba(245, 245, 245, 0.14);
+}
+
+.ab-preloader__bar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--adiss-gold);
+    transform: translateX(-100%);
+    animation: ab-preload 1.25s var(--adiss-ease) infinite;
+}
+
+@keyframes ab-preload {
+    0% { transform: translateX(-100%); }
+    55%, 100% { transform: translateX(100%); }
+}
+
+.ab-preloader.is-done {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+body.ab-preloading {
+    overflow: hidden;
+}
+
+/* ---- Editorial hero (text-only) ---- */
 .ab-hero {
     position: relative;
-    min-height: 78vh;
     display: flex;
-    align-items: flex-end;
-    padding: clamp(96px, 14vh, 168px) 0 clamp(56px, 8vh, 88px);
+    align-items: center;
+    min-height: 78vh;
+    padding: clamp(120px, 18vh, 200px) 0 clamp(64px, 10vh, 110px);
     background-color: var(--adiss-onyx);
     color: var(--adiss-light);
     overflow: hidden;
     isolation: isolate;
 }
 
-.ab-hero__media {
-    position: absolute;
-    inset: 0;
-    z-index: -2;
-}
-
-.ab-hero__media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 34%;
-    filter: grayscale(0.35) contrast(1.05) brightness(0.6);
-    transform: scale(1.04);
-}
-
-.ab-hero__scrim {
+.ab-hero::before {
+    content: '';
     position: absolute;
     inset: 0;
     z-index: -1;
     background:
-        radial-gradient(120% 90% at 15% 12%, rgba(212, 175, 55, 0.16), transparent 55%),
-        linear-gradient(180deg, rgba(10, 10, 10, 0.55) 0%, rgba(10, 10, 10, 0.35) 38%, rgba(10, 10, 10, 0.94) 100%);
+        radial-gradient(75% 65% at 12% 8%, rgba(212, 175, 55, 0.18), transparent 58%),
+        radial-gradient(60% 60% at 92% 96%, rgba(110, 80, 45, 0.2), transparent 62%);
+    pointer-events: none;
 }
 
 .ab-hero__inner {
@@ -5493,106 +5538,6 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 14px;
-}
-
-/* ---- Architectural buttons (gold / ghost) ---- */
-.ab-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    min-height: 48px;
-    padding: 16px 30px;
-    font-family: var(--font-body);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    border: 1px solid transparent;
-    border-radius: 2px;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: transform 0.5s var(--adiss-ease), background-color 0.5s var(--adiss-ease),
-                border-color 0.5s var(--adiss-ease), color 0.5s var(--adiss-ease);
-}
-
-.ab-btn--gold {
-    background-color: var(--adiss-gold);
-    border-color: var(--adiss-gold);
-    color: var(--adiss-onyx);
-}
-
-.ab-btn--gold:hover,
-.ab-btn--gold:focus-visible {
-    background-color: var(--color-gold-light);
-    border-color: var(--color-gold-light);
-    color: var(--adiss-onyx);
-    transform: translateY(-2px);
-}
-
-.ab-btn--ghost {
-    background-color: rgba(245, 245, 245, 0.04);
-    border-color: rgba(212, 175, 55, 0.55);
-    color: var(--adiss-light);
-}
-
-.ab-btn--ghost:hover,
-.ab-btn--ghost:focus-visible {
-    background-color: rgba(212, 175, 55, 0.12);
-    border-color: var(--adiss-gold);
-    color: var(--color-white);
-    transform: translateY(-2px);
-}
-
-.ab-btn:focus-visible {
-    outline: 1px solid var(--adiss-gold);
-    outline-offset: 3px;
-}
-
-/* ---- Heritage / atelier intro ---- */
-.ab-story {
-    background-color: var(--color-cream);
-}
-
-.ab-story__grid {
-    display: grid;
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-    gap: clamp(40px, 7vw, 96px);
-    align-items: start;
-}
-
-.ab-story__head {
-    position: sticky;
-    top: calc(var(--header-height) + 40px);
-}
-
-.ab-story__title {
-    margin: 18px 0 0;
-    font-family: var(--font-heading);
-    font-size: clamp(1.9rem, 3.4vw, 2.9rem);
-    font-weight: 500;
-    line-height: 1.08;
-    color: var(--color-brown-dark);
-}
-
-.ab-story__lead {
-    margin: 0 0 26px;
-    font-family: var(--font-heading);
-    font-style: italic;
-    font-size: clamp(1.3rem, 2.1vw, 1.8rem);
-    line-height: 1.45;
-    color: var(--color-brown);
-}
-
-.ab-story__body p {
-    margin-bottom: 18px;
-    font-size: 1rem;
-    line-height: 1.9;
-    color: var(--color-charcoal);
-}
-
-.ab-story__body p:last-child {
-    margin-bottom: 0;
 }
 
 /* ---- Creators & founders (glassmorphism on onyx) ---- */
@@ -5695,19 +5640,6 @@ body {
     filter: grayscale(0) contrast(1.05) brightness(0.9);
 }
 
-.creator-card__glow {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0;
-    background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), rgba(212, 175, 55, 0.22), transparent 62%);
-    transition: opacity 0.6s var(--adiss-ease);
-}
-
-.creator-card:hover .creator-card__glow {
-    opacity: 1;
-}
-
 .creator-card__body {
     display: flex;
     flex: 1;
@@ -5763,77 +5695,67 @@ body {
     color: rgba(245, 245, 245, 0.68);
 }
 
-/* Luxury pill portfolio button */
-.creator-card__portfolio {
+/* Portfolio CTA — uses the shared .btn system, aligned to the card */
+.creator-card__cta {
     align-self: flex-start;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    min-height: 44px;
     margin-top: 20px;
-    padding: 12px 22px;
-    font-family: var(--font-body);
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--adiss-light);
-    background-color: transparent;
-    border: 1px solid rgba(212, 175, 55, 0.6);
-    border-radius: 999px;
-    transition: background-color 0.45s var(--adiss-ease), color 0.45s var(--adiss-ease),
-                border-color 0.45s var(--adiss-ease), gap 0.45s var(--adiss-ease);
 }
 
-.creator-card__portfolio:hover,
-.creator-card__portfolio:focus-visible {
-    gap: 14px;
-    background-color: var(--adiss-gold);
-    border-color: var(--adiss-gold);
-    color: var(--adiss-onyx);
-}
-
-.creator-card__portfolio:focus-visible {
-    outline: 1px solid var(--adiss-gold);
-    outline-offset: 3px;
-}
-
-/* ---- Atelier values ---- */
+/* ---- Brand values (minimal) ---- */
 .ab-values {
     padding: clamp(64px, 9vh, 104px) 0;
     background-color: var(--color-cream);
     border-top: 1px solid var(--color-gray-light);
 }
 
+.ab-values__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: clamp(36px, 5vh, 56px);
+}
+
 .ab-values__title {
-    margin: 0 0 clamp(36px, 5vh, 56px);
+    margin: 0;
     font-family: var(--font-heading);
     font-size: clamp(1.6rem, 2.6vw, 2.2rem);
     font-weight: 500;
-    text-align: center;
     color: var(--color-brown-dark);
+}
+
+.ab-values__journal {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 5px;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-brown);
+    border-bottom: 1px solid transparent;
+    transition: color var(--transition-fast), border-color var(--transition-fast), gap var(--transition-fast);
+}
+
+.ab-values__journal:hover,
+.ab-values__journal:focus-visible {
+    gap: 12px;
+    color: var(--color-gold);
+    border-bottom-color: var(--color-gold);
 }
 
 .ab-values__grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(20px, 3vw, 40px);
+    gap: clamp(28px, 4vw, 56px);
 }
 
 .ab-value {
-    padding: clamp(24px, 2.6vw, 34px);
-    background-color: var(--color-white);
-    border: 1px solid var(--color-gray-light);
-    border-radius: 3px;
-    transition: transform 0.5s var(--adiss-ease), border-color 0.5s var(--adiss-ease),
-                box-shadow 0.5s var(--adiss-ease);
-}
-
-.ab-value:hover {
-    transform: translateY(-4px);
-    border-color: var(--color-gold);
-    box-shadow: var(--shadow-md);
+    padding-top: 22px;
+    border-top: 1px solid var(--color-gray-light);
 }
 
 .ab-value__index {
@@ -5858,119 +5780,21 @@ body {
     color: var(--color-gray);
 }
 
-/* ---- The ateliers ---- */
-.ab-ateliers {
-    background-color: var(--color-white);
-}
-
-.ab-ateliers__head {
-    max-width: 640px;
-    margin-bottom: clamp(32px, 5vh, 52px);
-}
-
-.ab-ateliers__head h2 {
-    margin: 14px 0 0;
-    font-family: var(--font-heading);
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    color: var(--color-brown-dark);
-}
-
-.ab-ateliers__grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(28px, 4vw, 56px);
-}
-
-.ab-atelier {
-    padding-top: 26px;
-    border-top: 1px solid var(--color-gray-light);
-}
-
-.ab-atelier__title {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 12px;
-    margin-bottom: 12px;
-    font-family: var(--font-heading);
-    font-size: 1.3rem;
-    color: var(--color-brown-dark);
-}
-
-.ab-atelier__meta {
-    font-family: var(--font-body);
-    font-size: 0.66rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--color-gold);
-}
-
-.ab-atelier p {
-    margin: 0;
-    font-size: 0.94rem;
-    line-height: 1.85;
-    color: var(--color-gray);
-}
-
-/* ---- Closing statement ---- */
-.ab-closing {
-    padding: clamp(80px, 12vh, 140px) 0;
-    background-color: var(--adiss-onyx);
-    color: var(--adiss-light);
-    text-align: center;
-}
-
-.ab-closing__inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 22px;
-}
-
-.ab-closing__eyebrow {
-    margin: 0;
-    font-family: var(--font-body);
-    font-size: 0.66rem;
-    font-weight: 600;
-    letter-spacing: 0.36em;
-    text-transform: uppercase;
-    color: var(--adiss-gold);
-}
-
-.ab-closing__title {
-    margin: 0;
-    font-family: var(--font-heading);
-    font-size: clamp(2rem, 4.2vw, 3.4rem);
-    font-weight: 500;
-    line-height: 1.08;
-    color: var(--color-white);
-}
-
-.ab-closing__title em {
-    font-style: italic;
-    color: var(--adiss-gold);
-}
-
 /* ---- Responsive ---- */
 @media (max-width: 980px) {
-    .ab-story__grid {
-        grid-template-columns: 1fr;
-    }
-
-    .ab-story__head {
-        position: static;
-    }
-
-    .ab-founders__grid,
-    .ab-values__grid {
+    .ab-founders__grid {
         grid-template-columns: 1fr;
         max-width: 560px;
         margin: 0 auto;
     }
 
-    .ab-ateliers__grid {
+    .ab-values__grid {
         grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .ab-value {
+        padding-top: 20px;
     }
 }
 
@@ -5984,8 +5808,18 @@ body {
         align-items: stretch;
     }
 
-    .ab-btn {
+    .ab-hero__actions .btn {
         width: 100%;
+    }
+
+    .ab-values__head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .ab-preloader__word {
+        letter-spacing: 0.3em;
+        text-indent: 0.3em;
     }
 
     .creator-card:hover {
@@ -5994,19 +5828,21 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .ab-btn,
     .ab-value,
     .creator-card,
     .creator-card__img,
-    .creator-card__glow,
-    .creator-card__portfolio {
+    .creator-card__cta,
+    .ab-preloader {
         transition: none !important;
     }
 
+    .ab-preloader__bar::after {
+        animation: none !important;
+        transform: none;
+    }
+
     .creator-card:hover,
-    .creator-card:hover .creator-card__img,
-    .ab-value:hover,
-    .ab-btn:hover {
+    .creator-card:hover .creator-card__img {
         transform: none;
     }
 }

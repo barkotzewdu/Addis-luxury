@@ -810,30 +810,31 @@
     };
 
     /* =====================================================================
-       About — creator-card cursor glow (about.html)
+       Brand preloader (all pages)
        ===================================================================== */
-    const About = {
+    const Preloader = {
         init() {
-            const cards = $$('.creator-card');
-            if (!cards.length) return;
+            const el = $('#preloader');
+            if (!el) return;
 
-            const canHover = window.matchMedia('(hover: hover) and (prefers-reduced-motion: no-preference)').matches;
-            if (!canHover) return;
+            document.body.classList.add('ab-preloading');
 
-            cards.forEach(card => {
-                card.addEventListener('pointermove', event => {
-                    const rect = card.getBoundingClientRect();
-                    const x = ((event.clientX - rect.left) / rect.width) * 100;
-                    const y = ((event.clientY - rect.top) / rect.height) * 100;
-                    card.style.setProperty('--mx', x.toFixed(1) + '%');
-                    card.style.setProperty('--my', y.toFixed(1) + '%');
-                });
+            let done = false;
+            const finish = () => {
+                if (done) return;
+                done = true;
+                el.classList.add('is-done');
+                document.body.classList.remove('ab-preloading');
+                window.setTimeout(() => el.remove(), 800);
+            };
 
-                card.addEventListener('pointerleave', () => {
-                    card.style.removeProperty('--mx');
-                    card.style.removeProperty('--my');
-                });
-            });
+            window.setTimeout(finish, 2500);
+
+            if (document.readyState === 'complete') {
+                window.setTimeout(finish, 400);
+            } else {
+                window.addEventListener('load', () => window.setTimeout(finish, 400), { once: true });
+            }
         }
     };
 
@@ -901,7 +902,7 @@
         CookieConsent.init();
         Forms.init();
         Reveal.init();
-        About.init();
+        Preloader.init();
         bindGlobalEvents();
     }
 

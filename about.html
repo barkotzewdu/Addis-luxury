@@ -33,6 +33,9 @@
 
     <link rel="stylesheet" href="css/styles.css">
 
+    <noscript><style>.ab-preloader{display:none!important}body.ab-preloading{overflow:auto!important}</style></noscript>
+
+
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -96,8 +99,15 @@
     }
     </script>
 </head>
-<body class="has-mobile-cta page-home">
+<body class="has-mobile-cta page-home ab-preloading">
     <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Brand Preloader (onyx + gold) -->
+    <div class="ab-preloader" id="preloader" aria-hidden="true">
+        <span class="ab-preloader__word">ADISS</span>
+        <span class="ab-preloader__bar"></span>
+    </div>
+
 
 <!-- Ultra-Minimal Navigation Header (ADISS) -->
     <header class="site-header ad-header ad-solid" id="site-header">
@@ -198,51 +208,20 @@
 
         <!-- ============================ EDITORIAL HERO ============================ -->
         <section class="ab-hero" aria-labelledby="ab-hero-title">
-            <div class="ab-hero__media" aria-hidden="true">
-                <img src="images/before-after-fitting.jpg" alt="" width="1200" height="600" loading="eager" decoding="async">
-            </div>
-            <div class="ab-hero__scrim" aria-hidden="true"></div>
-
             <div class="container ab-hero__inner">
+
                 <p class="ab-hero__eyebrow"><span class="ab-hero__rule" aria-hidden="true"></span>Our Story &middot; Est. 2019</p>
                 <h1 class="ab-hero__title" id="ab-hero-title">Character,<br><em>made visible.</em></h1>
                 <p class="ab-hero__lede">Born between the handlooms of Addis Ababa and the couture salons of Dubai, ADISS is a study in restraint &mdash; Ethiopian heritage finished with Arabian precision, and every garment made once, for one.</p>
                 <div class="ab-hero__actions">
-                    <a href="#founders" class="ab-btn ab-btn--ghost">Meet the Founders <span aria-hidden="true">&darr;</span></a>
-                    <a href="shop.html" class="ab-btn ab-btn--gold">Explore the Collections</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============================ BREADCRUMB ============================ -->
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-            <div class="container">
-                <ol class="breadcrumb__list">
-                    <li class="breadcrumb__item"><a href="index.html" class="breadcrumb__link">Home</a></li>
-                    <li class="breadcrumb__item" aria-current="page">Our Story</li>
-                </ol>
-            </div>
-        </nav>
-
-        <!-- ============================ HERITAGE / ATELIER INTRO ============================ -->
-        <section class="section ab-story fade-in" aria-labelledby="ab-story-title">
-            <div class="container">
-                <div class="ab-story__grid">
-                    <header class="ab-story__head">
-                        <p class="eyebrow">The Atelier</p>
-                        <h2 class="ab-story__title" id="ab-story-title">A house built on two horizons.</h2>
-                    </header>
-                    <div class="ab-story__body">
-                        <p class="ab-story__lead">What lives within us is often unseen &mdash; our character, our values, our vision.</p>
-                        <p>ADISS was born from a chance meeting at a textile exhibition in Istanbul in 2019. Two designers from different corners of the world discovered they shared an identical philosophy: that luxury should honour its origins.</p>
-                        <p>From Addis Ababa came a deep understanding of Ethiopia&rsquo;s ancient weaving traditions &mdash; hand-spun cotton and the geometric precision of Habesha pattern. From Dubai came mastery of couture construction and access to the finest European mills.</p>
-                        <p>Together, they founded a house with one mission: to make garments that carry the soul of Ethiopian craft, finished with the precision of Arabian couture.</p>
-                    </div>
+                    <a href="#founders" class="btn btn--outline-white">Meet the Founders <span aria-hidden="true">&darr;</span></a>
+                    <a href="shop.html" class="btn btn--primary">Explore the Collections</a>
                 </div>
             </div>
         </section>
 
         <!-- ============================ CREATORS & FOUNDERS ============================ -->
+
         <section class="ab-founders fade-in" id="founders" aria-labelledby="ab-founders-title">
             <div class="container">
                 <header class="ab-founders__head">
@@ -253,8 +232,7 @@
                 <div class="ab-founders__grid">
                     <article class="creator-card" data-creator>
                         <div class="creator-card__frame">
-                            <img class="creator-card__img" src="images/founder-ethiopia.jpg" alt="Portrait of Barkot Zewdu, Lead Architect and Full-Stack Developer at ADISS" loading="lazy" decoding="async">
-                            <span class="creator-card__glow" aria-hidden="true"></span>
+                            <img class="creator-card__img" src="images/founder-ethiopia.jpg" alt="Portrait of Barkot Zewdu, Lead Architect and Full-Stack Developer at ADISS" loading="lazy" decoding="async" width="600" height="800">
                         </div>
                         <div class="creator-card__body">
                             <span class="creator-card__index">01 &middot; Architecture</span>
@@ -263,37 +241,40 @@
                             </h3>
                             <p class="creator-card__role">Lead Architect &amp; Full-Stack Developer</p>
                             <p class="creator-card__bio">Barkot shapes the digital architecture of ADISS &mdash; the performance, systems and quiet interfaces that carry the house online, engineered with the same precision as its tailoring.</p>
-                            <a class="creator-card__portfolio" href="https://barkotzewdu.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="View Barkot Zewdu portfolio (opens in a new tab)">
-                                View Portfolio <span aria-hidden="true">&#8599;</span>
+                            <a class="btn btn--primary btn--small creator-card__cta" href="https://barkotzewdu.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="View Barkot Zewdu portfolio (opens in a new tab)">
+                                VIEW PORTFOLIO <span aria-hidden="true">&#8599;</span>
                             </a>
                         </div>
                     </article>
 
                     <article class="creator-card" data-creator>
                         <div class="creator-card__frame">
-                            <img class="creator-card__img" src="images/founder-uae.jpg" alt="Portrait of Elias Yonas, co-founder and atelier partner at ADISS" loading="lazy" decoding="async">
-                            <span class="creator-card__glow" aria-hidden="true"></span>
+                            <img class="creator-card__img" src="images/founder-uae.jpg" alt="Portrait of Elias Yonas, Co-Founder and Partner at ADISS" loading="lazy" decoding="async" width="600" height="800">
                         </div>
                         <div class="creator-card__body">
-                            <span class="creator-card__index">02 &middot; Atelier</span>
+                            <span class="creator-card__index">02 &middot; Partnership</span>
                             <h3 class="creator-card__name">
                                 <a href="https://eliasyonas.vercel.app" target="_blank" rel="noopener noreferrer">Elias Yonas</a>
                             </h3>
-                            <p class="creator-card__role">Co-Founder / Atelier Partner</p>
+                            <p class="creator-card__role">Co-Founder &amp; Partner</p>
                             <p class="creator-card__bio">Trained in Paris and Milan, Elias leads the atelier &mdash; construction, fabric and fit &mdash; translating heritage materials into silhouettes of modern restraint.</p>
-                            <a class="creator-card__portfolio" href="https://eliasyonas.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="View Elias Yonas portfolio (opens in a new tab)">
-                                View Portfolio <span aria-hidden="true">&#8599;</span>
+                            <a class="btn btn--primary btn--small creator-card__cta" href="https://eliasyonas.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="View Elias Yonas portfolio (opens in a new tab)">
+                                VIEW PORTFOLIO <span aria-hidden="true">&#8599;</span>
                             </a>
                         </div>
                     </article>
+
                 </div>
             </div>
         </section>
 
-        <!-- ============================ ATELIER VALUES ============================ -->
+        <!-- ============================ BRAND VALUES ============================ -->
         <section class="ab-values fade-in" aria-labelledby="ab-values-title">
             <div class="container">
-                <h2 class="ab-values__title" id="ab-values-title">The values we tailor by</h2>
+                <div class="ab-values__head">
+                    <h2 class="ab-values__title" id="ab-values-title">The values we tailor by</h2>
+                    <a class="ab-values__journal" href="blog.html">Read the Journal <span aria-hidden="true">&rarr;</span></a>
+                </div>
                 <div class="ab-values__grid">
                     <article class="ab-value">
                         <span class="ab-value__index" aria-hidden="true">01</span>
@@ -314,36 +295,9 @@
             </div>
         </section>
 
-        <!-- ============================ THE ATELIERS ============================ -->
-        <section class="section ab-ateliers fade-in" aria-labelledby="ab-ateliers-title">
-            <div class="container">
-                <header class="ab-ateliers__head">
-                    <p class="eyebrow">Inside the House</p>
-                    <h2 id="ab-ateliers-title">Two ateliers, one standard.</h2>
-                </header>
-                <div class="ab-ateliers__grid">
-                    <article class="ab-atelier">
-                        <h3 class="ab-atelier__title">Addis Ababa <span class="ab-atelier__meta">Bole Road</span></h3>
-                        <p>The pulsing heart of the house, where traditional wooden looms turn hand-spun cotton into heritage textiles, and clients collaborate directly with master weavers.</p>
-                    </article>
-                    <article class="ab-atelier">
-                        <h3 class="ab-atelier__title">Dubai <span class="ab-atelier__meta">Fashion Avenue &middot; The Dubai Mall</span></h3>
-                        <p>A private salon for precision couture &mdash; a library of European fabrics, expert pattern makers and a fitting experience built around discretion.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============================ CLOSING ============================ -->
-        <section class="ab-closing fade-in" aria-labelledby="ab-closing-title">
-            <div class="container ab-closing__inner">
-                <p class="ab-closing__eyebrow">Bespoke &amp; Made to Order</p>
-                <h2 class="ab-closing__title" id="ab-closing-title">Made once.<br><em>Kept for generations.</em></h2>
-                <a href="index.html#contact" class="ab-btn ab-btn--gold">Book a Private Consultation</a>
-            </div>
-        </section>
 
     </main>
+
 
             <!-- Mobile Sticky CTA -->
     <div class="mobile-cta" id="mobile-cta">

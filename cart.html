@@ -33,6 +33,8 @@
 
     <link rel="stylesheet" href="css/styles.css">
 
+    <noscript><style>.ab-preloader{display:none!important}body.ab-preloading{overflow:auto!important}</style></noscript>
+
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -74,8 +76,14 @@
     }
     </script>
 </head>
-<body class="has-mobile-cta page-home">
+<body class="has-mobile-cta page-home ab-preloading">
     <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Brand Preloader (onyx + gold) -->
+    <div class="ab-preloader" id="preloader" aria-hidden="true">
+        <span class="ab-preloader__word">ADISS</span>
+        <span class="ab-preloader__bar"></span>
+    </div>
 
     <!-- Ultra-Minimal Navigation Header (ADISS) -->
     <header class="site-header ad-header ad-solid" id="site-header">
