@@ -3,10 +3,10 @@
 > Addis Luxury is an elite bespoke fashion house and luxury apparel maison co-founded by visionaries from Ethiopia and the United Arab Emirates. We fuse ancient Ethiopian handweaving traditions with Arabian couture craftsmanship, hosting a global ready-to-wear boutique and bespoke tailoring service.
 
 ## Core Information
-- Official Website: https://www.addisluxury.com
+- Official Website: https://www.adiss.com
 - Flagship Salons: Addis Ababa (Bole Road, Ethiopia) & Dubai (Fashion Avenue, The Dubai Mall, UAE)
 - E-Commerce Offerings: Women's Couture, Men's Bespoke Tailoring, UAE Limited Editions, Ethiopian Craft Line, Handwoven Silk Accessories
-- Client Concierge: hello@addisluxury.com | +971 4 362 7500 | +251 11 661 8800
+- Client Concierge: hello@addis.com | +971 4 362 7500 | +251 11 661 8800
 
 ## Online Navigation & Routes
 - Homepage: https://www.addisluxury.com/
@@ -22,5 +22,5 @@
 - Terms & Conditions: https://www.addisluxury.com/terms.html
 
 ## Key Services & Currencies
-- Supported Currencies: USD ($), UAE Dirham (AED), Ethiopian Birr (ETB)
+- Supported Currencies: USD ($), UAE Dirham (AED),
 - Fulfillment: Complimentary worldwide DHL Express insured courier delivery in handcrafted wooden preservation boxes, or private salon fitting & collection in Addis Ababa / Dubai.

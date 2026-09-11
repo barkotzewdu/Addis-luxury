@@ -2,7 +2,7 @@
    ADISS — UNIFIED AUTH (SIGN IN / JOIN THE UNSEEN)
    Dark, cinematic, museum-minimalist. Palette & type aligned to the ADISS
    homepage: warm near-black ground, ivory typography, quiet gold accents,
-   gunmetal charcoal bars. Shared by login.html and account.html.
+   gunmetal charcoal bars. Scoped to login.html.
    ======================================================================== */
 
 /* -----------------------------------------------------------------------
@@ -238,7 +238,7 @@ input {
     position: absolute;
     inset: 0;
     z-index: -2;
-    background-image: url('images/hero-trench-coat.jpg');
+    background-image: url('../images/hero-trench-coat.jpg');
     background-size: cover;
     background-position: center 28%;
     filter: grayscale(0.28) contrast(1.04) brightness(0.66) saturate(0.94);

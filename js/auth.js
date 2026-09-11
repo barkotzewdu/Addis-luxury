@@ -1,8 +1,8 @@
 /* ========================================================================
    ADISS — UNIFIED AUTH ENGINE
-   Powers login.html (Sign In <-> Create Account inline toggle) and the
-   shared account.html sign-up form: password visibility, view switching,
-   validation and submission routing. Vanilla JS, no dependencies.
+   Powers login.html (Sign In <-> Create Account inline toggle): password
+   visibility, view switching, validation and submission routing.
+   Vanilla JS, no dependencies.
    ======================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const wrap = toggle.closest('.password-wrap');
             input = wrap ? wrap.querySelector('input') : null;
         }
-        // Legacy fallback (account.html)
+        // Fallback: an unlabelled eye toggle inside .password-wrap
         if (!input && toggle.id === 'eye-toggle') {
             input = document.getElementById('password');
         }

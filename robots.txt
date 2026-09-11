@@ -6,6 +6,5 @@ Allow: /js/
 Allow: /images/
 
 Disallow: /thank-you.html
-Disallow: /account.html
 
 Sitemap: https://www.addisluxury.com/sitemap.xml
