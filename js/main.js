@@ -852,6 +852,79 @@
     };
 
     /* =====================================================================
+       Hero scroll-driven video
+       ===================================================================== */
+    const HeroVideo = {
+        video: null,
+        hero: null,
+        duration: 0,
+        lastTime: 0,
+        ticking: false,
+        reducedMotion: false,
+        ready: false,
+
+        init() {
+            this.video = document.querySelector('.hm-hero__media video');
+            this.hero = document.querySelector('.hm-hero');
+            if (!this.video || !this.hero) return;
+
+            this.reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (this.reducedMotion) {
+                this.video.currentTime = 0;
+                return;
+            }
+
+            this.video.muted = true;
+            this.video.playsInline = true;
+            this.video.preload = 'metadata';
+
+            const onLoaded = () => {
+                if (this.video.duration && this.video.duration > 0 && isFinite(this.video.duration)) {
+                    this.duration = this.video.duration;
+                    this.ready = true;
+                    this.sync();
+                }
+            };
+
+            this.video.addEventListener('loadedmetadata', onLoaded);
+            if (this.video.readyState >= 1) onLoaded();
+
+            window.addEventListener('resize', () => this.sync(), { passive: true });
+
+            const onScroll = () => {
+                if (!this.ticking) {
+                    requestAnimationFrame(() => {
+                        this.sync();
+                        this.ticking = false;
+                    });
+                    this.ticking = true;
+                }
+            };
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            this.sync();
+        },
+
+        sync() {
+            if (this.reducedMotion || !this.ready || !this.duration || this.duration <= 0) return;
+
+            const rect = this.hero.getBoundingClientRect();
+            const heroHeight = this.hero.offsetHeight || this.hero.getBoundingClientRect().height;
+            let progress = 0;
+            if (heroHeight > 0) {
+                progress = Math.max(0, Math.min(1, -rect.top / heroHeight));
+            }
+            const targetTime = progress * this.duration;
+
+            // Only write if the frame actually needs to change (reduces CPU)
+            if (Math.abs(targetTime - this.lastTime) > 0.02 || Math.abs(targetTime - this.video.currentTime) > 0.02) {
+                this.video.currentTime = targetTime;
+                this.lastTime = targetTime;
+            }
+        }
+    };
+
+    /* =====================================================================
        Event delegation — cart interactions (CSP-safe)
        ===================================================================== */
     function bindGlobalEvents() {
@@ -909,6 +982,7 @@
         Search.init();
         Navigation.init();
         SiteHeader.init();
+        HeroVideo.init();
         Catalog.init();
         Collections.init();
         Faq.init();

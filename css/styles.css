@@ -3465,6 +3465,14 @@ body.modal-open {
     animation: hm-hero-zoom 2.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+.hm-hero__media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background-color: #14100B;
+}
+
 @keyframes hm-hero-zoom {
     from {
         transform: scale(1.06);
@@ -4284,7 +4292,8 @@ body.modal-open {
 }
 
 /* Global darkening filter: ~45–50% dim + slight desaturation for mood */
-.hm-hero--adiss .hm-hero__media img {
+.hm-hero--adiss .hm-hero__media img,
+.hm-hero--adiss .hm-hero__media video {
     filter: brightness(0.55) saturate(0.92) contrast(1.02);
 }
 
