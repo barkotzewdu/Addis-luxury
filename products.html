@@ -33,6 +33,386 @@
 
     <link rel="stylesheet" href="css/styles.css">
 
+    <style>
+        /* ================================================================
+           COLLECTIONS — The House, presented as chapters.
+           Scoped entirely to products.html via the `.cl-` namespace.
+           ================================================================ */
+        .cl-page {
+            background-color: #F6F1E8;
+            color: #1A1A1A;
+        }
+
+        /* ---------- 00 · Page introduction ---------- */
+        .cl-intro {
+            padding: clamp(110px, 19vh, 230px) 0 clamp(80px, 13vh, 170px);
+            text-align: center;
+        }
+
+        .cl-intro__label {
+            display: inline-flex;
+            align-items: center;
+            gap: 18px;
+            margin: 0 0 clamp(24px, 3.4vh, 40px);
+            font-family: var(--font-body);
+            font-size: 0.66rem;
+            font-weight: 600;
+            letter-spacing: 0.46em;
+            text-indent: 0.46em;
+            text-transform: uppercase;
+            color: #C5A059;
+        }
+
+        .cl-intro__label::before,
+        .cl-intro__label::after {
+            content: '';
+            width: 46px;
+            height: 1px;
+            background-color: rgba(197, 160, 89, 0.55);
+        }
+
+        .cl-intro__title {
+            margin: 0;
+            font-family: var(--font-heading);
+            font-weight: 400;
+            font-size: clamp(3.2rem, 11vw, 9rem);
+            line-height: 0.98;
+            letter-spacing: 0.02em;
+            color: #1A1A1A;
+        }
+
+        .cl-intro__statement {
+            margin: clamp(30px, 4.4vh, 50px) auto 0;
+            max-width: 42ch;
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-weight: 400;
+            font-size: clamp(1.1rem, 1.7vw, 1.4rem);
+            line-height: 1.75;
+            color: #6E665B;
+        }
+
+        /* ---------- Chapter shell ---------- */
+        .cl-chapter {
+            position: relative;
+        }
+
+        /* 01 · Campaign poster */
+        .cl-poster {
+            position: relative;
+            height: 86vh;
+            min-height: 560px;
+            max-height: 1040px;
+            overflow: hidden;
+            background-color: #14100B;
+        }
+
+        .cl-poster__img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .cl-poster__scrim {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(to top, rgba(16, 12, 8, 0.62) 0%, rgba(16, 12, 8, 0.28) 32%, rgba(16, 12, 8, 0) 62%),
+                linear-gradient(to bottom, rgba(16, 12, 8, 0.32) 0%, rgba(16, 12, 8, 0) 26%);
+        }
+
+        .cl-poster__dissolve {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 15%;
+            pointer-events: none;
+            background: linear-gradient(to bottom, rgba(246, 241, 232, 0) 0%, rgba(246, 241, 232, 0.86) 60%, #F6F1E8 100%);
+        }
+
+        .cl-poster__chapter {
+            position: absolute;
+            top: calc(var(--header-height) + clamp(18px, 3.5vh, 40px));
+            left: 0;
+            right: 0;
+            z-index: 2;
+            margin: 0;
+            text-align: center;
+            font-family: var(--font-body);
+            font-size: 0.62rem;
+            font-weight: 500;
+            letter-spacing: 0.44em;
+            text-indent: 0.44em;
+            text-transform: uppercase;
+            color: rgba(244, 237, 226, 0.62);
+        }
+
+        .cl-poster__body {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            padding-bottom: clamp(96px, 17vh, 172px);
+        }
+
+        .cl-poster__inner {
+            text-align: center;
+        }
+
+        .cl-poster__name {
+            margin: 0;
+            font-family: var(--font-heading);
+            font-weight: 400;
+            font-size: clamp(3rem, 11vw, 9.5rem);
+            line-height: 0.95;
+            letter-spacing: 0.06em;
+            text-indent: 0.06em;
+            text-transform: uppercase;
+            color: #F8F2E9;
+            text-shadow: 0 2px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .cl-poster__season {
+            margin: clamp(16px, 2.6vh, 30px) 0 0;
+            font-family: var(--font-body);
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.42em;
+            text-indent: 0.42em;
+            text-transform: uppercase;
+            color: rgba(244, 237, 226, 0.78);
+        }
+
+        /* 02 · Collection narrative */
+        .cl-narrative {
+            padding: clamp(78px, 12vh, 150px) 0 clamp(64px, 10vh, 120px);
+            text-align: center;
+        }
+
+        .cl-narrative__text {
+            margin: 0 auto;
+            max-width: 32ch;
+            font-family: var(--font-heading);
+            font-weight: 400;
+            font-size: clamp(1.5rem, 3vw, 2.4rem);
+            line-height: 1.45;
+            color: #1A1A1A;
+        }
+
+        .cl-narrative__text em {
+            font-style: italic;
+            color: #3D2E24;
+        }
+
+        /* 03 · Featured pieces */
+        .cl-pieces {
+            padding-bottom: clamp(110px, 17vh, 210px);
+        }
+
+        .cl-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: clamp(26px, 3.2vw, 56px);
+            align-items: start;
+        }
+
+        .cl-piece {
+            margin: 0;
+        }
+
+        .cl-piece__frame {
+            position: relative;
+            display: block;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            background-color: #EFE9DE;
+        }
+
+        .cl-piece__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cl-piece__frame:hover .cl-piece__img,
+        .cl-piece__frame:focus-visible .cl-piece__img {
+            transform: scale(1.03);
+        }
+
+        .cl-piece__caption {
+            padding-top: 18px;
+        }
+
+        .cl-piece__index {
+            display: block;
+            font-family: var(--font-body);
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: #C5A059;
+        }
+
+        .cl-piece__name {
+            margin: 9px 0 5px;
+            font-family: var(--font-heading);
+            font-weight: 500;
+            font-size: 1.15rem;
+            line-height: 1.3;
+            letter-spacing: 0.02em;
+            color: #1A1A1A;
+        }
+
+        .cl-piece__price {
+            margin: 0;
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            font-weight: 400;
+            letter-spacing: 0.16em;
+            color: #6E665B;
+        }
+
+        /* 04 · Collection gateway */
+        .cl-gateway {
+            position: relative;
+            display: block;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            background-color: #1A1714;
+            color: #F4EDE2;
+            text-decoration: none;
+        }
+
+        .cl-gateway__img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            filter: grayscale(0.2) brightness(0.92);
+            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.9s ease;
+        }
+
+        .cl-gateway__veil {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(13, 10, 7, 0.72) 0%, rgba(13, 10, 7, 0.28) 55%, rgba(13, 10, 7, 0.44) 100%);
+        }
+
+        .cl-gateway__body {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            text-align: center;
+            padding: 28px;
+        }
+
+        .cl-gateway__label {
+            font-family: var(--font-body);
+            font-size: 0.66rem;
+            font-weight: 600;
+            letter-spacing: 0.38em;
+            text-indent: 0.38em;
+            text-transform: uppercase;
+            color: rgba(244, 237, 226, 0.84);
+            transition: letter-spacing 0.7s cubic-bezier(0.16, 1, 0.3, 1), text-indent 0.7s cubic-bezier(0.16, 1, 0.3, 1), color 0.7s ease;
+        }
+
+        .cl-gateway__arrow {
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            font-weight: 300;
+            line-height: 1;
+            color: #C5A059;
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cl-gateway:hover .cl-gateway__img,
+        .cl-gateway:focus-visible .cl-gateway__img {
+            transform: scale(1.05);
+            opacity: 0.6;
+        }
+
+        .cl-gateway:hover .cl-gateway__label,
+        .cl-gateway:focus-visible .cl-gateway__label {
+            letter-spacing: 0.46em;
+            text-indent: 0.46em;
+            color: #FFFFFF;
+        }
+
+        .cl-gateway:hover .cl-gateway__arrow,
+        .cl-gateway:focus-visible .cl-gateway__arrow {
+            transform: translateX(6px);
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 900px) {
+            .cl-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .cl-gateway {
+                grid-column: 1 / -1;
+                aspect-ratio: 16 / 9;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .cl-poster {
+                height: 78vh;
+                min-height: 470px;
+                max-height: 780px;
+            }
+
+            .cl-poster__body {
+                padding-bottom: clamp(80px, 15vh, 120px);
+            }
+
+            .cl-intro__label::before,
+            .cl-intro__label::after {
+                width: 26px;
+            }
+
+            .cl-grid {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 44px;
+            }
+
+            .cl-gateway {
+                aspect-ratio: 4 / 5;
+            }
+        }
+
+        /* ---------- Reduced motion ---------- */
+        @media (prefers-reduced-motion: reduce) {
+            .cl-piece__img,
+            .cl-gateway__img,
+            .cl-gateway__label,
+            .cl-gateway__arrow {
+                transition: none;
+            }
+
+            .cl-piece__frame:hover .cl-piece__img,
+            .cl-gateway:hover .cl-gateway__img,
+            .cl-gateway:hover .cl-gateway__arrow {
+                transform: none;
+            }
+        }
+    </style>
+
     <noscript><style>.ab-preloader{display:none!important}body.ab-preloading{overflow:auto!important}</style></noscript>
 
     <script>
@@ -217,252 +597,249 @@
     </div>
 
     <main id="main-content">
-        <section class="hero hero--small hero--collections fade-in">
+        <header class="cl-intro">
             <div class="container">
-                <div class="hero__content hero__content--center">
-                    <span class="hero__eyebrow">Curated Bespoke Lines</span>
-                    <h1 class="hero__title">Our Collections</h1>
-                    <p class="hero__subtitle">Each garment is a collaboration between you and our master artisans. Explore our signature lines and begin your bespoke journey.</p>
-                    <div class="hero__actions">
-                        <a href="#signature-collections" class="btn btn--primary">Explore Collections</a>
-                        <a href="#how-it-works" class="btn btn--ghost-light">How It Works</a>
+                <p class="cl-intro__label">The House</p>
+                <h1 class="cl-intro__title">Collections</h1>
+                <p class="cl-intro__statement">Each collection is a study of character, craftsmanship and permanence.</p>
+            </div>
+        </header>
+
+        <!-- ============================ CHAPTER 01 · MONARCH ============================ -->
+        <article class="cl-chapter" aria-labelledby="cl-chapter-monarch">
+            <section class="cl-poster">
+                <img class="cl-poster__img" src="images/hero-trench-coat.jpg" alt="Monarch campaign — a tailored coat photographed in architectural light" loading="lazy">
+                <span class="cl-poster__scrim" aria-hidden="true"></span>
+                <span class="cl-poster__dissolve" aria-hidden="true"></span>
+                <p class="cl-poster__chapter">Chapter 01</p>
+                <div class="cl-poster__body">
+                    <div class="container cl-poster__inner">
+                        <h2 class="cl-poster__name" id="cl-chapter-monarch">Monarch</h2>
+                        <p class="cl-poster__season">Autumn / Winter 2026</p>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-            <div class="container">
-                <ol class="breadcrumb__list">
-                    <li class="breadcrumb__item"><a href="index.html" class="breadcrumb__link">Home</a></li>
-                    <li class="breadcrumb__item" aria-current="page">Collections</li>
-                </ol>
-            </div>
-        </nav>
-
-        <!-- Quick Category Filter -->
-        <section class="collections-filter" aria-label="Collection categories">
-            <div class="container">
-                <div class="filter-chips" role="tablist">
-                    <button type="button" class="filter-chip is-active" role="tab" aria-selected="true" data-filter="all">All Collections</button>
-                    <button type="button" class="filter-chip" role="tab" aria-selected="false" data-filter="tailoring">Tailoring</button>
-                    <button type="button" class="filter-chip" role="tab" aria-selected="false" data-filter="couture">Couture</button>
-                    <button type="button" class="filter-chip" role="tab" aria-selected="false" data-filter="bridal">Bridal</button>
-                    <button type="button" class="filter-chip" role="tab" aria-selected="false" data-filter="accessories">Accessories</button>
-                    <button type="button" class="filter-chip" role="tab" aria-selected="false" data-filter="signature">Signature</button>
+            <section class="cl-narrative">
+                <div class="container">
+                    <p class="cl-narrative__text fade-in">A study of restraint.<br>Built through precision.<br><em>Created for those who understand that presence speaks more quietly than attention.</em></p>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="section section--tight" id="signature-collections">
-            <div class="container">
-                <div class="section-header section-header--with-meta">
-                    <div>
-                        <h2>Signature Collections</h2>
-                        <p class="section-header__sub">Five distinct lines, each crafted with intention and heritage.</p>
-                    </div>
-                    <span class="section-header__count"><span id="collection-count">5</span> Collections</span>
-                </div>
-                <div class="grid grid--3 collections-grid">
-                    <article class="card card--collection fade-in" data-category="tailoring">
-                        <div class="card__media">
-                            <img src="images/lookbook-collection-01.jpg" alt="Bespoke tailored suit by Addis Luxury" class="card__image" loading="lazy">
-                            <span class="card__badge">Tailoring</span>
-                        </div>
-                        <div class="card__body">
-                            <h3 class="card__title">Bespoke Suits</h3>
-                            <p class="card__text">Precision-cut suits crafted from premium European and Ethiopian fabrics. Every detail, from lapel width to button placement, is tailored to your specifications.</p>
-                            <div class="card__meta">
-                                <span class="card__meta-item"><span class="card__meta-dot"></span>2–3 fittings</span>
-                                <span class="card__meta-item"><span class="card__meta-dot"></span>4–6 weeks</span>
-                            </div>
-                            <a href="index.html#contact" class="card__cta">Inquire About This Collection</a>
-                        </div>
-                    </article>
+            <section class="cl-pieces">
+                <div class="container">
+                    <div class="cl-grid">
+                        <figure class="cl-piece fade-in">
+                            <a href="product-detail.html" class="cl-piece__frame" aria-label="View the Monarch Tailored Coat">
+                                <img class="cl-piece__img" src="images/product-garment-01.jpg" alt="Monarch Tailored Coat by Adiss" loading="lazy">
+                            </a>
+                            <figcaption class="cl-piece__caption">
+                                <span class="cl-piece__index">Adiss / 001</span>
+                                <h3 class="cl-piece__name">Monarch Tailored Coat</h3>
+                                <p class="cl-piece__price">AED 2,450</p>
+                            </figcaption>
+                        </figure>
 
-                    <article class="card card--collection fade-in" data-category="couture">
-                        <div class="card__media">
-                            <img src="images/lookbook-collection-02.jpg" alt="Custom evening gown by Addis Luxury" class="card__image" loading="lazy">
-                            <span class="card__badge">Couture</span>
-                        </div>
-                        <div class="card__body">
-                            <h3 class="card__title">Evening Gowns</h3>
-                            <p class="card__text">Statement gowns for galas, award ceremonies, and milestone celebrations. Hand-finished with intricate beadwork inspired by Ethiopian motifs.</p>
-                            <div class="card__meta">
-                                <span class="card__meta-item"><span class="card__meta-dot"></span>3–4 fittings</span>
-                                <span class="card__meta-item"><span class="card__meta-dot"></span>6–8 weeks</span>
-                            </div>
-                            <a href="index.html#contact" class="card__cta">Inquire About This Collection</a>
-                        </div>
-                    </article>
+                        <figure class="cl-piece fade-in">
+                            <a href="product-detail.html" class="cl-piece__frame" aria-label="View the Monarch Silk Shirt">
+                                <img class="cl-piece__img" src="images/product-garment-03.jpg" alt="Monarch Silk Shirt by Adiss" loading="lazy">
+                            </a>
+                            <figcaption class="cl-piece__caption">
+                                <span class="cl-piece__index">Adiss / 002</span>
+                                <h3 class="cl-piece__name">Monarch Silk Shirt</h3>
+                                <p class="cl-piece__price">AED 990</p>
+                            </figcaption>
+                        </figure>
 
-                    <article class="card card--collection fade-in" data-category="bridal">
-                        <div class="card__media">
-                            <img src="images/product-garment-01.jpg" alt="Bridal couture gown by Addis Luxury" class="card__image" loading="lazy">
-                            <span class="card__badge">Bridal</span>
-                        </div>
-                        <div class="card__body">
-                            <h3 class="card__title">Bridal Collection</h3>
-                            <p class="card__text">Your wedding dress, designed from the ground up. We work closely with brides to create one-of-a-kind gowns that reflect personal style and heritage.</p>
-                            <div class="card__meta">
-                                <span class="card__meta-item"><span class="card__meta-dot"></span>4+ fittings</span>
-                                <span class="card__meta-item"><span class="card__meta-dot"></span>8–12 weeks</span>
-                            </div>
-                            <a href="index.html#contact" class="card__cta">Inquire About This Collection</a>
-                        </div>
-                    </article>
-
-                    <article class="card card--collection fade-in" data-category="accessories">
-                        <div class="card__media">
-                            <img src="images/product-garment-04.jpg" alt="Handcrafted luxury accessories by Addis Luxury" class="card__image" loading="lazy">
-                            <span class="card__badge">Accessories</span>
-                        </div>
-                        <div class="card__body">
-                            <h3 class="card__title">Custom Accessories</h3>
-                            <p class="card__text">Handcrafted scarves, pocket squares, ties, and wraps using Ethiopian handwoven textiles. The perfect complement to any wardrobe.</p>
-                            <div class="card__meta">
-                                <span class="card__meta-item"><span class="card__meta-dot"></span>Made to order</span>
-                                <span class="card__meta-item"><span class="card__meta-dot"></span>2–4 weeks</span>
-                            </div>
-                            <a href="index.html#contact" class="card__cta">Inquire About This Collection</a>
-                        </div>
-                    </article>
-
-                    <article class="card card--collection card--collection-wide fade-in" data-category="signature">
-                        <div class="card__media">
-                            <img src="images/product-garment-03.jpg" alt="Heritage Line garment by Addis Luxury" class="card__image" loading="lazy">
-                            <span class="card__badge card__badge--gold">Signature</span>
-                        </div>
-                        <div class="card__body">
-                            <h3 class="card__title">The Heritage Line</h3>
-                            <p class="card__text">Our flagship collection celebrating Ethiopian weaving traditions. Modern silhouettes crafted from hand-spun cotton with geometric patterns unique to each piece.</p>
-                            <div class="card__meta">
-                                <span class="card__meta-item"><span class="card__meta-dot"></span>Limited edition</span>
-                                <span class="card__meta-item"><span class="card__meta-dot"></span>8–10 weeks</span>
-                            </div>
-                            <a href="index.html#contact" class="card__cta">Inquire About This Collection</a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section class="section section--cream fade-in">
-            <div class="container">
-                <div class="section-header section-header--with-meta">
-                    <div>
-                        <h2>Our Fitting Experience</h2>
-                        <p class="section-header__sub">Choose the level of personalization that suits your needs.</p>
-                    </div>
-                    <span class="section-header__count">3 Tiers</span>
-                </div>
-                <div class="grid grid--3 tiers-grid">
-                    <div class="tier fade-in">
-                        <div class="tier__head">
-                            <h3 class="tier__name">Essential Fit</h3>
-                            <p class="tier__price">From <strong>$800</strong></p>
-                        </div>
-                        <ul class="tier__features">
-                            <li class="tier__feature">Personal consultation</li>
-                            <li class="tier__feature">Standard measurements</li>
-                            <li class="tier__feature">Single fabric selection</li>
-                            <li class="tier__feature">Two fittings included</li>
-                            <li class="tier__feature">4–6 week completion</li>
-                            <li class="tier__feature">Signature garment bag</li>
-                        </ul>
-                        <a href="index.html#contact" class="btn btn--outline tier__cta">Book Essential Fit</a>
-                    </div>
-
-                    <div class="tier tier--featured fade-in">
-                        <div class="tier__badge">Most Popular</div>
-                        <div class="tier__head">
-                            <h3 class="tier__name">Signature Fit</h3>
-                            <p class="tier__price">From <strong>$2,200</strong></p>
-                        </div>
-                        <ul class="tier__features">
-                            <li class="tier__feature">Extended consultation with design sketches</li>
-                            <li class="tier__feature">Precision body scanning</li>
-                            <li class="tier__feature">Premium fabric library access</li>
-                            <li class="tier__feature">Three fittings included</li>
-                            <li class="tier__feature">6–8 week completion</li>
-                            <li class="tier__feature">Monogrammed garment bag</li>
-                            <li class="tier__feature">Styling session included</li>
-                        </ul>
-                        <a href="index.html#contact" class="btn btn--primary tier__cta">Book Signature Fit</a>
-                    </div>
-
-                    <div class="tier fade-in">
-                        <div class="tier__head">
-                            <h3 class="tier__name">Grand Atelier</h3>
-                            <p class="tier__price">From <strong>$5,500</strong></p>
-                        </div>
-                        <ul class="tier__features">
-                            <li class="tier__feature">Full design collaboration</li>
-                            <li class="tier__feature">Unlimited fabric access including rare textiles</li>
-                            <li class="tier__feature">Hand-finished details and embellishment</li>
-                            <li class="tier__feature">Unlimited fittings</li>
-                            <li class="tier__feature">8–12 week completion</li>
-                            <li class="tier__feature">Luxury wooden suit/dress box</li>
-                            <li class="tier__feature">Dedicated style advisor</li>
-                            <li class="tier__feature">Priority atelier access</li>
-                        </ul>
-                        <a href="index.html#contact" class="btn btn--outline tier__cta">Book Grand Atelier</a>
+                        <a href="shop.html" class="cl-gateway fade-in" aria-label="Discover the Monarch collection">
+                            <img class="cl-gateway__img" src="images/lookbook-collection-02.jpg" alt="" aria-hidden="true" loading="lazy">
+                            <span class="cl-gateway__veil" aria-hidden="true"></span>
+                            <span class="cl-gateway__body">
+                                <span class="cl-gateway__label">Discover Monarch</span>
+                                <span class="cl-gateway__arrow" aria-hidden="true">&rarr;</span>
+                            </span>
+                        </a>
                     </div>
                 </div>
-                <p class="tiers-note">Prices shown are starting points and vary based on design complexity, fabric selection, and embellishment. Detailed quotes are provided during your consultation.</p>
-            </div>
-        </section>
+            </section>
+        </article>
 
-        <section class="section fade-in" id="how-it-works">
-            <div class="container">
-                <div class="section-header">
-                    <h2>How It Works</h2>
-                    <p class="section-header__sub">Your bespoke journey in four steps.</p>
+        <!-- ============================ CHAPTER 02 · HERITAGE ============================ -->
+        <article class="cl-chapter" aria-labelledby="cl-chapter-heritage">
+            <section class="cl-poster">
+                <img class="cl-poster__img" src="images/lookbook-collection-01.jpg" alt="Heritage campaign — handwoven textiles moving in soft light" loading="lazy">
+                <span class="cl-poster__scrim" aria-hidden="true"></span>
+                <span class="cl-poster__dissolve" aria-hidden="true"></span>
+                <p class="cl-poster__chapter">Chapter 02</p>
+                <div class="cl-poster__body">
+                    <div class="container cl-poster__inner">
+                        <h2 class="cl-poster__name" id="cl-chapter-heritage">Heritage</h2>
+                        <p class="cl-poster__season">Volume I &middot; The First Chapter</p>
+                    </div>
                 </div>
-                <ol class="process">
-                    <li class="process__step">
-                        <div class="process__number">01</div>
-                        <div class="process__body">
-                            <h3 class="process__title">Consultation</h3>
-                            <p class="process__text">Book a private appointment at either atelier or schedule a virtual consultation. Share your vision, occasion, and style preferences.</p>
-                        </div>
-                    </li>
-                    <li class="process__step">
-                        <div class="process__number">02</div>
-                        <div class="process__body">
-                            <h3 class="process__title">Design &amp; Fabric</h3>
-                            <p class="process__text">Our designers sketch concepts based on your brief. Browse our curated fabric library and select materials that speak to you.</p>
-                        </div>
-                    </li>
-                    <li class="process__step">
-                        <div class="process__number">03</div>
-                        <div class="process__body">
-                            <h3 class="process__title">Fitting &amp; Refinement</h3>
-                            <p class="process__text">Try your garment as it takes shape. Each fitting allows us to perfect the fit, adjust details, and ensure your complete satisfaction.</p>
-                        </div>
-                    </li>
-                    <li class="process__step">
-                        <div class="process__number">04</div>
-                        <div class="process__body">
-                            <h3 class="process__title">Delivery</h3>
-                            <p class="process__text">Your finished piece, pressed and packaged in our signature presentation, ready to wear.</p>
-                        </div>
-                    </li>
-                </ol>
-            </div>
-        </section>
+            </section>
 
-        <section class="section section--brown section--cta fade-in">
-            <div class="container container--narrow text-center">
-                <span class="section--cta__eyebrow">Begin Your Journey</span>
-                <h2 class="section--cta__title">Ready to Begin?</h2>
-                <p class="section--cta__text">Schedule your private consultation today and take the first step toward creating your bespoke masterpiece.</p>
-                <div class="section--cta__actions">
-                    <a href="index.html#contact" class="btn btn--primary">Book Consultation</a>
-                    <a href="about.html" class="btn btn--ghost-light">Meet the Founders</a>
+            <section class="cl-narrative">
+                <div class="container">
+                    <p class="cl-narrative__text fade-in">Woven from memory.<br>Held in the hand.<br><em>A lineage carried forward, thread by thread.</em></p>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <section class="cl-pieces">
+                <div class="container">
+                    <div class="cl-grid">
+                        <figure class="cl-piece fade-in">
+                            <a href="product-detail.html" class="cl-piece__frame" aria-label="View the Heritage T-Shirt">
+                                <img class="cl-piece__img" src="images/product-garment-03.jpg" alt="Heritage T-Shirt by Adiss" loading="lazy">
+                            </a>
+                            <figcaption class="cl-piece__caption">
+                                <span class="cl-piece__index">Adiss / 003</span>
+                                <h3 class="cl-piece__name">Heritage T-Shirt</h3>
+                                <p class="cl-piece__price">AED 590</p>
+                            </figcaption>
+                        </figure>
+
+                        <figure class="cl-piece fade-in">
+                            <a href="product-detail.html" class="cl-piece__frame" aria-label="View the Heritage Woven Scarf">
+                                <img class="cl-piece__img" src="images/product-garment-04.jpg" alt="Heritage Woven Scarf by Adiss" loading="lazy">
+                            </a>
+                            <figcaption class="cl-piece__caption">
+                                <span class="cl-piece__index">Adiss / 004</span>
+                                <h3 class="cl-piece__name">Heritage Woven Scarf</h3>
+                                <p class="cl-piece__price">AED 720</p>
+                            </figcaption>
+                        </figure>
+
+                        <a href="shop.html" class="cl-gateway fade-in" aria-label="Discover the Heritage collection">
+                            <img class="cl-gateway__img" src="images/product-garment-01.jpg" alt="" aria-hidden="true" loading="lazy">
+                            <span class="cl-gateway__veil" aria-hidden="true"></span>
+                            <span class="cl-gateway__body">
+                                <span class="cl-gateway__label">Discover Heritage</span>
+                                <span class="cl-gateway__arrow" aria-hidden="true">&rarr;</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <!-- ============================ CHAPTER 03 · ARCHIVE ============================ -->
+        <article class="cl-chapter" aria-labelledby="cl-chapter-archive">
+            <section class="cl-poster">
+                <img class="cl-poster__img" src="images/lookbook-collection-02.jpg" alt="Archive campaign — a composed silhouette against a quiet interior" loading="lazy">
+                <span class="cl-poster__scrim" aria-hidden="true"></span>
+                <span class="cl-poster__dissolve" aria-hidden="true"></span>
+                <p class="cl-poster__chapter">Chapter 03</p>
+                <div class="cl-poster__body">
+                    <div class="container cl-poster__inner">
+                        <h2 class="cl-poster__name" id="cl-chapter-archive">Archive</h2>
+                        <p class="cl-poster__season">Volume II</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cl-narrative">
+                <div class="container">
+                    <p class="cl-narrative__text fade-in">What endures is not loud.<br>Drawn from our earliest patterns.<br><em>Kept not for nostalgia, but for permanence.</em></p>
+                </div>
+            </section>
+
+            <section class="cl-pieces">
+                <div class="container">
+                    <div class="cl-grid">
+                        <figure class="cl-piece fade-in">
+                            <a href="product-detail.html" class="cl-piece__frame" aria-label="View the Archive Field Jacket">
+                                <img class="cl-piece__img" src="images/product-garment-04.jpg" alt="Archive Field Jacket by Adiss" loading="lazy">
+                            </a>
+                            <figcaption class="cl-piece__caption">
+                                <span class="cl-piece__index">Adiss / 005</span>
+                                <h3 class="cl-piece__name">Archive Field Jacket</h3>
+                                <p class="cl-piece__price">AED 1,650</p>
+                            </figcaption>
+                        </figure>
+
+                        <figure class="cl-piece fade-in">
+                            <a href="product-detail.html" class="cl-piece__frame" aria-label="View the Archive Pleated Trouser">
+                                <img class="cl-piece__img" src="images/product-garment-01.jpg" alt="Archive Pleated Trouser by Adiss" loading="lazy">
+                            </a>
+                            <figcaption class="cl-piece__caption">
+                                <span class="cl-piece__index">Adiss / 006</span>
+                                <h3 class="cl-piece__name">Archive Pleated Trouser</h3>
+                                <p class="cl-piece__price">AED 880</p>
+                            </figcaption>
+                        </figure>
+
+                        <a href="shop.html" class="cl-gateway fade-in" aria-label="Enter the Archive collection">
+                            <img class="cl-gateway__img" src="images/before-after-fitting.jpg" alt="" aria-hidden="true" loading="lazy">
+                            <span class="cl-gateway__veil" aria-hidden="true"></span>
+                            <span class="cl-gateway__body">
+                                <span class="cl-gateway__label">Enter the Collection</span>
+                                <span class="cl-gateway__arrow" aria-hidden="true">&rarr;</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <!-- ============================ CHAPTER 04 · NOCTURNE ============================ -->
+        <article class="cl-chapter" aria-labelledby="cl-chapter-nocturne">
+            <section class="cl-poster">
+                <img class="cl-poster__img" src="images/product-garment-02.jpg" alt="Nocturne campaign — a dark tailored silhouette in low light" loading="lazy">
+                <span class="cl-poster__scrim" aria-hidden="true"></span>
+                <span class="cl-poster__dissolve" aria-hidden="true"></span>
+                <p class="cl-poster__chapter">Chapter 04</p>
+                <div class="cl-poster__body">
+                    <div class="container cl-poster__inner">
+                        <h2 class="cl-poster__name" id="cl-chapter-nocturne">Nocturne</h2>
+                        <p class="cl-poster__season">Volume III</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cl-narrative">
+                <div class="container">
+                    <p class="cl-narrative__text fade-in">Made for the hours after.<br>Dark, deliberate, luminous.<br><em>Where character is felt rather than seen.</em></p>
+                </div>
+            </section>
+
+            <section class="cl-pieces">
+                <div class="container">
+                    <div class="cl-grid">
+                        <figure class="cl-piece fade-in">
+                            <a href="product-detail.html" class="cl-piece__frame" aria-label="View the Nocturne Evening Gown">
+                                <img class="cl-piece__img" src="images/product-garment-04.jpg" alt="Nocturne Evening Gown by Adiss" loading="lazy">
+                            </a>
+                            <figcaption class="cl-piece__caption">
+                                <span class="cl-piece__index">Adiss / 007</span>
+                                <h3 class="cl-piece__name">Nocturne Evening Gown</h3>
+                                <p class="cl-piece__price">AED 3,200</p>
+                            </figcaption>
+                        </figure>
+
+                        <figure class="cl-piece fade-in">
+                            <a href="product-detail.html" class="cl-piece__frame" aria-label="View the Nocturne Velvet Blazer">
+                                <img class="cl-piece__img" src="images/product-garment-03.jpg" alt="Nocturne Velvet Blazer by Adiss" loading="lazy">
+                            </a>
+                            <figcaption class="cl-piece__caption">
+                                <span class="cl-piece__index">Adiss / 008</span>
+                                <h3 class="cl-piece__name">Nocturne Velvet Blazer</h3>
+                                <p class="cl-piece__price">AED 2,100</p>
+                            </figcaption>
+                        </figure>
+
+                        <a href="shop.html" class="cl-gateway fade-in" aria-label="Discover the Nocturne collection">
+                            <img class="cl-gateway__img" src="images/hero-trench-coat.jpg" alt="" aria-hidden="true" loading="lazy">
+                            <span class="cl-gateway__veil" aria-hidden="true"></span>
+                            <span class="cl-gateway__body">
+                                <span class="cl-gateway__label">Discover Nocturne</span>
+                                <span class="cl-gateway__arrow" aria-hidden="true">&rarr;</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </article>
     </main>
 
         <footer class="site-footer ad-footer">
