@@ -1,0 +1,592 @@
+/* ========================================================================
+   THE ARCHIVE — blog.html only
+   A living archive of the House. Manuscript scroll over a cinematic
+   atmospheric background. All selectors are scoped with `.arc-` so the
+   global design system is never touched.
+   ======================================================================== */
+
+/* -----------------------------------------------------------------------
+   1. Scoped tokens
+   ----------------------------------------------------------------------- */
+.arc-page {
+    --arc-paper-1: #faf5ea;
+    --arc-paper-2: #f3ead7;
+    --arc-paper-3: #ece0c9;
+    --arc-ink: #2b1e1a;
+    --arc-ink-soft: #4a3a2e;
+    --arc-ink-mute: #7d6a58;
+    --arc-gold: #a9863f;
+    --arc-note: #8a6238;
+    --arc-rule: rgba(122, 96, 62, 0.42);
+    --arc-paper-w: 780px;
+    --arc-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --arc-rail: rgba(214, 205, 188, 0.62);
+
+    background-color: #0b0e0d;
+}
+
+.arc-page ::selection {
+    background: rgba(169, 134, 63, 0.32);
+    color: #fdfaf3;
+}
+
+/* NOTE: intentionally NOT a stacking context. The fixed background uses
+   z-index:-1 so the global footer (opaque) still paints above it. */
+.arc-main {
+    display: block;
+}
+
+/* Keep the House footer above the fixed atmosphere on this page only. */
+.arc-page .ad-footer {
+    position: relative;
+    z-index: 3;
+}
+
+/* -----------------------------------------------------------------------
+   2. Cinematic background (fixed, softened)
+   ----------------------------------------------------------------------- */
+.arc-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.arc-bg__sky {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(120% 70% at 52% 6%, rgba(216, 195, 154, 0.30), rgba(216, 195, 154, 0) 58%),
+        radial-gradient(90% 60% at 18% 30%, rgba(96, 116, 104, 0.28), rgba(96, 116, 104, 0) 70%),
+        linear-gradient(180deg, #0a0d0c 0%, #131c17 26%, #243029 48%, #384038 68%, #1b211d 100%);
+}
+
+.arc-bg__art {
+    position: absolute;
+    top: -8%;
+    left: -6%;
+    width: 112%;
+    height: 118%;
+    filter: blur(5px) saturate(0.9) contrast(1.02);
+    transform: translate3d(0, 0, 0) scale(1.04);
+    transform-origin: 50% 40%;
+    will-change: transform;
+}
+
+.arc-bg__mist {
+    position: absolute;
+    left: -12%;
+    right: -12%;
+    top: 26%;
+    height: 74%;
+    background:
+        radial-gradient(58% 40% at 28% 38%, rgba(212, 216, 208, 0.22), rgba(212, 216, 208, 0) 72%),
+        radial-gradient(52% 36% at 74% 56%, rgba(198, 204, 197, 0.18), rgba(198, 204, 197, 0) 74%),
+        radial-gradient(70% 30% at 50% 82%, rgba(178, 186, 178, 0.16), rgba(178, 186, 178, 0) 76%),
+        linear-gradient(180deg, rgba(186, 194, 186, 0.05), rgba(150, 160, 152, 0.16) 55%, rgba(88, 98, 92, 0.05));
+    filter: blur(34px);
+    will-change: transform;
+}
+
+.arc-bg__grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+.arc-bg__vignette {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(132% 96% at 50% 36%, rgba(0, 0, 0, 0) 32%, rgba(4, 6, 5, 0.55) 100%),
+        linear-gradient(180deg, rgba(6, 8, 7, 0.62) 0%, rgba(6, 8, 7, 0.26) 44%, rgba(6, 8, 7, 0.74) 100%);
+}
+
+/* -----------------------------------------------------------------------
+   3. Hero
+   ----------------------------------------------------------------------- */
+.arc-hero {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: clamp(56px, 12vh, 132px) 24px clamp(28px, 5vh, 54px);
+    text-align: center;
+}
+
+.arc-hero__label {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.46em;
+    text-indent: 0.46em;
+    text-transform: uppercase;
+    color: #cbb27f;
+    margin: 0 0 16px;
+}
+
+.arc-hero__rule {
+    display: block;
+    width: 74px;
+    height: 1px;
+    margin: 0 auto 30px;
+    background: linear-gradient(90deg, rgba(203, 178, 127, 0), rgba(203, 178, 127, 0.75), rgba(203, 178, 127, 0));
+}
+
+.arc-hero__title {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: clamp(2.15rem, 4.6vw, 3.5rem);
+    line-height: 1.09;
+    letter-spacing: 0.004em;
+    color: #f4ede1;
+    margin: 0 0 26px;
+    text-shadow: 0 2px 34px rgba(0, 0, 0, 0.45);
+}
+
+.arc-hero__support {
+    font-family: 'Cormorant Garamond', var(--font-heading);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.02rem, 1.5vw, 1.24rem);
+    line-height: 1.65;
+    color: #cfc6b8;
+    max-width: 520px;
+    margin: 0 auto;
+    text-shadow: 0 1px 22px rgba(0, 0, 0, 0.5);
+}
+
+/* -----------------------------------------------------------------------
+   4. Side rails
+   ----------------------------------------------------------------------- */
+.arc-rail {
+    position: fixed;
+    top: 50%;
+    z-index: 2;
+    transform: translateY(-50%);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    pointer-events: none;
+    font-family: var(--font-body);
+    color: var(--arc-rail);
+    opacity: 0;
+    animation: arc-rail-in 1.6s var(--arc-ease) 1s forwards;
+}
+
+.arc-rail--left { left: clamp(22px, 3vw, 52px); }
+.arc-rail--right { right: clamp(22px, 3vw, 52px); text-align: center; }
+
+.arc-rail__line {
+    width: 1px;
+    height: 92px;
+    background: linear-gradient(180deg, rgba(214, 205, 188, 0), rgba(214, 205, 188, 0.6), rgba(214, 205, 188, 0));
+}
+
+.arc-rail__text {
+    font-size: 0.64rem;
+    font-weight: 500;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    line-height: 2;
+    white-space: nowrap;
+}
+
+.arc-rail--left .arc-rail__text { writing-mode: vertical-rl; transform: rotate(180deg); }
+
+.arc-rail__chev {
+    width: 9px;
+    height: 9px;
+    border-right: 1px solid rgba(214, 205, 188, 0.6);
+    border-bottom: 1px solid rgba(214, 205, 188, 0.6);
+    transform: rotate(45deg);
+    animation: arc-chev 2.8s ease-in-out infinite;
+}
+
+@keyframes arc-rail-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes arc-chev {
+    0%, 100% { transform: rotate(45deg) translate(0, 0); opacity: 0.45; }
+    50% { transform: rotate(45deg) translate(3px, 3px); opacity: 0.9; }
+}
+
+/* -----------------------------------------------------------------------
+   5. Stage + manuscript scroll
+   ----------------------------------------------------------------------- */
+.arc-stage {
+    position: relative;
+    z-index: 1;
+    padding: 0 20px clamp(120px, 20vh, 240px);
+}
+
+.arc-scroll {
+    position: relative;
+    width: min(var(--arc-paper-w), 90vw);
+    min-width: 300px;
+    margin: 0 auto;
+}
+
+/* ----- Brass rollers ----- */
+.arc-roller {
+    position: relative;
+    z-index: 4;
+    height: 26px;
+    border-radius: 15px;
+    background:
+        linear-gradient(180deg,
+            #1d150b 0%,
+            #5c441f 15%,
+            #9c7a3f 33%,
+            #d8bd82 47%,
+            #8a6c34 62%,
+            #3f2e15 84%,
+            #180f08 100%);
+    box-shadow:
+        0 18px 34px rgba(0, 0, 0, 0.55),
+        0 4px 10px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 240, 202, 0.45),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.55);
+}
+
+.arc-roller::before,
+.arc-roller::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 42px;
+    height: 42px;
+    margin-top: -21px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 34% 28%, #e0c78d 0%, #a5823f 34%, #5f4620 66%, #201509 100%);
+    box-shadow:
+        0 10px 20px rgba(0, 0, 0, 0.5),
+        inset 0 -3px 8px rgba(0, 0, 0, 0.5),
+        inset 0 2px 4px rgba(240, 220, 170, 0.25);
+}
+
+.arc-roller::before { left: -17px; }
+.arc-roller::after { right: -17px; }
+
+.arc-roller--top { margin-bottom: -4px; }
+.arc-roller--bottom { margin-top: -4px; }
+
+/* ----- Paper ----- */
+.arc-paper {
+    --arc-unroll: 0;
+    position: relative;
+    z-index: 2;
+    background-color: var(--arc-paper-2);
+    background-image:
+        radial-gradient(130% 42% at 50% 0%, rgba(255, 252, 245, 0.92), rgba(255, 252, 245, 0) 62%),
+        radial-gradient(130% 46% at 50% 100%, rgba(206, 187, 152, 0.6), rgba(206, 187, 152, 0) 60%),
+        linear-gradient(90deg, rgba(112, 88, 56, 0.14), rgba(112, 88, 56, 0) 7%, rgba(112, 88, 56, 0) 93%, rgba(112, 88, 56, 0.14)),
+        linear-gradient(180deg, var(--arc-paper-1) 0%, var(--arc-paper-2) 42%, var(--arc-paper-3) 100%);
+    padding: clamp(42px, 6vw, 88px) clamp(26px, 5vw, 78px) clamp(48px, 6.5vw, 92px);
+    border-radius: 3px;
+    box-shadow:
+        0 46px 100px rgba(0, 0, 0, 0.6),
+        0 10px 28px rgba(0, 0, 0, 0.38),
+        inset 0 0 0 1px rgba(112, 88, 56, 0.16),
+        inset 0 30px 46px -34px rgba(52, 34, 16, 0.55),
+        inset 0 -30px 46px -34px rgba(52, 34, 16, 0.55);
+}
+
+/* Unroll shadow — softens as the manuscript is revealed */
+.arc-paper::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 130px;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(
+        180deg,
+        rgba(52, 34, 16, calc(0.5 - var(--arc-unroll, 0) * 0.44)) 0%,
+        rgba(52, 34, 16, 0) 100%
+    );
+}
+
+/* Fibre grain */
+.arc-paper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0.34;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.arc-paper > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* -----------------------------------------------------------------------
+   6. Chapters
+   ----------------------------------------------------------------------- */
+.arc-chapter {
+    margin-bottom: clamp(52px, 8.5vmin, 104px);
+}
+
+.arc-chapter:last-of-type {
+    margin-bottom: 0;
+}
+
+.arc-chapter__label {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.44em;
+    text-transform: uppercase;
+    color: var(--arc-gold);
+    margin: 0 0 20px;
+}
+
+.arc-chapter__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.16fr) minmax(0, 0.74fr);
+    gap: clamp(28px, 4vw, 54px);
+    align-items: start;
+}
+
+.arc-chapter__title {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: clamp(1.9rem, 4.4vw, 2.85rem);
+    line-height: 1.08;
+    letter-spacing: 0.004em;
+    color: var(--arc-ink);
+    margin: 0 0 18px;
+}
+
+.arc-chapter__subtitle {
+    font-family: 'Cormorant Garamond', var(--font-heading);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.18rem, 2.1vw, 1.5rem);
+    line-height: 1.38;
+    color: var(--arc-note);
+    margin: 0 0 26px;
+}
+
+.arc-chapter__body {
+    font-family: 'Cormorant Garamond', var(--font-heading);
+    font-weight: 500;
+    font-size: clamp(1.06rem, 1.45vw, 1.2rem);
+    line-height: 1.92;
+    letter-spacing: 0.004em;
+    color: var(--arc-ink-soft);
+    margin: 0 0 1.1em;
+}
+
+.arc-chapter__body:last-child {
+    margin-bottom: 0;
+}
+
+.arc-chapter__aside {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: clamp(14px, 2.4vw, 26px);
+    padding-top: clamp(4px, 1vw, 14px);
+}
+
+/* Handwritten margin note */
+.arc-note {
+    font-family: 'Petit Formal Script', 'Cormorant Garamond', cursive;
+    font-weight: 400;
+    font-size: clamp(1.4rem, 2.3vw, 1.8rem);
+    line-height: 1.16;
+    color: var(--arc-note);
+    text-align: right;
+    transform: rotate(-6deg);
+    transform-origin: right center;
+    margin: 0;
+    padding-right: 6px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Ink studies */
+.arc-sketch {
+    width: 100%;
+    max-width: 300px;
+    margin: 0;
+}
+
+.arc-sketch__svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    color: #6a5847;
+    opacity: 0.92;
+}
+
+.arc-sketch__cap {
+    margin: 12px 0 0;
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(122, 96, 62, 0.78);
+    text-align: right;
+}
+
+/* Chapter divider */
+.arc-chapter__divider {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(46px, 7vmin, 84px);
+}
+
+.arc-chapter__divider::before {
+    content: "";
+    width: 68px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(122, 96, 62, 0), var(--arc-rule), rgba(122, 96, 62, 0));
+}
+
+/* -----------------------------------------------------------------------
+   7. Colophon
+   ----------------------------------------------------------------------- */
+.arc-colophon {
+    margin-top: clamp(48px, 7vmin, 82px);
+    text-align: center;
+}
+
+.arc-colophon__mono {
+    display: block;
+    font-family: 'Cormorant Garamond', var(--font-heading);
+    font-weight: 500;
+    font-size: 1.3rem;
+    letter-spacing: 0.42em;
+    text-indent: 0.42em;
+    text-transform: uppercase;
+    color: var(--arc-ink);
+}
+
+.arc-colophon__rule {
+    display: block;
+    width: 56px;
+    height: 1px;
+    margin: 16px auto;
+    background: linear-gradient(90deg, rgba(122, 96, 62, 0), var(--arc-rule), rgba(122, 96, 62, 0));
+}
+
+.arc-colophon__note {
+    font-family: 'Cormorant Garamond', var(--font-heading);
+    font-style: italic;
+    font-size: 0.98rem;
+    letter-spacing: 0.05em;
+    color: var(--arc-ink-mute);
+    margin: 0;
+}
+
+/* -----------------------------------------------------------------------
+   8. Reveal motion
+   ----------------------------------------------------------------------- */
+[data-arc-reveal] {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 1.15s var(--arc-ease), transform 1.15s var(--arc-ease);
+}
+
+[data-arc-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+}
+
+.arc-chapter__text > [data-arc-reveal]:nth-child(2) { transition-delay: 0.08s; }
+.arc-chapter__text > [data-arc-reveal]:nth-child(3) { transition-delay: 0.16s; }
+.arc-chapter__text > [data-arc-reveal]:nth-child(4) { transition-delay: 0.26s; }
+.arc-chapter__text > [data-arc-reveal]:nth-child(5) { transition-delay: 0.34s; }
+.arc-chapter__aside > [data-arc-reveal]:nth-child(1) { transition-delay: 0.22s; }
+.arc-chapter__aside > [data-arc-reveal]:nth-child(2) { transition-delay: 0.38s; }
+.arc-colophon [data-arc-reveal] { transition-delay: 0.1s; }
+
+/* -----------------------------------------------------------------------
+   9. Responsive
+   ----------------------------------------------------------------------- */
+@media (min-width: 1200px) {
+    .arc-rail { display: flex; }
+}
+
+@media (max-width: 720px) {
+    .arc-chapter__grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 30px;
+    }
+
+    .arc-chapter__aside {
+        align-items: center;
+        padding-top: 4px;
+    }
+
+    .arc-note {
+        text-align: center;
+        transform: rotate(-4deg);
+        transform-origin: center;
+    }
+
+    .arc-sketch {
+        max-width: 260px;
+    }
+
+    .arc-sketch__cap {
+        text-align: center;
+    }
+
+    .arc-roller {
+        height: 22px;
+        border-radius: 13px;
+    }
+
+    .arc-roller::before,
+    .arc-roller::after {
+        width: 32px;
+        height: 32px;
+        margin-top: -16px;
+    }
+
+    .arc-roller::before { left: -13px; }
+    .arc-roller::after { right: -13px; }
+}
+
+@media (max-width: 420px) {
+    .arc-stage { padding-left: 12px; padding-right: 12px; }
+    .arc-scroll { width: 92vw; }
+    .arc-hero__title { font-size: 2rem; }
+}
+
+/* -----------------------------------------------------------------------
+   10. Reduced motion
+   ----------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    [data-arc-reveal] {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .arc-rail,
+    .arc-rail__chev {
+        animation: none;
+        opacity: 1;
+    }
+
+    .arc-bg__art,
+    .arc-bg__mist {
+        transform: none !important;
+    }
+}
