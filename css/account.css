@@ -1,0 +1,1278 @@
+/* ========================================================================
+   ADISS — PRIVATE CLIENT
+   A private salon layered over the global ADISS design system.
+   Scoped to account.html (.page-account) and loaded after css/styles.css.
+   Luxury comes from typography, architecture, spacing and restraint —
+   never from flashy effects.
+   ======================================================================== */
+
+/* -----------------------------------------------------------------------
+   1. Tokens — scoped to the Private Client salon
+   ----------------------------------------------------------------------- */
+.page-account {
+    --pa-ink: #1a1a1a;
+    --pa-ink-soft: #3d352e;
+    --pa-muted: #6e665b;
+    --pa-dim: #9a9086;
+
+    --pa-ivory: #f6f1e8;
+    --pa-bone: #efe8dc;
+    --pa-cream: #fbf8f2;
+
+    --pa-line: rgba(26, 26, 26, 0.09);
+    --pa-line-strong: rgba(26, 26, 26, 0.16);
+
+    --pa-gold: #c5a059;
+    --pa-gold-bright: #d8b877;
+    --pa-gold-wash: rgba(197, 160, 89, 0.12);
+    --pa-charcoal: #14110e;
+
+    --pa-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --pa-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    --pa-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --pa-fast: 0.28s var(--pa-ease);
+    --pa-base: 0.6s var(--pa-ease);
+}
+
+.page-account {
+    background-color: var(--pa-ivory);
+}
+
+.page-account main {
+    display: block;
+}
+
+/* -----------------------------------------------------------------------
+   2. Hero — cinematic, atmospheric
+   ----------------------------------------------------------------------- */
+.pc-hero {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: flex-end;
+    min-height: clamp(300px, 42vh, 460px);
+    overflow: hidden;
+    background-color: var(--pa-charcoal);
+}
+
+.pc-hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: url('../images/hero-trench-coat.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    filter: grayscale(0.35) contrast(1.06) brightness(0.72) saturate(0.9) sepia(0.08);
+    transform: scale(1.04);
+    transition: transform 2.4s var(--pa-ease);
+}
+
+.pc-hero:hover .pc-hero__media {
+    transform: scale(1.07);
+}
+
+.pc-hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(to top, rgba(10, 8, 5, 0.92) 0%, rgba(10, 8, 5, 0.42) 46%, rgba(10, 8, 5, 0.55) 100%),
+        radial-gradient(ellipse 80% 80% at 22% 70%, rgba(197, 160, 89, 0.14), transparent 60%);
+}
+
+.pc-hero__inner {
+    width: 100%;
+    padding-top: 120px;
+    padding-bottom: 56px;
+}
+
+.pc-hero__eyebrow {
+    display: inline-block;
+    font-family: var(--pa-sans);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--pa-gold-bright);
+    margin-bottom: 20px;
+}
+
+.pc-hero__title {
+    font-family: var(--pa-serif);
+    font-weight: 500;
+    font-size: clamp(2.6rem, 5.4vw, 4.4rem);
+    line-height: 1.02;
+    letter-spacing: 0.01em;
+    color: #f7f2e9;
+    text-shadow: 0 2px 34px rgba(0, 0, 0, 0.5);
+}
+
+.pc-hero__sub {
+    margin-top: 16px;
+    font-family: var(--pa-serif);
+    font-style: italic;
+    font-size: clamp(1.05rem, 1.6vw, 1.4rem);
+    font-weight: 400;
+    color: rgba(247, 242, 233, 0.78);
+}
+
+/* -----------------------------------------------------------------------
+   3. Shell + layout architecture
+   ----------------------------------------------------------------------- */
+.pc-body {
+    padding: 46px 0 90px;
+}
+
+.pc-shell {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: grid;
+    grid-template-columns: 196px minmax(0, 1fr);
+    gap: 46px;
+    align-items: start;
+}
+
+.pc-columns {
+    display: grid;
+    grid-template-columns: 1.32fr 1fr 0.92fr;
+    gap: 28px;
+    align-items: start;
+}
+
+.pc-col {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    min-width: 0;
+}
+
+/* -----------------------------------------------------------------------
+   4. Left rail — refined vertical navigation
+   ----------------------------------------------------------------------- */
+.pc-rail {
+    position: sticky;
+    top: calc(var(--header-height) + 26px);
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+}
+
+.pc-rail__list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.pc-rail__link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 12px 14px;
+    font-family: var(--pa-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--pa-muted);
+    border-left: 1px solid transparent;
+    transition: color var(--pa-fast), background-color var(--pa-fast), border-color var(--pa-fast);
+}
+
+.pc-rail__link svg {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.25;
+    opacity: 0.85;
+    transition: opacity var(--pa-fast), transform var(--pa-fast);
+}
+
+.pc-rail__link:hover {
+    color: var(--pa-ink);
+    background-color: rgba(255, 255, 255, 0.42);
+}
+
+.pc-rail__link:hover svg {
+    opacity: 1;
+    transform: translateX(1px);
+}
+
+.pc-rail__link.is-active {
+    color: var(--pa-ink);
+    background-color: rgba(255, 255, 255, 0.55);
+    border-left-color: var(--pa-gold);
+}
+
+.pc-rail__link.is-active svg {
+    opacity: 1;
+}
+
+.pc-rail__foot {
+    padding: 22px 4px 0;
+    border-top: 1px solid var(--pa-line);
+}
+
+.pc-rail__mark {
+    display: block;
+    font-family: var(--pa-serif);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    text-indent: 0.4em;
+    text-transform: uppercase;
+    color: var(--pa-ink);
+}
+
+.pc-rail__note {
+    margin-top: 12px;
+    font-family: var(--pa-sans);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    line-height: 2;
+    text-transform: uppercase;
+    color: var(--pa-dim);
+}
+
+.pc-rail__signout {
+    margin-top: 20px;
+    font-family: var(--pa-sans);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pa-muted);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: color var(--pa-fast), border-color var(--pa-fast);
+}
+
+.pc-rail__signout:hover {
+    color: var(--pa-gold);
+    border-color: var(--pa-gold);
+}
+
+/* -----------------------------------------------------------------------
+   5. Panels — quiet paper cards
+   ----------------------------------------------------------------------- */
+.pc-panel {
+    position: relative;
+    padding: 28px 30px 30px;
+    background-color: rgba(255, 255, 255, 0.44);
+    border: 1px solid var(--pa-line);
+    box-shadow: 0 1px 2px rgba(26, 26, 26, 0.02);
+    transition: border-color var(--pa-fast), box-shadow var(--pa-fast), transform var(--pa-fast);
+}
+
+.pc-panel:hover {
+    border-color: var(--pa-line-strong);
+    box-shadow: 0 18px 46px -30px rgba(26, 26, 26, 0.34);
+}
+
+.pc-panel__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-bottom: 22px;
+}
+
+.pc-panel__title {
+    font-family: var(--pa-serif);
+    font-size: 1.62rem;
+    font-weight: 500;
+    letter-spacing: 0.012em;
+    line-height: 1.1;
+    color: var(--pa-ink);
+    min-width: 0;
+}
+
+.pc-panel__head .pc-tag {
+    margin-left: auto;
+}
+
+.pc-panel__note {
+    margin-top: -12px;
+    margin-bottom: 20px;
+    font-family: var(--pa-sans);
+    font-size: 0.76rem;
+    font-weight: 300;
+    color: var(--pa-muted);
+}
+
+/* Small editorial actions: EDIT / VIEW ALL / WHY? */
+.pc-action {
+    font-family: var(--pa-sans);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--pa-muted);
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+    white-space: nowrap;
+    transition: color var(--pa-fast), border-color var(--pa-fast);
+}
+
+.pc-action:hover {
+    color: var(--pa-ink);
+    border-color: var(--pa-gold);
+}
+
+.pc-action--gold {
+    color: var(--pa-gold);
+}
+
+.pc-action--gold:hover {
+    color: var(--pa-gold-bright);
+    border-color: var(--pa-gold-bright);
+}
+
+.pc-tag {
+    font-family: var(--pa-sans);
+    font-size: 0.56rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--pa-dim);
+    white-space: nowrap;
+}
+
+.pc-tag--gold {
+    color: var(--pa-gold);
+}
+
+/* -----------------------------------------------------------------------
+   6. Client Profile
+   ----------------------------------------------------------------------- */
+.pc-profile {
+    display: grid;
+    grid-template-columns: 118px minmax(0, 1fr);
+    gap: 26px;
+    align-items: start;
+}
+
+.pc-profile__portrait {
+    position: relative;
+}
+
+.pc-profile__portrait img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 50%;
+    filter: grayscale(0.4) contrast(1.02) brightness(0.98) sepia(0.06);
+}
+
+.pc-profile__sig {
+    display: block;
+    margin-top: 12px;
+    text-align: center;
+    font-family: var(--pa-serif);
+    font-style: italic;
+    font-size: 1.28rem;
+    font-weight: 500;
+    color: var(--pa-muted);
+    transform: rotate(-4deg);
+}
+
+.pc-profile__meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 26px;
+}
+
+.pc-field dt {
+    font-family: var(--pa-sans);
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--pa-dim);
+    margin-bottom: 5px;
+}
+
+.pc-field dd {
+    font-family: var(--pa-sans);
+    font-size: 0.86rem;
+    font-weight: 400;
+    color: var(--pa-ink);
+    line-height: 1.4;
+}
+
+.pc-field--wide {
+    grid-column: 1 / -1;
+}
+
+/* Inline edit state */
+.pc-panel.is-editing dd[data-field] {
+    display: none;
+}
+
+.pc-pref dd input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--pa-line-strong);
+    padding: 2px 0 5px;
+    font-family: var(--pa-serif);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--pa-ink);
+    outline: none;
+    transition: border-color var(--pa-fast);
+}
+
+.pc-pref dd input:focus {
+    border-bottom-color: var(--pa-gold);
+}
+
+/* Anchor offsets so sticky header never covers a section */
+#profile,
+#collection,
+#reserved,
+#preferences,
+#house-access,
+#support {
+    scroll-margin-top: calc(var(--header-height) + 24px);
+}
+
+.pc-anchor {
+    display: block;
+    height: 0;
+}
+
+.pc-field input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--pa-line-strong);
+    padding: 2px 0 5px;
+    font-family: var(--pa-sans);
+    font-size: 0.86rem;
+    color: var(--pa-ink);
+    outline: none;
+    transition: border-color var(--pa-fast);
+}
+
+.pc-field input:focus {
+    border-bottom-color: var(--pa-gold);
+}
+
+/* -----------------------------------------------------------------------
+   7. Measurements
+   ----------------------------------------------------------------------- */
+.pc-measure {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 116px;
+    gap: 22px;
+    align-items: center;
+}
+
+.pc-measure__list {
+    display: flex;
+    flex-direction: column;
+}
+
+.pc-measure__row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--pa-line);
+}
+
+.pc-measure__row:last-child {
+    border-bottom: none;
+}
+
+.pc-measure__label {
+    font-family: var(--pa-sans);
+    font-size: 0.74rem;
+    font-weight: 400;
+    color: var(--pa-muted);
+}
+
+.pc-measure__value {
+    font-family: var(--pa-serif);
+    font-size: 1.06rem;
+    font-weight: 500;
+    color: var(--pa-ink);
+    white-space: nowrap;
+}
+
+.pc-measure__value.is-empty {
+    font-family: var(--pa-sans);
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--pa-dim);
+}
+
+.pc-measure__row input {
+    width: 108px;
+    text-align: right;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--pa-line-strong);
+    padding: 2px 0 4px;
+    font-family: var(--pa-serif);
+    font-size: 1.02rem;
+    color: var(--pa-ink);
+    outline: none;
+    transition: border-color var(--pa-fast);
+}
+
+.pc-measure__row input:focus {
+    border-bottom-color: var(--pa-gold);
+}
+
+.pc-silhouette {
+    display: flex;
+    justify-content: center;
+}
+
+.pc-silhouette svg {
+    width: 84px;
+    height: auto;
+    color: var(--pa-gold);
+}
+
+.pc-silhouette svg .sil-fill {
+    fill: rgba(197, 160, 89, 0.07);
+    stroke: currentColor;
+    stroke-width: 1.1;
+    transition: fill var(--pa-base);
+}
+
+.pc-panel:hover .pc-silhouette svg .sil-fill {
+    fill: rgba(197, 160, 89, 0.12);
+}
+
+/* Luxury button — UPDATE MEASUREMENTS → */
+.pc-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    margin-top: 22px;
+    padding: 16px 22px;
+    font-family: var(--pa-sans);
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #f6f1e8;
+    background-color: var(--pa-charcoal);
+    border: 1px solid var(--pa-charcoal);
+    transition: background-color var(--pa-fast), color var(--pa-fast), border-color var(--pa-fast);
+}
+
+.pc-btn span[aria-hidden] {
+    transition: transform var(--pa-fast);
+}
+
+.pc-btn:hover {
+    background-color: transparent;
+    color: var(--pa-ink);
+    border-color: var(--pa-line-strong);
+}
+
+.pc-btn:hover span[aria-hidden] {
+    transform: translateX(5px);
+}
+
+/* -----------------------------------------------------------------------
+   8. Size Recommendations
+   ----------------------------------------------------------------------- */
+.pc-rec {
+    display: grid;
+    grid-template-columns: 62px minmax(0, 1fr);
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--pa-line);
+}
+
+.pc-rec:first-of-type {
+    padding-top: 4px;
+}
+
+.pc-rec:last-of-type {
+    border-bottom: none;
+}
+
+.pc-rec__img {
+    width: 62px;
+    height: 74px;
+    object-fit: cover;
+    background-color: var(--pa-bone);
+    filter: grayscale(0.12) contrast(1.02);
+    transition: transform var(--pa-base);
+}
+
+.pc-rec:hover .pc-rec__img {
+    transform: scale(1.03);
+}
+
+.pc-rec__body {
+    min-width: 0;
+}
+
+.pc-rec__name {
+    font-family: var(--pa-serif);
+    font-size: 1.06rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--pa-ink);
+    margin-bottom: 10px;
+}
+
+.pc-rec__stats {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.pc-rec__stat {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.pc-rec__stat span {
+    display: block;
+}
+
+.pc-rec__stat-label {
+    font-family: var(--pa-sans);
+    font-size: 0.56rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--pa-dim);
+    white-space: nowrap;
+}
+
+.pc-rec__stat-value {
+    font-family: var(--pa-serif);
+    font-size: 1.24rem;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--pa-ink);
+    white-space: nowrap;
+}
+
+.pc-rec__foot {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+.pc-rec__all {
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--pa-line);
+    text-align: right;
+}
+
+/* WHY? — the Digital Tailoring Assistant */
+.pc-why {
+    font-family: var(--pa-sans);
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--pa-gold);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: color var(--pa-fast), border-color var(--pa-fast);
+}
+
+.pc-why:hover {
+    color: var(--pa-gold-bright);
+    border-color: var(--pa-gold-bright);
+}
+
+.pc-reason {
+    grid-column: 1 / -1;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height var(--pa-base), opacity var(--pa-fast), margin var(--pa-base);
+}
+
+.pc-rec.is-open .pc-reason {
+    max-height: 620px;
+    opacity: 1;
+    margin-top: 6px;
+}
+
+.pc-reason__inner {
+    padding: 18px 20px 4px;
+    border-left: 1px solid var(--pa-gold);
+    background: linear-gradient(90deg, var(--pa-gold-wash), transparent 70%);
+}
+
+.pc-reason__lead {
+    font-family: var(--pa-serif);
+    font-size: 1.02rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--pa-ink-soft);
+    margin-bottom: 16px;
+}
+
+.pc-reason__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pc-reason__item {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 12px;
+    align-items: baseline;
+}
+
+.pc-reason__item dt {
+    font-family: var(--pa-sans);
+    font-size: 0.54rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--pa-dim);
+}
+
+.pc-reason__item dd {
+    font-family: var(--pa-sans);
+    font-size: 0.74rem;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--pa-ink-soft);
+}
+
+/* -----------------------------------------------------------------------
+   9. The Collection — personal wardrobe archive
+   ----------------------------------------------------------------------- */
+.pc-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.pc-card {
+    display: block;
+}
+
+.pc-card__frame {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--pa-bone);
+    aspect-ratio: 4 / 5;
+}
+
+.pc-card__frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.1) contrast(1.02);
+    transition: transform 0.9s var(--pa-ease), filter 0.9s var(--pa-ease);
+}
+
+.pc-card:hover .pc-card__frame img {
+    transform: scale(1.045);
+    filter: grayscale(0) contrast(1.04);
+}
+
+.pc-card__heart {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fbf8f2;
+    background-color: rgba(20, 17, 14, 0.24);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border-radius: 50%;
+    transition: background-color var(--pa-fast), color var(--pa-fast);
+}
+
+.pc-card__heart svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+}
+
+.pc-card__heart:hover,
+.pc-card__heart.is-saved {
+    background-color: var(--pa-gold);
+    color: var(--pa-charcoal);
+}
+
+.pc-card__heart.is-saved svg {
+    fill: currentColor;
+}
+
+.pc-card__info {
+    padding: 12px 2px 0;
+}
+
+.pc-card__index {
+    display: block;
+    font-family: var(--pa-sans);
+    font-size: 0.54rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pa-dim);
+    margin-bottom: 5px;
+}
+
+.pc-card__name {
+    font-family: var(--pa-serif);
+    font-size: 1.02rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--pa-ink);
+    margin-bottom: 4px;
+}
+
+.pc-card__meta {
+    display: block;
+    font-family: var(--pa-sans);
+    font-size: 0.68rem;
+    font-weight: 300;
+    color: var(--pa-muted);
+}
+
+/* -----------------------------------------------------------------------
+   10. Preferences — elegant indicators, never checkbox-heavy
+   ----------------------------------------------------------------------- */
+.pc-pref-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 30px;
+}
+
+.pc-pref dt {
+    font-family: var(--pa-sans);
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pa-dim);
+    margin-bottom: 9px;
+}
+
+.pc-pref dd {
+    font-family: var(--pa-serif);
+    font-size: 1.14rem;
+    font-weight: 500;
+    color: var(--pa-ink);
+}
+
+.pc-swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.pc-swatch {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    font-family: var(--pa-sans);
+    font-size: 0.66rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--pa-ink-soft);
+    border: 1px solid var(--pa-line-strong);
+    border-radius: 999px;
+    transition: border-color var(--pa-fast), background-color var(--pa-fast);
+}
+
+.pc-swatch:hover {
+    border-color: var(--pa-gold);
+    background-color: var(--pa-gold-wash);
+}
+
+.pc-swatch.is-selected {
+    border-color: var(--pa-gold);
+    background-color: var(--pa-gold-wash);
+    color: var(--pa-ink);
+}
+
+.pc-swatch.is-selected::after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--pa-gold);
+}
+
+.pc-palette {
+    display: flex;
+    gap: 10px;
+}
+
+.pc-dot {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid rgba(26, 26, 26, 0.16);
+    transition: transform var(--pa-fast), box-shadow var(--pa-fast);
+}
+
+.pc-dot:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px -6px rgba(26, 26, 26, 0.5);
+}
+
+.pc-dot.is-selected {
+    box-shadow: 0 0 0 2px var(--pa-cream), 0 0 0 3px var(--pa-gold);
+}
+
+.pc-dot--ivory { background-color: #f3ece1; }
+.pc-dot--charcoal { background-color: #34302c; }
+.pc-dot--camel { background-color: #b08968; }
+.pc-dot--black { background-color: #17140f; }
+
+/* -----------------------------------------------------------------------
+   11. House Access
+   ----------------------------------------------------------------------- */
+.pc-access-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 22px;
+}
+
+.pc-access {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.pc-access svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: var(--pa-gold);
+    stroke-width: 1.2;
+    transition: transform var(--pa-fast);
+}
+
+.pc-access:hover svg {
+    transform: translateY(-2px);
+}
+
+.pc-access__name {
+    font-family: var(--pa-serif);
+    font-size: 0.98rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--pa-ink);
+}
+
+.pc-access__meta {
+    font-family: var(--pa-sans);
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--pa-muted);
+}
+
+.pc-access__status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--pa-line);
+}
+
+.pc-access__status span {
+    font-family: var(--pa-sans);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--pa-dim);
+}
+
+.pc-access__status strong {
+    font-weight: 600;
+    color: var(--pa-gold);
+}
+
+/* -----------------------------------------------------------------------
+   12. A Personal Relationship — emotional moment
+   ----------------------------------------------------------------------- */
+.pc-relationship {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 440px;
+    overflow: hidden;
+    background-color: var(--pa-charcoal);
+}
+
+.pc-relationship__media {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: url('../images/founder-ethiopia.jpg');
+    background-size: cover;
+    background-position: center 24%;
+    filter: grayscale(0.32) contrast(1.08) brightness(0.58) sepia(0.08);
+    transform: scale(1.04);
+    transition: transform 2.4s var(--pa-ease);
+}
+
+.pc-relationship:hover .pc-relationship__media {
+    transform: scale(1.08);
+}
+
+.pc-relationship__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(ellipse 80% 70% at 50% 50%, rgba(10, 8, 5, 0.28), rgba(10, 8, 5, 0.72)),
+        linear-gradient(to top, rgba(10, 8, 5, 0.82), transparent 60%);
+}
+
+.pc-relationship__inner {
+    padding: 40px 30px;
+}
+
+.pc-relationship__line {
+    display: block;
+    width: 44px;
+    height: 1px;
+    margin: 0 auto 24px;
+    background-color: var(--pa-gold);
+}
+
+.pc-relationship__quote {
+    font-family: var(--pa-serif);
+    font-size: clamp(1.3rem, 1.9vw, 1.62rem);
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    line-height: 1.5;
+    text-transform: uppercase;
+    color: #f5efe4;
+}
+
+.pc-relationship__mark {
+    display: block;
+    margin-top: 26px;
+    font-family: var(--pa-serif);
+    font-size: 0.96rem;
+    font-weight: 600;
+    letter-spacing: 0.5em;
+    text-indent: 0.5em;
+    text-transform: uppercase;
+    color: var(--pa-gold-bright);
+}
+
+/* -----------------------------------------------------------------------
+   13. Responsive
+   ----------------------------------------------------------------------- */
+@media (max-width: 1180px) {
+    .pc-columns {
+        grid-template-columns: 1.25fr 1fr;
+    }
+
+    .pc-col--right {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+        align-items: start;
+    }
+}
+
+@media (max-width: 1000px) {
+    .pc-shell {
+        grid-template-columns: 1fr;
+        gap: 34px;
+        padding: 0 24px;
+    }
+
+    .pc-rail {
+        position: sticky;
+        top: var(--header-height);
+        z-index: 5;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 12px 0;
+        background-color: var(--pa-ivory);
+        border-bottom: 1px solid var(--pa-line);
+    }
+
+    .pc-rail__list {
+        flex-direction: row;
+        gap: 4px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .pc-rail__list::-webkit-scrollbar {
+        display: none;
+    }
+
+    .pc-rail__link {
+        border-left: none;
+        border-bottom: 1px solid transparent;
+        white-space: nowrap;
+        padding: 10px 12px;
+    }
+
+    .pc-rail__link.is-active {
+        border-left-color: transparent;
+        border-bottom-color: var(--pa-gold);
+        background-color: transparent;
+    }
+
+    .pc-rail__foot {
+        display: none;
+    }
+}
+
+@media (max-width: 760px) {
+    .pc-hero__inner {
+        padding-top: 96px;
+        padding-bottom: 42px;
+    }
+
+    .pc-body {
+        padding: 34px 0 70px;
+    }
+
+    .pc-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .pc-col--right {
+        grid-template-columns: 1fr;
+    }
+
+    .pc-panel {
+        padding: 24px 22px 26px;
+    }
+
+    .pc-profile {
+        grid-template-columns: 92px minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .pc-profile__meta {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .pc-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pc-relationship {
+        min-height: 360px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pc-shell {
+        padding: 0 18px;
+    }
+
+    .pc-rail__link {
+        font-size: 0.64rem;
+        letter-spacing: 0.1em;
+        gap: 8px;
+    }
+
+    .pc-rail__link svg {
+        width: 15px;
+        height: 15px;
+    }
+
+    .pc-profile {
+        grid-template-columns: 1fr;
+    }
+
+    .pc-profile__portrait {
+        width: 116px;
+    }
+
+    .pc-profile__sig {
+        text-align: left;
+        margin-left: 2px;
+    }
+
+    .pc-measure {
+        grid-template-columns: 1fr;
+    }
+
+    .pc-silhouette {
+        order: -1;
+    }
+
+    .pc-silhouette svg {
+        width: 68px;
+    }
+
+    .pc-pref-grid,
+    .pc-access-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pc-reason__item {
+        grid-template-columns: 1fr;
+        gap: 3px;
+    }
+}
+
+/* -----------------------------------------------------------------------
+   14. Reduced motion
+   ----------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    .pc-hero__media,
+    .pc-relationship__media,
+    .pc-card__frame img,
+    .pc-rec__img,
+    .pc-access svg {
+        transition: none !important;
+    }
+
+    .pc-hero:hover .pc-hero__media,
+    .pc-relationship:hover .pc-relationship__media,
+    .pc-card:hover .pc-card__frame img,
+    .pc-rec:hover .pc-rec__img {
+        transform: none !important;
+    }
+}
