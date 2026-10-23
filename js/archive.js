@@ -42,10 +42,10 @@
         return;
     }
 
-    var art = document.querySelector('.arc-bg__art');
+    var fabric = document.querySelector('.arc-bg__fabric');
     var mist = document.querySelector('.arc-bg__mist');
     var paper = document.querySelector('.arc-paper');
-    if (!art && !mist && !paper) {
+    if (!fabric && !mist && !paper) {
         return;
     }
 
@@ -54,9 +54,9 @@
     function render() {
         var y = window.pageYOffset || document.documentElement.scrollTop || 0;
 
-        if (art) {
-            var artShift = Math.min(y * 0.055, 150);
-            art.style.transform = 'translate3d(0,' + artShift.toFixed(1) + 'px,0) scale(1.04)';
+        if (fabric) {
+            var fabricShift = Math.min(y * 0.045, 130);
+            fabric.style.transform = 'translate3d(0,' + fabricShift.toFixed(1) + 'px,0) scale(1.06)';
         }
 
         if (mist) {

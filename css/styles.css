@@ -9,13 +9,14 @@
 :root {
     /* Brand Colors */
     --color-white: #FFFFFF;
-    --color-cream: #FAF8F5;
+    --color-ivory: #FDFBF7;            /* Warm Ivory — ADISS base */
+    --color-cream: #F7F4EE;
     --color-brown-dark: #2B1E1A;       /* Rich Earth Brown */
     --color-brown: #4A352F;            /* Medium Earth Brown */
     --color-brown-light: #6E534B;      /* Light Earth Brown */
-    --color-gold: #D4AF37;             /* Golden Yellow */
-    --color-gold-light: #E5C158;       /* Gold Hover Highlight */
-    --color-gold-pale: #FBF6E9;        /* Subtle Gold Tint */
+    --color-gold: #C5A059;             /* Restrained Antique Gold */
+    --color-gold-light: #D8B877;       /* Gold Hover Highlight */
+    --color-gold-pale: #F7F0E2;        /* Subtle Gold Tint */
     --color-charcoal: #2C2C2C;         /* Primary Body Typography */
     --color-gray: #6E6E6E;             /* Secondary Text */
     --color-gray-light: #E5E5E5;       /* Structural Borders */
@@ -23,13 +24,28 @@
     --color-error: #B71C1C;
     --color-success: #2E7D32;
 
+    /* ADISS canonical tokens — the single source of truth for the House.
+       Every scoped palette (--hm-*, --pa-*) maps back to these values so the
+       homepage, Private Client salon and interior pages share one identity. */
+    --ad-ivory: #FDFBF7;
+    --ad-cream: #F4F0EA;
+    --ad-ink: #1A1A1A;
+    --ad-ink-soft: rgba(26, 26, 26, 0.66);
+    --ad-coal: #211A12;
+    --ad-brown: #3D2E24;
+    --ad-gold: #C5A059;
+    --ad-gold-bright: #D8B877;
+    --ad-line: rgba(26, 26, 26, 0.14);
+    --ad-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --ad-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
     /* Typography */
-    --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
-    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-heading: var(--ad-serif);
+    --font-body: var(--ad-sans);
 
     /* Spacing & Layout */
-    --section-padding: 80px;
-    --section-padding-mobile: 48px;
+    --section-padding: 96px;
+    --section-padding-mobile: 56px;
     --container-max: 1360px;
     --container-padding: 32px;
     --container-padding-mobile: 20px;
@@ -3281,17 +3297,17 @@ body.modal-open {
    by any selector in this block (all classes are prefixed `hm-`).
    ======================================================================== */
 :root {
-    --hm-ivory: #FDFBF7;
-    --hm-cream: #F4F0EA;
-    --hm-ink: #1A1A1A;
-    --hm-ink-soft: rgba(26, 26, 26, 0.66);
-    --hm-brown: #3D2E24;
-    --hm-coal: #211A12;
-    --hm-gold: #C5A059;
-    --hm-line: rgba(26, 26, 26, 0.14);
-    --hm-line-ivory: rgba(251, 247, 241, 0.16);
-    --hm-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, 'Times New Roman', serif;
-    --hm-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --hm-ivory: var(--ad-ivory);
+    --hm-cream: var(--ad-cream);
+    --hm-ink: var(--ad-ink);
+    --hm-ink-soft: var(--ad-ink-soft);
+    --hm-brown: var(--ad-brown);
+    --hm-coal: var(--ad-coal);
+    --hm-gold: var(--ad-gold);
+    --hm-line: var(--ad-line);
+    --hm-line-ivory: rgba(253, 251, 247, 0.16);
+    --hm-serif: var(--ad-serif);
+    --hm-sans: var(--ad-sans);
 }
 
 .homepage {
@@ -3565,10 +3581,70 @@ body.modal-open {
 }
 
 .hm-manifesto__grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.65fr);
-    gap: clamp(48px, 8vw, 140px);
-    align-items: start;
+    display: block;
+}
+
+/* ---------- House film — cinematic brand film ---------- */
+.hm-film {
+    margin: clamp(56px, 9.5vh, 116px) 0;
+}
+
+.hm-film__media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background-color: var(--hm-coal);
+}
+
+.hm-film__video,
+.hm-film__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hm-film__caption {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px 32px;
+    margin-top: 22px;
+}
+
+.hm-film__note {
+    font-family: var(--hm-sans);
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: var(--hm-ink-soft);
+    text-align: right;
+}
+
+@media (max-width: 600px) {
+    .hm-film__caption {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .hm-film__note {
+        text-align: left;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hm-film__video {
+        display: none;
+    }
+
+    .hm-film__media::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: url('../images/hero-trench-coat.jpg') center / cover no-repeat;
+    }
 }
 
 .hm-manifesto__side {

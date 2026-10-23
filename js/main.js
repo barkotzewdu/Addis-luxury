@@ -925,6 +925,51 @@
     };
 
     /* =====================================================================
+       House film — muted, looping brand film between the manifesto panels.
+       Plays only when in view; omitted entirely under reduced-motion where the
+       CSS fallback poster carries the moment instead.
+       ===================================================================== */
+    const BrandFilm = {
+        init() {
+            const video = document.querySelector('.hm-film__video');
+            if (!video) return;
+
+            const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reducedMotion) {
+                video.removeAttribute('autoplay');
+                try { video.pause(); } catch (err) { /* noop */ }
+                return;
+            }
+
+            video.muted = true;
+            video.loop = true;
+            video.playsInline = true;
+
+            const tryPlay = () => {
+                const attempt = video.play();
+                if (attempt && typeof attempt.catch === 'function') {
+                    attempt.catch(() => { /* autoplay blocked — the poster remains */ });
+                }
+            };
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            tryPlay();
+                        } else if (!video.paused) {
+                            video.pause();
+                        }
+                    });
+                }, { threshold: 0.25 });
+                observer.observe(video);
+            } else {
+                tryPlay();
+            }
+        }
+    };
+
+    /* =====================================================================
        Event delegation — cart interactions (CSP-safe)
        ===================================================================== */
     function bindGlobalEvents() {
@@ -983,6 +1028,7 @@
         Navigation.init();
         SiteHeader.init();
         HeroVideo.init();
+        BrandFilm.init();
         Catalog.init();
         Collections.init();
         Faq.init();

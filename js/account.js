@@ -1,8 +1,10 @@
 /* ========================================================================
    ADISS — PRIVATE CLIENT
    Powers account.html: the left-salon navigation, the refined edit
-   interactions for profile / measurements / preferences, the AI size
-   recommendation engine and the Digital Tailoring Assistant ("Why?").
+   interactions for profile / measurements / preferences, the measurement-led
+   size recommendation engine and the tailoring notes behind it ("Why?").
+   Recommendations are a plain rule on the client's own measurements and
+   preferred fit — no scoring, no invented confidence.
    Vanilla JS, no dependencies. Honours the strict CSP (no inline code).
    ======================================================================== */
 
@@ -249,13 +251,13 @@
     }
 
     /* -------------------------------------------------------------------
-       4. AI size recommendations — the tailoring engine
+       4. Size recommendations — a plain rule on the client's measurements
        ------------------------------------------------------------------- */
     const ORDER = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
     const BASE = {
-        heritage: { size: 'M', conf: 98 },
-        signature: { size: 'M', conf: 96 },
-        trench: { size: 'L', conf: 93 }
+        heritage: { size: 'M' },
+        signature: { size: 'M' },
+        trench: { size: 'L' }
     };
 
     function shiftSize(size, step) {
@@ -269,29 +271,14 @@
         const m = store.measurements;
         const fit = String(m.fit || store.preferences.preferredFit || 'Tailored').toLowerCase();
 
-        // Completeness of the tailoring profile raises certainty.
-        const specified = ['shoulder', 'chest', 'waist'].filter(function (key) { return m[key]; }).length;
-        const certaintyPenalty = Math.round((3 - specified) * 2);
-
         // Preferred fit moves the intended silhouette.
         let fitShift = 0;
         if (fit === 'oversized') fitShift = 1;
-        else if (fit === 'relaxed') fitShift = 0;
-        else fitShift = 0;
 
         return {
-            heritage: {
-                size: shiftSize(BASE.heritage.size, fitShift),
-                conf: Math.max(70, BASE.heritage.conf - certaintyPenalty)
-            },
-            signature: {
-                size: shiftSize(BASE.signature.size, fitShift),
-                conf: Math.max(70, BASE.signature.conf - certaintyPenalty)
-            },
-            trench: {
-                size: shiftSize(BASE.trench.size, fitShift),
-                conf: Math.max(70, BASE.trench.conf - certaintyPenalty)
-            }
+            heritage: { size: shiftSize(BASE.heritage.size, fitShift) },
+            signature: { size: shiftSize(BASE.signature.size, fitShift) },
+            trench: { size: shiftSize(BASE.trench.size, fitShift) }
         };
     }
 
@@ -303,16 +290,21 @@
             if (!card) return;
 
             const sizeEl = card.querySelector('[data-rec-size]');
-            const confEl = card.querySelector('[data-rec-confidence]');
             const leadEl = card.querySelector('.pc-reason__lead');
 
             if (sizeEl) sizeEl.textContent = recs[key].size;
-            if (confEl) confEl.textContent = recs[key].conf + '%';
 
-            if (leadEl && key === 'heritage') {
+            if (leadEl) {
                 const fitLabel = store.measurements.fit || store.preferences.preferredFit || 'Tailored';
-                leadEl.textContent = 'Based on your height, weight and ' + fitLabel.toLowerCase() +
-                    ' fit, Size ' + recs[key].size + ' delivers the intended silhouette.';
+                const size = recs[key].size;
+                if (key === 'heritage') {
+                    leadEl.textContent = 'Based on your height, weight and ' + fitLabel.toLowerCase() +
+                        ' fit, Size ' + size + ' delivers the intended silhouette.';
+                } else if (key === 'signature') {
+                    leadEl.textContent = 'Size ' + size + ' suits your frame while allowing the knit to relax naturally over time.';
+                } else if (key === 'trench') {
+                    leadEl.textContent = 'Size ' + size + ' gives the trench the layered ease the House intends over tailoring.';
+                }
             }
         });
     }
