@@ -1,7 +1,7 @@
 /* ========================================================================
    ADISS — UNIFIED AUTH (SIGN IN / JOIN THE UNSEEN)
    Dark, cinematic, museum-minimalist. Palette & type aligned to the ADISS
-   homepage: warm near-black ground, ivory typography, quiet gold accents,
+   homepage: warm near-black ground, ivory typography, quiet neutral accents,
    gunmetal charcoal bars. Scoped to login.html.
    ======================================================================== */
 
@@ -32,18 +32,18 @@
     --auth-muted: rgba(244, 237, 226, 0.60);
     --auth-dim: rgba(244, 237, 226, 0.36);
 
-    /* Accent — the house gold */
-    --auth-gold: #c5a059;
-    --auth-gold-bright: #d8b877;
-    --auth-gold-soft: rgba(197, 160, 89, 0.35);
-    --auth-gold-wash: rgba(197, 160, 89, 0.12);
+    /* Accent - muted ivory */
+    --auth-accent: #E8E3D9;
+    --auth-accent-strong: #FFFFFF;
+    --auth-accent-soft: rgba(232, 227, 217, 0.35);
+    --auth-accent-wash: rgba(232, 227, 217, 0.12);
 
     --auth-error: #d38a80;
     --auth-error-line: #8a3b34;
 
     /* Typefaces (identical to homepage) */
-    --serif: 'Cormorant Garamond', 'Playfair Display', Georgia, 'Times New Roman', serif;
-    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --serif: var(--ad-serif);
+    --sans: var(--ad-sans);
 
     /* Motion */
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -89,7 +89,7 @@ body::before {
     position: fixed;
     inset: 0;
     background:
-        radial-gradient(circle at 16% 18%, rgba(197, 160, 89, 0.09), transparent 44%),
+        radial-gradient(circle at 16% 18%, rgba(232, 227, 217, 0.06), transparent 44%),
         radial-gradient(circle at 84% 82%, rgba(138, 106, 63, 0.08), transparent 48%),
         radial-gradient(circle at 50% 50%, rgba(244, 237, 226, 0.015), transparent 62%);
     pointer-events: none;
@@ -116,7 +116,7 @@ input {
 }
 
 ::selection {
-    background: var(--auth-gold);
+    background: var(--auth-accent);
     color: #0b0b0c;
 }
 
@@ -135,7 +135,7 @@ input {
     justify-content: center;
     background-color: var(--auth-bg);
     background-image:
-        radial-gradient(circle at 50% 44%, rgba(197, 160, 89, 0.09), transparent 56%),
+        radial-gradient(circle at 50% 44%, rgba(232, 227, 217, 0.06), transparent 56%),
         radial-gradient(circle at 50% 50%, rgba(244, 237, 226, 0.015), transparent 62%);
     transition: opacity 0.8s ease, visibility 0.8s ease;
 }
@@ -178,7 +178,7 @@ input {
 .preloader__bar-fill {
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, transparent, var(--auth-gold-soft), var(--auth-gold-bright), transparent);
+    background: linear-gradient(90deg, transparent, var(--auth-accent-soft), var(--auth-accent-strong), transparent);
     transform: translateX(-100%);
     animation: adissLoad 1.5s var(--ease) infinite;
 }
@@ -309,7 +309,7 @@ input {
 
 .back-link:hover {
     color: var(--auth-ink-strong);
-    border-color: var(--auth-gold-soft);
+    border-color: var(--auth-accent-soft);
 }
 
 .back-link:hover .back-link__arrow {
@@ -341,7 +341,7 @@ input {
     font-weight: 500;
     letter-spacing: 0.36em;
     text-transform: uppercase;
-    color: var(--auth-gold);
+    color: var(--auth-accent);
 }
 
 /* -----------------------------------------------------------------------
@@ -375,7 +375,7 @@ input {
     font-weight: 500;
     letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: var(--auth-gold);
+    color: var(--auth-accent);
     margin-bottom: 16px;
 }
 
@@ -384,8 +384,7 @@ input {
     font-size: clamp(2.3rem, 3.4vw, 3rem);
     font-weight: 500;
     line-height: 1.02;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
+    letter-spacing: 0.01em;
     color: var(--auth-ink);
     margin-bottom: 12px;
 }
@@ -404,16 +403,16 @@ input {
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--auth-gold);
+    color: var(--auth-accent);
     margin-left: 4px;
-    border-bottom: 1px solid var(--auth-gold-soft);
+    border-bottom: 1px solid var(--auth-accent-soft);
     padding-bottom: 1px;
     transition: color var(--fast), border-color var(--fast);
 }
 
 .signin-link:hover {
-    color: var(--auth-gold-bright);
-    border-color: var(--auth-gold-bright);
+    color: var(--auth-accent-strong);
+    border-color: var(--auth-accent-strong);
 }
 
 /* -----------------------------------------------------------------------
@@ -445,16 +444,16 @@ input {
     font-weight: 600;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--auth-gold);
+    color: var(--auth-accent);
     padding-bottom: 2px;
-    border-bottom: 1px solid var(--auth-gold-soft);
+    border-bottom: 1px solid var(--auth-accent-soft);
     transition: color var(--fast), border-color var(--fast);
 }
 
 .auth-switch__link:hover,
 .auth-switch__link:focus-visible {
-    color: var(--auth-gold-bright);
-    border-color: var(--auth-gold-bright);
+    color: var(--auth-accent-strong);
+    border-color: var(--auth-accent-strong);
     outline: none;
 }
 
@@ -521,7 +520,7 @@ input {
 }
 
 .field:focus-within label {
-    color: var(--auth-gold);
+    color: var(--auth-accent);
 }
 
 .field__aside {
@@ -534,7 +533,7 @@ input {
 }
 
 .field__aside:hover {
-    color: var(--auth-gold-bright);
+    color: var(--auth-accent-strong);
 }
 
 .field input {
@@ -563,9 +562,9 @@ input {
 }
 
 .field input:focus {
-    border-color: var(--auth-gold);
+    border-color: var(--auth-accent);
     background-color: var(--auth-bar-hover);
-    box-shadow: 0 0 0 3px var(--auth-gold-wash);
+    box-shadow: 0 0 0 3px var(--auth-accent-wash);
 }
 
 .field input.is-invalid {
@@ -598,12 +597,12 @@ input {
 }
 
 .eye-toggle:hover {
-    color: var(--auth-gold);
+    color: var(--auth-accent);
     background-color: rgba(255, 255, 255, 0.03);
 }
 
 .eye-toggle:focus-visible {
-    outline: 1px solid var(--auth-gold);
+    outline: 1px solid var(--auth-accent);
     outline-offset: 2px;
 }
 
@@ -673,17 +672,17 @@ input {
 }
 
 .check:hover .check__box {
-    border-color: var(--auth-gold);
+    border-color: var(--auth-accent);
 }
 
 .check input:focus-visible + .check__box {
-    box-shadow: 0 0 0 3px var(--auth-gold-wash);
-    border-color: var(--auth-gold);
+    box-shadow: 0 0 0 3px var(--auth-accent-wash);
+    border-color: var(--auth-accent);
 }
 
 .check input:checked + .check__box {
-    background-color: var(--auth-gold);
-    border-color: var(--auth-gold);
+    background-color: var(--auth-accent);
+    border-color: var(--auth-accent);
 }
 
 .check input:checked + .check__box svg {
@@ -711,8 +710,8 @@ input {
 }
 
 .check__text a:hover {
-    color: var(--auth-gold-bright);
-    border-color: var(--auth-gold);
+    color: var(--auth-accent-strong);
+    border-color: var(--auth-accent);
 }
 
 /* -----------------------------------------------------------------------
@@ -752,7 +751,7 @@ input {
 }
 
 .btn-cultivate:hover {
-    border-color: var(--auth-gold-soft);
+    border-color: var(--auth-accent-soft);
     background-color: var(--auth-bar-hover);
     color: #ffffff;
     transform: translateY(-1px);
@@ -768,7 +767,7 @@ input {
 }
 
 .btn-cultivate:focus-visible {
-    outline: 1px solid var(--auth-gold);
+    outline: 1px solid var(--auth-accent);
     outline-offset: 3px;
 }
 
@@ -841,14 +840,14 @@ input {
 }
 
 .btn-social:hover {
-    border-color: var(--auth-gold-soft);
-    background-color: rgba(197, 160, 89, 0.06);
+    border-color: var(--auth-accent-soft);
+    background-color: rgba(232, 227, 217, 0.05);
     color: #ffffff;
     transform: translateY(-1px);
 }
 
 .btn-social:focus-visible {
-    outline: 1px solid var(--auth-gold);
+    outline: 1px solid var(--auth-accent);
     outline-offset: 2px;
 }
 
@@ -879,7 +878,7 @@ input {
 }
 
 .form-status.is-success {
-    color: var(--auth-gold-bright);
+    color: var(--auth-accent-strong);
 }
 
 /* -----------------------------------------------------------------------

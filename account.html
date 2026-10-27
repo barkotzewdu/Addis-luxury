@@ -11,14 +11,16 @@
     <link rel="canonical" href="https://www.addisluxury.com/account.html">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com; frame-src 'self' https://www.google.com https://maps.google.com; form-action 'self'; base-uri 'self'; upgrade-insecure-requests;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-DVZ6rcUr/rn/B4fIYEhi4xJV/qflCwWiRQqjZG/nUM8=' 'sha256-rYYtDQxhwu50oVGAP7qDyhudhizrUwDsq+qwLrmnXD4=' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com; frame-src 'self' https://www.google.com https://maps.google.com; form-action 'self'; base-uri 'self'; upgrade-insecure-requests;">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/account.css">
+
+    <script src="js/guard.js"></script>
 
     <noscript><style>.ab-preloader{display:none!important}body.ab-preloading{overflow:auto!important}</style></noscript>
 
@@ -45,7 +47,7 @@
 <body class="page-account page-home ab-preloading">
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- Brand Preloader (onyx + gold) -->
+    <!-- Brand Preloader (onyx + ivory) -->
     <div class="ab-preloader" id="preloader" aria-hidden="true">
         <span class="ab-preloader__word">ADISS</span>
         <span class="ab-preloader__bar"></span>
@@ -89,10 +91,8 @@
             <a href="index.html" class="mobile-nav-link">Home</a>
             <a href="shop.html" class="mobile-nav-link">Shop</a>
             <a href="products.html" class="mobile-nav-link">Collections</a>
-            <a href="product-detail.html" class="mobile-nav-link">Bespoke Fit</a>
             <a href="about.html" class="mobile-nav-link">Our Story</a>
             <a href="blog.html" class="mobile-nav-link">Journal</a>
-            <a href="case-studies.html" class="mobile-nav-link">Lookbook &amp; Transformations</a>
             <a href="account.html" class="mobile-nav-link active">Client Account</a>
         </nav>
         <div class="mobile-nav-bottom">
@@ -227,12 +227,12 @@
                             <div class="pc-profile">
                                 <div class="pc-profile__portrait">
                                     <img src="images/founder-uae.jpg" alt="Portrait of Eliyas Yonas Tekle" width="118" height="118">
-                                    <span class="pc-profile__sig" data-field="signature" aria-hidden="true">Eliyas</span>
+                                    <span class="pc-profile__sig" data-field="signature" aria-hidden="true">ADISS</span>
                                 </div>
                                 <dl class="pc-profile__meta">
                                     <div class="pc-field">
                                         <dt>Full Name</dt>
-                                        <dd data-field="fullName">Eliyas Yonas Tekle</dd>
+                                        <dd data-field="fullName">Private Client</dd>
                                     </div>
                                     <div class="pc-field">
                                         <dt>Date Joined</dt>
@@ -447,7 +447,7 @@
                         <article class="pc-panel fade-in" id="house-access" aria-labelledby="pc-access-title">
                             <div class="pc-panel__head">
                                 <h2 class="pc-panel__title" id="pc-access-title">House Access</h2>
-                                <span class="pc-tag pc-tag--gold">Exclusive</span>
+                                <span class="pc-tag pc-tag--accent">Exclusive</span>
                             </div>
                             <p class="pc-panel__note">Your status gives you access to exclusive experiences.</p>
                             <div class="pc-access-grid">
@@ -576,7 +576,7 @@
                             </div>
 
                             <div class="pc-rec__all">
-                                <a href="shop.html" class="pc-action pc-action--gold">View All Recommendations &rarr;</a>
+                                <a href="shop.html" class="pc-action pc-action--accent">View All Recommendations &rarr;</a>
                             </div>
                         </article>
 
@@ -608,7 +608,7 @@
 
                 <div class="ad-footer__brand">
                     <a href="index.html" class="ad-footer__logo">ADISS</a>
-                    <p class="ad-footer__tagline">Character, made visible. Quietly tailored pieces for the moments that define you.</p>
+                    <p class="ad-footer__tagline">Dress the person you intend to become. Quietly tailored pieces for a life considered.</p>
                 </div>
 
                 <div class="ad-footer__news">
@@ -626,9 +626,8 @@
                 <div class="ad-footer__menu">
                     <p class="ad-footer__label">Explore</p>
                     <ul class="ad-footer__list">
-                        <li><a href="shop.html">Collections</a></li>
-                        <li><a href="products.html">Seasonal</a></li>
-                        <li><a href="product-detail.html">Bespoke</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="products.html">Collections</a></li>
                         <li><a href="about.html">Our Story</a></li>
                         <li><a href="blog.html">Journal</a></li>
                     </ul>

@@ -25,11 +25,11 @@
 
     <meta name="google-site-verification" content="VERIFICATION_CODE_HERE">
 
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com; frame-src 'self' https://www.google.com https://maps.google.com; form-action 'self'; base-uri 'self'; upgrade-insecure-requests;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-DVZ6rcUr/rn/B4fIYEhi4xJV/qflCwWiRQqjZG/nUM8=' 'sha256-rYYtDQxhwu50oVGAP7qDyhudhizrUwDsq+qwLrmnXD4=' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com; frame-src 'self' https://www.google.com https://maps.google.com; form-action 'self'; base-uri 'self'; upgrade-insecure-requests;">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/styles.css">
 
@@ -89,7 +89,7 @@
 <body class="has-mobile-cta page-home ab-preloading">
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- Brand Preloader (onyx + gold) -->
+    <!-- Brand Preloader (onyx + ivory) -->
     <div class="ab-preloader" id="preloader" aria-hidden="true">
         <span class="ab-preloader__word">ADISS</span>
         <span class="ab-preloader__bar"></span>
@@ -117,7 +117,7 @@
                 <button type="button" class="header-icon-btn ad-icon search-trigger-btn" aria-label="Search">
                     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                 </button>
-                <a href="login.html" class="header-icon-btn ad-icon" aria-label="Client account">
+                <a href="account.html" class="header-icon-btn ad-icon" aria-label="Client account">
                     <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20c0-4.2 3.3-6.7 7.5-6.7s7.5 2.5 7.5 6.7"/></svg>
                 </a>
             </div>
@@ -136,14 +136,12 @@
             <a href="index.html" class="mobile-nav-link">Home</a>
             <a href="shop.html" class="mobile-nav-link active">Shop</a>
             <a href="products.html" class="mobile-nav-link">Collections</a>
-            <a href="product-detail.html" class="mobile-nav-link">Bespoke Fit</a>
             <a href="about.html" class="mobile-nav-link">Our Story</a>
             <a href="blog.html" class="mobile-nav-link">Journal</a>
-            <a href="case-studies.html" class="mobile-nav-link">Lookbook &amp; Transformations</a>
-            <a href="login.html" class="mobile-nav-link">Client Account</a>
+            <a href="account.html" class="mobile-nav-link">Client Account</a>
         </nav>
         <div class="mobile-nav-bottom">
-            <a href="login.html" class="mobile-nav-footlink">Client Area</a>
+            <a href="account.html" class="mobile-nav-footlink">Client Area</a>
             <a href="index.html#contact" class="mobile-nav-footlink mobile-nav-footlink--accent">Book a Private Consultation <span aria-hidden="true">&rarr;</span></a>
         </div>
     </div>
@@ -231,7 +229,7 @@
                         </figure>
                         <div class="adx-card__info">
                             <span class="adx-card__index">ADISS / 001</span>
-                            <h3 class="adx-card__name"><a href="product-detail.html">The Empress Kemis Evening Gown</a></h3>
+                            <h3 class="adx-card__name"><a href="product-detail.html?id=empress-kemis-gown">The Empress Kemis Evening Gown</a></h3>
                             <span class="adx-card__price" data-price-usd="2850">$2,850</span>
                         </div>
                     </article>
@@ -244,7 +242,7 @@
                         </figure>
                         <div class="adx-card__info">
                             <span class="adx-card__index">ADISS / 002</span>
-                            <h3 class="adx-card__name"><a href="product-detail.html">Arabian Nights Bespoke Tuxedo</a></h3>
+                            <h3 class="adx-card__name"><a href="product-detail.html?id=arabian-nights-tuxedo">Arabian Nights Bespoke Tuxedo</a></h3>
                             <span class="adx-card__price" data-price-usd="3400">$3,400</span>
                         </div>
                     </article>
@@ -257,7 +255,7 @@
                         </figure>
                         <div class="adx-card__info">
                             <span class="adx-card__index">ADISS / 003</span>
-                            <h3 class="adx-card__name"><a href="product-detail.html">Highland Weave Silk Cape</a></h3>
+                            <h3 class="adx-card__name"><a href="product-detail.html?id=highland-weave-cape">Highland Weave Silk Cape</a></h3>
                             <span class="adx-card__price" data-price-usd="1650">$1,650</span>
                         </div>
                     </article>
@@ -270,7 +268,7 @@
                         </figure>
                         <div class="adx-card__info">
                             <span class="adx-card__index">ADISS / 004</span>
-                            <h3 class="adx-card__name"><a href="product-detail.html">Desert Bloom Silk Gown</a></h3>
+                            <h3 class="adx-card__name"><a href="product-detail.html?id=desert-bloom-gown">Desert Bloom Silk Gown</a></h3>
                             <span class="adx-card__price" data-price-usd="3100">$3,100</span>
                         </div>
                     </article>
@@ -283,7 +281,7 @@
                         </figure>
                         <div class="adx-card__info">
                             <span class="adx-card__index">ADISS / 005</span>
-                            <h3 class="adx-card__name"><a href="product-detail.html">The Diplomat Executive Suit</a></h3>
+                            <h3 class="adx-card__name"><a href="product-detail.html?id=diplomat-executive-suit">The Diplomat Executive Suit</a></h3>
                             <span class="adx-card__price" data-price-usd="2450">$2,450</span>
                         </div>
                     </article>
@@ -296,7 +294,7 @@
                         </figure>
                         <div class="adx-card__info">
                             <span class="adx-card__index">ADISS / 006</span>
-                            <h3 class="adx-card__name"><a href="product-detail.html">Habesha Heritage Silk Scarf</a></h3>
+                            <h3 class="adx-card__name"><a href="product-detail.html?id=habesha-heritage-scarf">Habesha Heritage Silk Scarf</a></h3>
                             <span class="adx-card__price" data-price-usd="320">$320</span>
                         </div>
                     </article>
@@ -322,7 +320,7 @@
 
                 <div class="ad-footer__brand">
                     <a href="index.html" class="ad-footer__logo">ADISS</a>
-                    <p class="ad-footer__tagline">Character, made visible. Quietly tailored pieces for the moments that define you.</p>
+                    <p class="ad-footer__tagline">Dress the person you intend to become. Quietly tailored pieces for a life considered.</p>
                 </div>
 
                 <div class="ad-footer__news">
@@ -340,9 +338,8 @@
                 <div class="ad-footer__menu">
                     <p class="ad-footer__label">Explore</p>
                     <ul class="ad-footer__list">
-                        <li><a href="shop.html">Collections</a></li>
-                        <li><a href="products.html">Seasonal</a></li>
-                        <li><a href="product-detail.html">Bespoke</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="products.html">Collections</a></li>
                         <li><a href="about.html">Our Story</a></li>
                         <li><a href="blog.html">Journal</a></li>
                     </ul>

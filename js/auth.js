@@ -234,14 +234,44 @@ document.addEventListener('DOMContentLoaded', () => {
             const submitBtn = form.querySelector('.btn-cultivate');
             if (submitBtn) {
                 submitBtn.disabled = true;
-                submitBtn.textContent = 'Please wait…';
+                submitBtn.textContent = 'Please wait...';
             }
-            setStatus(statusEl, 'One moment — preparing your private atelier…', 'success');
+            setStatus(statusEl, 'One moment - preparing your private atelier...', 'success');
 
-            const destination = form.getAttribute('data-success') || 'thank-you.html';
+            const requestedNext = new URLSearchParams(window.location.search).get('next');
+            const destination = requestedNext === 'account.html'
+                ? 'account.html'
+                : (form.getAttribute('data-success') || 'account.html');
+
+            const emailField = form.querySelector('input[type="email"]');
+            const firstField = form.querySelector('input[name="firstName"]');
+            const lastField = form.querySelector('input[name="lastName"]');
+            const email = emailField ? emailField.value.trim() : '';
+            const typedName = [firstField, lastField]
+                .filter(Boolean)
+                .map(field => field.value.trim())
+                .filter(Boolean)
+                .join(' ');
+            const fallbackName = email ? email.split('@')[0].replace(/[._-]+/g, ' ') : 'Private Client';
+
+            try {
+                window.localStorage.setItem('addis_session', JSON.stringify({
+                    email: email,
+                    name: typedName || fallbackName,
+                    createdAt: Date.now()
+                }));
+            } catch (err) {
+                setStatus(statusEl, 'Your browser is blocking local storage, so the salon cannot be opened in this session.', 'error');
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Sign In';
+                }
+                return;
+            }
+
             window.setTimeout(() => {
                 window.location.href = destination;
-            }, 1000);
+            }, 500);
         });
     });
 

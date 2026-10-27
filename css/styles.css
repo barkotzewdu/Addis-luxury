@@ -11,12 +11,12 @@
     --color-white: #FFFFFF;
     --color-ivory: #FDFBF7;            /* Warm Ivory — ADISS base */
     --color-cream: #F7F4EE;
-    --color-brown-dark: #2B1E1A;       /* Rich Earth Brown */
-    --color-brown: #4A352F;            /* Medium Earth Brown */
-    --color-brown-light: #6E534B;      /* Light Earth Brown */
-    --color-gold: #C5A059;             /* Restrained Antique Gold */
-    --color-gold-light: #D8B877;       /* Gold Hover Highlight */
-    --color-gold-pale: #F7F0E2;        /* Subtle Gold Tint */
+    --color-brown-dark: #1C1C1C;       /* Deep charcoal */
+    --color-brown: #3A3A3A;            /* Neutral graphite */
+    --color-brown-light: #6B6B6B;      /* Secondary grey */
+    --color-accent: #5A5A5A;             /* Neutral graphite accent */
+    --color-accent-strong: #1C1C1C;       /* Accent hover */
+    --color-accent-wash: #EFEBE5;        /* Neutral accent wash */
     --color-charcoal: #2C2C2C;         /* Primary Body Typography */
     --color-gray: #6E6E6E;             /* Secondary Text */
     --color-gray-light: #E5E5E5;       /* Structural Borders */
@@ -31,12 +31,12 @@
     --ad-cream: #F4F0EA;
     --ad-ink: #1A1A1A;
     --ad-ink-soft: rgba(26, 26, 26, 0.66);
-    --ad-coal: #211A12;
-    --ad-brown: #3D2E24;
-    --ad-gold: #C5A059;
-    --ad-gold-bright: #D8B877;
+    --ad-coal: #141414;
+    --ad-brown: #3A3A3A;
+    --ad-accent: #5A5A5A;
+    --ad-accent-strong: #1C1C1C;
     --ad-line: rgba(26, 26, 26, 0.14);
-    --ad-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --ad-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     --ad-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
     /* Typography */
@@ -164,7 +164,7 @@ p:last-child {
     max-width: 640px;
 }
 
-.text-gold { color: var(--color-gold); }
+.text-accent { color: var(--color-accent); }
 .text-brown { color: var(--color-brown-dark); }
 .text-center { text-align: center; }
 .text-left { text-align: left; }
@@ -201,7 +201,7 @@ p:last-child {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: var(--color-gold);
+    color: var(--color-accent);
     margin-bottom: 12px;
 }
 
@@ -278,15 +278,15 @@ p:last-child {
 }
 
 .btn--primary {
-    background-color: var(--color-gold);
+    background-color: var(--color-accent);
     color: var(--color-white);
-    border-color: var(--color-gold);
+    border-color: var(--color-accent);
 }
 
 .btn--primary:hover,
 .btn--primary:focus {
-    background-color: var(--color-gold-light);
-    border-color: var(--color-gold-light);
+    background-color: var(--color-accent-strong);
+    border-color: var(--color-accent-strong);
     color: var(--color-white);
 }
 
@@ -314,15 +314,15 @@ p:last-child {
     color: var(--color-white);
 }
 
-.btn--outline-gold {
+.btn--outline-accent {
     background-color: transparent;
-    color: var(--color-gold);
-    border-color: var(--color-gold);
+    color: var(--color-accent);
+    border-color: var(--color-accent);
 }
 
-.btn--outline-gold:hover,
-.btn--outline-gold:focus {
-    background-color: var(--color-gold);
+.btn--outline-accent:hover,
+.btn--outline-accent:focus {
+    background-color: var(--color-accent);
     color: var(--color-white);
 }
 
@@ -353,7 +353,7 @@ p:last-child {
 }
 
 .btn:focus-visible {
-    outline: 2px solid var(--color-gold);
+    outline: 2px solid var(--color-accent);
     outline-offset: 3px;
 }
 
@@ -418,13 +418,13 @@ p:last-child {
     left: 0;
     width: 0;
     height: 1px;
-    background-color: var(--color-gold);
+    background-color: var(--color-accent);
     transition: width var(--transition-fast);
 }
 
 .header-nav-link:hover,
 .header-nav-link.active {
-    color: var(--color-gold);
+    color: var(--color-accent);
 }
 
 .header-nav-link:hover::after,
@@ -477,7 +477,7 @@ p:last-child {
 }
 
 .currency-select-btn:hover {
-    color: var(--color-gold);
+    color: var(--color-accent);
     background-color: var(--color-cream);
 }
 
@@ -515,7 +515,7 @@ p:last-child {
 .currency-option:hover,
 .currency-option.active {
     background-color: var(--color-cream);
-    color: var(--color-gold);
+    color: var(--color-accent);
 }
 
 /* Icon Buttons (Search, Auth, Cart) */
@@ -530,7 +530,7 @@ p:last-child {
 }
 
 .header-icon-btn:hover {
-    color: var(--color-gold);
+    color: var(--color-accent);
 }
 
 .header-icon-btn svg {
@@ -552,7 +552,7 @@ p:last-child {
 }
 
 .header-auth-link:hover {
-    color: var(--color-gold);
+    color: var(--color-accent);
 }
 
 /* Cart Bag & Item Badge */
@@ -564,7 +564,7 @@ p:last-child {
     position: absolute;
     top: -2px;
     right: -6px;
-    background-color: var(--color-gold);
+    background-color: var(--color-accent);
     color: var(--color-white);
     font-family: var(--font-body);
     font-size: 0.65rem;
@@ -677,7 +677,7 @@ p:last-child {
 .mobile-nav-close:hover,
 .mobile-nav-close:focus {
     background-color: var(--color-cream);
-    color: var(--color-gold);
+    color: var(--color-accent);
 }
 
 .mobile-nav-close svg {
@@ -717,7 +717,7 @@ p:last-child {
     content: "›";
     font-family: var(--font-body);
     font-size: 1.4rem;
-    color: var(--color-gold);
+    color: var(--color-accent);
     opacity: 0;
     transform: translateX(-6px);
     transition: opacity var(--transition-fast), transform var(--transition-fast);
@@ -736,7 +736,7 @@ p:last-child {
 
 .mobile-nav-link.active,
 .mobile-nav-link:hover {
-    color: var(--color-gold);
+    color: var(--color-accent);
 }
 
 .mobile-nav-bottom {
@@ -869,7 +869,7 @@ body.modal-open {
 }
 
 .search-input:focus {
-    border-color: var(--color-gold);
+    border-color: var(--color-accent);
 }
 
 .search-icon-inside {
@@ -908,9 +908,9 @@ body.modal-open {
 }
 
 .search-tag-chip:hover {
-    background: var(--color-gold);
+    background: var(--color-accent);
     color: var(--color-white);
-    border-color: var(--color-gold);
+    border-color: var(--color-accent);
 }
 
 .search-results-list {
@@ -936,7 +936,7 @@ body.modal-open {
 }
 
 .search-result-item:hover {
-    border-color: var(--color-gold);
+    border-color: var(--color-accent);
     background-color: var(--color-cream);
 }
 
@@ -1035,7 +1035,7 @@ body.modal-open {
 
 .shipping-progress-bar-fill {
     height: 100%;
-    background-color: var(--color-gold);
+    background-color: var(--color-accent);
     width: 0%;
     transition: width var(--transition-base);
 }
@@ -1100,7 +1100,7 @@ body.modal-open {
 .cart-item-price {
     font-size: 0.85rem;
     font-weight: 600;
-    color: var(--color-gold);
+    color: var(--color-accent);
     margin-top: 4px;
 }
 
@@ -1186,7 +1186,7 @@ body.modal-open {
 }
 
 .cart-drawer-view-bag-link:hover {
-    color: var(--color-gold);
+    color: var(--color-accent);
 }
 
 /* -----------------------------------------------------------------------
@@ -1225,7 +1225,7 @@ body.modal-open {
 }
 
 .breadcrumb__link:hover {
-    color: var(--color-gold);
+    color: var(--color-accent);
 }
 
 .breadcrumb__item[aria-current="page"] {
@@ -1387,8 +1387,8 @@ body.modal-open {
     z-index: 2;
 }
 
-.product-badge--gold {
-    background-color: var(--color-gold);
+.product-badge--accent {
+    background-color: var(--color-accent);
 }
 
 .product-card__quick-add {
@@ -1422,7 +1422,7 @@ body.modal-open {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    color: var(--color-gold);
+    color: var(--color-accent);
     margin-bottom: 6px;
 }
 
@@ -1436,7 +1436,7 @@ body.modal-open {
 }
 
 .product-card__title a:hover {
-    color: var(--color-gold);
+    color: var(--color-accent);
 }
 
 .product-card__desc {
@@ -1519,7 +1519,7 @@ body.modal-open {
 
 .filter-item input[type="checkbox"],
 .filter-item input[type="radio"] {
-    accent-color: var(--color-gold);
+    accent-color: var(--color-accent);
     width: 16px;
     height: 16px;
     cursor: pointer;
@@ -1636,7 +1636,7 @@ body.modal-open {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    color: var(--color-gold);
+    color: var(--color-accent);
     margin-bottom: 10px;
 }
 
@@ -1667,8 +1667,8 @@ body.modal-open {
 }
 
 .card__cta:hover {
-    color: var(--color-gold);
-    border-color: var(--color-gold);
+    color: var(--color-accent);
+    border-color: var(--color-accent);
 }
 
 /* -----------------------------------------------------------------------
@@ -1714,8 +1714,8 @@ body.modal-open {
 
 .founder__name-link:hover,
 .founder__name-link:focus {
-    color: var(--color-gold);
-    border-bottom-color: var(--color-gold);
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
 }
 
 .founder__role {
@@ -1724,7 +1724,7 @@ body.modal-open {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--color-gold);
+    color: var(--color-accent);
     margin-bottom: 16px;
 }
 
@@ -1774,7 +1774,7 @@ body.modal-open {
 .testimonial__card {
     padding: 32px 28px;
     background-color: var(--color-cream);
-    border-left: 3px solid var(--color-gold);
+    border-left: 3px solid var(--color-accent);
     border-radius: 2px;
 }
 
@@ -1793,7 +1793,7 @@ body.modal-open {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--color-gold);
+    color: var(--color-accent);
 }
 
 /* -----------------------------------------------------------------------
@@ -1875,7 +1875,7 @@ body.modal-open {
     left: 0;
     right: 0;
     height: 2px;
-    background-color: var(--color-gold);
+    background-color: var(--color-accent);
 }
 
 .social-auth-group {
@@ -1954,7 +1954,7 @@ body.modal-open {
 .account-nav-item:hover,
 .account-nav-item.active {
     background-color: var(--color-cream);
-    color: var(--color-gold);
+    color: var(--color-accent);
 }
 
 /* -----------------------------------------------------------------------
@@ -2002,7 +2002,7 @@ body.modal-open {
 .form__textarea:focus,
 .form__select:focus {
     outline: none;
-    border-color: var(--color-gold);
+    border-color: var(--color-accent);
     box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
 }
 
@@ -2091,14 +2091,14 @@ body.modal-open {
 }
 
 .faq__question:hover {
-    color: var(--color-gold);
+    color: var(--color-accent);
 }
 
 .faq__icon {
     flex-shrink: 0;
     font-size: 1.4rem;
     font-weight: 300;
-    color: var(--color-gold);
+    color: var(--color-accent);
     transition: transform var(--transition-base);
     line-height: 1;
 }
@@ -2161,7 +2161,7 @@ body.modal-open {
 
 .map-card__phone {
     font-size: 0.95rem;
-    color: var(--color-gold);
+    color: var(--color-accent);
     font-weight: 500;
     text-decoration: none;
 }
@@ -2228,7 +2228,7 @@ body.modal-open {
 }
 
 .footer__link:hover {
-    color: var(--color-gold);
+    color: var(--color-accent);
 }
 
 .footer__address {
@@ -2238,7 +2238,7 @@ body.modal-open {
 }
 
 .footer__phone {
-    color: var(--color-gold-light) !important;
+    color: var(--color-accent-strong) !important;
 }
 
 .footer__bottom {
@@ -2302,7 +2302,7 @@ body.modal-open {
 }
 
 .cookie__text a {
-    color: var(--color-gold);
+    color: var(--color-accent);
     text-decoration: underline;
 }
 
@@ -2325,9 +2325,9 @@ body.modal-open {
 }
 
 .cookie__btn--accept {
-    background-color: var(--color-gold);
+    background-color: var(--color-accent);
     color: var(--color-white);
-    border: 1px solid var(--color-gold);
+    border: 1px solid var(--color-accent);
 }
 
 .cookie__btn--reject {
@@ -2378,7 +2378,7 @@ body.modal-open {
     background: var(--color-white);
     color: var(--color-brown-dark);
     font-weight: 600;
-    border: 2px solid var(--color-gold);
+    border: 2px solid var(--color-accent);
     border-radius: 2px;
 }
 
@@ -2636,7 +2636,7 @@ body.modal-open {
     font-weight: 600;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--color-gold);
+    color: var(--color-accent);
     margin-bottom: 18px;
 }
 
@@ -2704,8 +2704,8 @@ body.modal-open {
 }
 
 .filter-chip:hover {
-    border-color: var(--color-gold);
-    color: var(--color-gold);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
 }
 
 .filter-chip.is-active {
@@ -2742,7 +2742,7 @@ body.modal-open {
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--color-gold);
+    color: var(--color-accent);
     padding: 8px 14px;
     border: 1px solid var(--color-cream);
     border-radius: 999px;
@@ -2765,7 +2765,7 @@ body.modal-open {
 .card--collection:hover {
     transform: translateY(-4px);
     box-shadow: 0 18px 40px rgba(60, 40, 20, 0.12);
-    border-color: var(--color-gold);
+    border-color: var(--color-accent);
 }
 
 .card--collection .card__media {
@@ -2803,8 +2803,8 @@ body.modal-open {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.card__badge--gold {
-    background: var(--color-gold);
+.card__badge--accent {
+    background: var(--color-accent);
     color: var(--color-white);
 }
 
@@ -2846,7 +2846,7 @@ body.modal-open {
     display: inline-block;
     width: 6px;
     height: 6px;
-    background: var(--color-gold);
+    background: var(--color-accent);
     border-radius: 50%;
     flex-shrink: 0;
 }
@@ -2873,7 +2873,7 @@ body.modal-open {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     background: var(--color-cream);
-    border-color: var(--color-gold);
+    border-color: var(--color-accent);
 }
 
 .card--collection-wide .card__media {
@@ -2942,7 +2942,7 @@ body.modal-open {
 }
 
 .tier__price strong {
-    color: var(--color-gold);
+    color: var(--color-accent);
     font-size: 1.6rem;
     font-weight: 600;
     margin-left: 4px;
@@ -2953,7 +2953,7 @@ body.modal-open {
 }
 
 .tier--featured .tier__price strong {
-    color: var(--color-gold);
+    color: var(--color-accent);
 }
 
 .tier__features {
@@ -2986,7 +2986,7 @@ body.modal-open {
     position: absolute;
     left: 0;
     top: 12px;
-    color: var(--color-gold);
+    color: var(--color-accent);
     font-weight: 700;
     font-size: 0.95rem;
 }
@@ -2996,7 +2996,7 @@ body.modal-open {
     top: -14px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--color-gold);
+    background: var(--color-accent);
     color: var(--color-white);
     font-family: var(--font-inter);
     font-size: 0.7rem;
@@ -3043,14 +3043,14 @@ body.modal-open {
 }
 
 .process__step:hover {
-    border-color: var(--color-gold);
+    border-color: var(--color-accent);
     transform: translateY(-3px);
 }
 
 .process__number {
     font-family: var(--font-heading);
     font-size: 2.6rem;
-    color: var(--color-gold);
+    color: var(--color-accent);
     font-weight: 700;
     line-height: 1;
     margin-bottom: 18px;
@@ -3090,7 +3090,7 @@ body.modal-open {
     font-weight: 600;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--color-gold);
+    color: var(--color-accent);
     margin-bottom: 14px;
 }
 
@@ -3291,7 +3291,7 @@ body.modal-open {
 /* ========================================================================
    HOMEPAGE EDITORIAL / MUSEUM REDESIGN  (scope: index.html content only)
    Palette: warm ivory · soft cream · charcoal ink · deep warm brown ·
-            antique gold (used sparingly)
+            a graphite accent (used sparingly)
    ------------------------------------------------------------------------
    The site header / navigation is styled independently and is NOT affected
    by any selector in this block (all classes are prefixed `hm-`).
@@ -3303,7 +3303,7 @@ body.modal-open {
     --hm-ink-soft: var(--ad-ink-soft);
     --hm-brown: var(--ad-brown);
     --hm-coal: var(--ad-coal);
-    --hm-gold: var(--ad-gold);
+    --hm-accent: var(--ad-accent);
     --hm-line: var(--ad-line);
     --hm-line-ivory: rgba(253, 251, 247, 0.16);
     --hm-serif: var(--ad-serif);
@@ -3316,7 +3316,7 @@ body.modal-open {
 }
 
 .homepage ::selection {
-    background-color: var(--hm-gold);
+    background-color: var(--hm-accent);
     color: #fff;
 }
 
@@ -3330,7 +3330,7 @@ body.modal-open {
     font-weight: 600;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--hm-gold);
+    color: var(--hm-accent);
     margin: 0;
 }
 
@@ -3338,7 +3338,7 @@ body.modal-open {
     display: inline-block;
     width: 44px;
     height: 1px;
-    background-color: var(--hm-gold);
+    background-color: var(--hm-accent);
     flex-shrink: 0;
 }
 
@@ -3355,7 +3355,7 @@ body.modal-open {
     font-weight: 600;
     letter-spacing: 0.34em;
     text-transform: uppercase;
-    color: var(--hm-gold);
+    color: var(--hm-accent);
     margin: 0;
 }
 
@@ -3363,7 +3363,7 @@ body.modal-open {
     content: '';
     width: 54px;
     height: 1px;
-    background-color: var(--hm-gold);
+    background-color: var(--hm-accent);
     display: inline-block;
     flex-shrink: 0;
 }
@@ -3386,8 +3386,8 @@ body.modal-open {
 
 .hm-link:hover,
 .hm-link:focus-visible {
-    color: var(--hm-gold);
-    border-bottom-color: var(--hm-gold);
+    color: var(--hm-accent);
+    border-bottom-color: var(--hm-accent);
 }
 
 .hm-link--arrow::after {
@@ -3527,7 +3527,7 @@ body.modal-open {
 .hm-hero__title em {
     font-style: italic;
     font-weight: 400;
-    color: var(--hm-gold);
+    color: #E8E3D9;
 }
 
 .hm-hero__lede {
@@ -3697,7 +3697,7 @@ body.modal-open {
     font-size: 0.66rem;
     font-weight: 600;
     letter-spacing: 0.3em;
-    color: var(--hm-gold);
+    color: var(--hm-accent);
     margin-bottom: 18px;
 }
 
@@ -3830,7 +3830,7 @@ body.modal-open {
     text-transform: uppercase;
     color: var(--hm-brown);
     background-color: rgba(251, 247, 241, 0.92);
-    border: 1px solid rgba(197, 160, 89, 0.6);
+    border: 1px solid rgba(90, 90, 90, 0.35);
     padding: 8px 12px;
 }
 
@@ -3839,7 +3839,7 @@ body.modal-open {
     font-style: italic;
     font-weight: 500;
     font-size: 1.05rem;
-    color: var(--hm-gold);
+    color: var(--hm-accent);
 }
 
 .hm-plate__title {
@@ -3859,7 +3859,7 @@ body.modal-open {
 
 .hm-plate__title a:hover,
 .hm-plate__title a:focus-visible {
-    color: var(--hm-gold);
+    color: var(--hm-accent);
 }
 
 .hm-plate__desc {
@@ -3900,7 +3900,7 @@ body.modal-open {
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background-color: var(--hm-gold);
+    background-color: var(--hm-accent);
 }
 
 .hm-collection__more {
@@ -3981,7 +3981,7 @@ body.modal-open {
     font-weight: 600;
     letter-spacing: 0.26em;
     text-transform: uppercase;
-    color: var(--hm-gold);
+    color: var(--hm-accent);
     white-space: nowrap;
 }
 
@@ -4035,7 +4035,7 @@ body.modal-open {
     font-style: italic;
     font-weight: 500;
     font-size: 1.2rem;
-    color: var(--hm-gold);
+    color: var(--hm-accent);
     padding-top: 2px;
 }
 
@@ -4063,8 +4063,8 @@ body.modal-open {
 }
 
 .hm-atelier a:hover {
-    color: var(--hm-gold);
-    border-bottom-color: var(--hm-gold);
+    color: var(--hm-accent);
+    border-bottom-color: var(--hm-accent);
 }
 
 .hm-contact__panel {
@@ -4314,7 +4314,7 @@ body.modal-open {
 
 /* Centered brand wordmark */
 .ad-logo {
-    font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+    font-family: var(--ad-serif);
     font-size: 1.5rem;
     font-weight: 500;
     letter-spacing: 0.44em;
@@ -4395,7 +4395,7 @@ body.modal-open {
     align-items: center;
     gap: 18px;
     margin: 0 0 clamp(30px, 5vh, 56px);
-    font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+    font-family: var(--ad-sans);
     font-size: 0.64rem;
     font-weight: 500;
     letter-spacing: 0.48em;
@@ -4413,7 +4413,7 @@ body.modal-open {
 
 /* Giant serif wordmark */
 .hm-hero__wordmark {
-    font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+    font-family: var(--ad-serif);
     font-weight: 400;
     font-size: clamp(4rem, 15vw, 13rem);
     line-height: 0.95;
@@ -4427,7 +4427,7 @@ body.modal-open {
 
 /* Verbatim editorial quote */
 .hm-hero__quote {
-    font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+    font-family: var(--ad-serif);
     font-style: italic;
     font-weight: 400;
     font-size: clamp(1.45rem, 2.9vw, 2.5rem);
@@ -4439,7 +4439,7 @@ body.modal-open {
 
 /* Supporting sentence */
 .hm-hero__support {
-    font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+    font-family: var(--ad-sans);
     font-weight: 300;
     font-size: clamp(0.9rem, 1.3vw, 1.05rem);
     line-height: 1.9;
@@ -4453,7 +4453,7 @@ body.modal-open {
     display: inline-flex;
     align-items: center;
     gap: 16px;
-    font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+    font-family: var(--ad-sans);
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.42em;
@@ -4671,7 +4671,7 @@ body.modal-open {
     font-size: 1.05rem;
     letter-spacing: 0.01em;
     color: #F4EDE2;
-    caret-color: var(--hm-gold);
+    caret-color: var(--hm-accent);
 }
 
 .page-home .search-pop__input::placeholder {
@@ -4794,7 +4794,7 @@ body.modal-open {
 }
 
 .page-home .mobile-nav-header .site-logo {
-    font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+    font-family: var(--ad-serif);
     font-weight: 500;
     font-size: 1.15rem;
     letter-spacing: 0.36em;
@@ -4826,7 +4826,7 @@ body.modal-open {
 }
 
 .page-home .mobile-nav-link {
-    font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+    font-family: var(--ad-serif);
     font-weight: 400;
     font-size: clamp(1.1rem, 2.8vh, 1.55rem);
     line-height: 1.05;
@@ -4971,7 +4971,7 @@ body.modal-open {
 .homepage .form__select:focus {
     outline: none;
     border-color: transparent;
-    border-bottom: 1px solid var(--hm-gold);
+    border-bottom: 1px solid var(--hm-accent);
     box-shadow: none;
 }
 
@@ -4998,7 +4998,7 @@ body.modal-open {
 
 .ad-footer__logo {
     display: inline-block;
-    font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+    font-family: var(--ad-serif);
     font-weight: 500;
     font-size: 2rem;
     letter-spacing: 0.3em;
@@ -5221,15 +5221,15 @@ body.modal-open {
    ======================================================================== */
 :root {
     /* Warm editorial typography + neutral luxury palette */
-    --font-heading: 'Cormorant Garamond', 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --font-heading: var(--ad-serif);
     --color-brown-dark: #1A1A1A;
     --color-charcoal: #1A1A1A;
-    --color-brown: #3D2E24;
-    --color-brown-light: #6E534B;
+    --color-brown: #3A3A3A;
+    --color-brown-light: #6B6B6B;
     --color-cream: #F4F0EA;
-    --color-gold: #C5A059;
-    --color-gold-light: #C9A96B;
-    --color-gold-pale: #F2EADB;
+    --color-accent: #5A5A5A;
+    --color-accent-strong: #1C1C1C;
+    --color-accent-wash: #EFEBE5;
     --color-gray: #6E665B;
     --color-gray-light: #E4DDD0;
     --color-gray-ultra-light: #F1EBE0;
@@ -5237,7 +5237,7 @@ body.modal-open {
 }
 
 body {
-    background-color: #F6F1E8;
+    background-color: var(--color-ivory);
     color: var(--color-brown-dark);
 }
 
@@ -5425,7 +5425,7 @@ body {
 .page-home .form__select:focus {
     outline: none;
     border-color: transparent;
-    border-bottom: 1px solid var(--hm-gold);
+    border-bottom: 1px solid var(--hm-accent);
     box-shadow: none;
 }
 
@@ -5452,7 +5452,7 @@ body {
 
 /* Softer editorial scroll on interior hero text */
 .page-home .breadcrumb {
-    background-color: #F6F1E8;
+    background-color: var(--color-ivory);
     border-bottom: 1px solid var(--color-gray-light);
 }
 
@@ -5519,13 +5519,13 @@ body {
 :root {
     --adiss-onyx: #0a0a0a;
     --adiss-light: #f5f5f5;
-    --adiss-gold: #d4af37;
+    --adiss-accent: #C9C4BA;
     --adiss-surface: #141414;
     --adiss-glass: rgba(20, 20, 20, 0.55);
     --adiss-ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ---- Brand preloader (onyx + gold) ---- */
+/* ---- Brand preloader (onyx + ivory) ---- */
 .ab-preloader {
     position: fixed;
     inset: 0;
@@ -5563,7 +5563,7 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background-color: var(--adiss-gold);
+    background-color: var(--adiss-accent);
     transform: translateX(-100%);
     animation: ab-preload 1.25s var(--adiss-ease) infinite;
 }
@@ -5621,14 +5621,14 @@ body.ab-preloading {
     font-weight: 600;
     letter-spacing: 0.34em;
     text-transform: uppercase;
-    color: var(--adiss-gold);
+    color: var(--adiss-accent);
 }
 
 .ab-hero__rule {
     display: inline-block;
     width: 46px;
     height: 1px;
-    background-color: var(--adiss-gold);
+    background-color: var(--adiss-accent);
 }
 
 .ab-hero__title {
@@ -5644,7 +5644,7 @@ body.ab-preloading {
 
 .ab-hero__title em {
     font-style: italic;
-    color: var(--adiss-gold);
+    color: var(--adiss-accent);
 }
 
 .ab-hero__lede {
@@ -5698,7 +5698,7 @@ body.ab-preloading {
     font-weight: 600;
     letter-spacing: 0.34em;
     text-transform: uppercase;
-    color: var(--adiss-gold);
+    color: var(--adiss-accent);
 }
 
 .ab-founders__title {
@@ -5733,12 +5733,12 @@ body.ab-preloading {
 
 .creator-card:hover {
     transform: scale(1.03);
-    border-color: var(--adiss-gold);
+    border-color: var(--adiss-accent);
     box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
 }
 
 .creator-card:focus-within {
-    border-color: var(--adiss-gold);
+    border-color: var(--adiss-accent);
 }
 
 .creator-card__frame {
@@ -5776,7 +5776,7 @@ body.ab-preloading {
     font-weight: 600;
     letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: var(--adiss-gold);
+    color: var(--adiss-accent);
 }
 
 .creator-card__name {
@@ -5796,7 +5796,7 @@ body.ab-preloading {
 
 .creator-card__name a:hover,
 .creator-card__name a:focus-visible {
-    color: var(--adiss-gold);
+    color: var(--adiss-accent);
 }
 
 .creator-card__role {
@@ -5865,8 +5865,8 @@ body.ab-preloading {
 .ab-values__journal:hover,
 .ab-values__journal:focus-visible {
     gap: 12px;
-    color: var(--color-gold);
-    border-bottom-color: var(--color-gold);
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
 }
 
 .ab-values__grid {
@@ -5885,7 +5885,7 @@ body.ab-preloading {
     margin-bottom: 12px;
     font-family: var(--font-heading);
     font-size: 1.5rem;
-    color: var(--color-gold);
+    color: var(--color-accent);
 }
 
 .ab-value__title {

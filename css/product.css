@@ -2,7 +2,7 @@
    ADISS — HERITAGE T-SHIRT  ·  PRODUCT EXPERIENCE
    An editorial, architectural product page. Layered on top of the global
    ADISS system (css/styles.css). Scoped to .pdp-page / .pdp.
-   Ethos: ivory · bone · charcoal · black · restrained antique gold.
+   Ethos: ivory · bone · charcoal · black · restrained graphite accent.
    ======================================================================== */
 
 /* -----------------------------------------------------------------------
@@ -18,14 +18,14 @@
     --pdp-ink-faint: rgba(26, 26, 26, 0.34);
     --pdp-coal: #211a12;
     --pdp-black: #0e0b08;
-    --pdp-gold: #c5a059;
-    --pdp-gold-soft: rgba(197, 160, 89, 0.42);
+    --pdp-accent: #5A5A5A;
+    --pdp-accent-soft: rgba(90, 90, 90, 0.35);
     --pdp-line: rgba(26, 26, 26, 0.14);
     --pdp-line-soft: rgba(26, 26, 26, 0.08);
     --pdp-line-ivory: rgba(251, 247, 241, 0.16);
 
-    --pdp-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-    --pdp-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --pdp-serif: var(--ad-serif);
+    --pdp-sans: var(--ad-sans);
 
     --pdp-ease: cubic-bezier(0.16, 1, 0.3, 1);
     --pdp-fast: 0.24s var(--pdp-ease);
@@ -43,7 +43,7 @@
 }
 
 .pdp-page ::selection {
-    background: var(--pdp-gold);
+    background: var(--pdp-accent);
     color: var(--pdp-black);
 }
 
@@ -77,7 +77,7 @@
     content: '';
     width: 34px;
     height: 1px;
-    background-color: var(--pdp-gold-soft);
+    background-color: var(--pdp-accent-soft);
 }
 
 .pdp-kicker--ivory {
@@ -85,7 +85,7 @@
 }
 
 .pdp-kicker--ivory::before {
-    background-color: rgba(197, 160, 89, 0.5);
+    background-color: rgba(90, 90, 90, 0.5);
 }
 
 .pdp-display {
@@ -134,7 +134,7 @@
 
 .pdp-caption b {
     font-weight: 600;
-    color: var(--pdp-gold);
+    color: var(--pdp-accent);
 }
 
 /* Graceful fallback when a photograph cannot load */
@@ -222,7 +222,7 @@
     font-weight: 500;
     letter-spacing: 0.44em;
     text-transform: uppercase;
-    color: var(--pdp-gold);
+    color: var(--pdp-accent);
 }
 
 .pdp-hero__title {
@@ -231,8 +231,7 @@
     font-weight: 400;
     font-size: clamp(2.6rem, 4.6vw, 4.3rem);
     line-height: 0.98;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
+    letter-spacing: 0.005em;
     color: var(--pdp-ink);
 }
 
@@ -300,7 +299,7 @@
     right: 12px;
     bottom: 2px;
     height: 1px;
-    background-color: var(--pdp-gold);
+    background-color: var(--pdp-accent);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform var(--pdp-fast);
@@ -319,7 +318,7 @@
 }
 
 .pdp-size__btn:focus-visible {
-    outline: 1px solid var(--pdp-gold);
+    outline: 1px solid var(--pdp-accent);
     outline-offset: 3px;
 }
 
@@ -359,7 +358,7 @@
 }
 
 .pdp-add:focus-visible {
-    outline: 1px solid var(--pdp-gold);
+    outline: 1px solid var(--pdp-accent);
     outline-offset: 3px;
 }
 
@@ -471,7 +470,7 @@
     font-size: 0.6rem;
     font-weight: 600;
     letter-spacing: 0.34em;
-    color: var(--pdp-gold);
+    color: var(--pdp-accent);
 }
 
 /* -----------------------------------------------------------------------
@@ -551,7 +550,7 @@
     font-size: 0.58rem;
     font-weight: 600;
     letter-spacing: 0.3em;
-    color: var(--pdp-gold);
+    color: var(--pdp-accent);
 }
 
 .pdp-detail__text {
@@ -675,7 +674,7 @@
 }
 
 .pdp-craft__item .pdp-caption b {
-    color: var(--pdp-gold);
+    color: var(--pdp-accent);
 }
 
 /* -----------------------------------------------------------------------
@@ -788,7 +787,7 @@
 }
 
 .pdp-acc__header:hover {
-    color: var(--pdp-gold);
+    color: var(--pdp-accent);
 }
 
 .pdp-acc__sign {
@@ -820,7 +819,7 @@
 
 .pdp-acc.open .pdp-acc__sign::before,
 .pdp-acc.open .pdp-acc__sign::after {
-    background-color: var(--pdp-gold);
+    background-color: var(--pdp-accent);
 }
 
 .pdp-acc__panel {
@@ -928,7 +927,7 @@
     font-weight: 600;
     letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: var(--pdp-gold);
+    color: var(--pdp-accent);
 }
 
 .pdp-related__name {
@@ -941,7 +940,7 @@
 }
 
 .pdp-related__item:hover .pdp-related__name {
-    color: var(--pdp-gold);
+    color: var(--pdp-accent);
 }
 
 .pdp-related__price {
@@ -987,7 +986,7 @@
 
 .pdp-final__statement span {
     display: block;
-    color: var(--pdp-gold);
+    color: var(--pdp-accent);
     font-style: italic;
 }
 
@@ -1118,7 +1117,7 @@
     color: var(--pdp-ink);
     text-decoration: underline;
     text-underline-offset: 4px;
-    text-decoration-color: var(--pdp-gold);
+    text-decoration-color: var(--pdp-accent);
 }
 
 .pdp-sticky__add {

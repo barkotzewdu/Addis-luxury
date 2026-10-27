@@ -25,11 +25,11 @@
 
     <meta name="google-site-verification" content="VERIFICATION_CODE_HERE">
 
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com; frame-src 'self' https://www.google.com https://maps.google.com; form-action 'self'; base-uri 'self'; upgrade-insecure-requests;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-DVZ6rcUr/rn/B4fIYEhi4xJV/qflCwWiRQqjZG/nUM8=' 'sha256-rYYtDQxhwu50oVGAP7qDyhudhizrUwDsq+qwLrmnXD4=' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com; frame-src 'self' https://www.google.com https://maps.google.com; form-action 'self'; base-uri 'self'; upgrade-insecure-requests;">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/styles.css">
 
@@ -79,7 +79,7 @@
 <body class="has-mobile-cta page-home ab-preloading">
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- Brand Preloader (onyx + gold) -->
+    <!-- Brand Preloader (onyx + ivory) -->
     <div class="ab-preloader" id="preloader" aria-hidden="true">
         <span class="ab-preloader__word">ADISS</span>
         <span class="ab-preloader__bar"></span>
@@ -107,7 +107,7 @@
                 <button type="button" class="header-icon-btn ad-icon search-trigger-btn" aria-label="Search">
                     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                 </button>
-                <a href="login.html" class="header-icon-btn ad-icon" aria-label="Client account">
+                <a href="account.html" class="header-icon-btn ad-icon" aria-label="Client account">
                     <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20c0-4.2 3.3-6.7 7.5-6.7s7.5 2.5 7.5 6.7"/></svg>
                 </a>
             </div>
@@ -126,14 +126,12 @@
             <a href="index.html" class="mobile-nav-link">Home</a>
             <a href="shop.html" class="mobile-nav-link">Shop</a>
             <a href="products.html" class="mobile-nav-link">Collections</a>
-            <a href="product-detail.html" class="mobile-nav-link">Bespoke Fit</a>
             <a href="about.html" class="mobile-nav-link">Our Story</a>
             <a href="blog.html" class="mobile-nav-link">Journal</a>
-            <a href="case-studies.html" class="mobile-nav-link">Lookbook &amp; Transformations</a>
-            <a href="login.html" class="mobile-nav-link">Client Account</a>
+            <a href="account.html" class="mobile-nav-link">Client Account</a>
         </nav>
         <div class="mobile-nav-bottom">
-            <a href="login.html" class="mobile-nav-footlink">Client Area</a>
+            <a href="account.html" class="mobile-nav-footlink">Client Area</a>
             <a href="index.html#contact" class="mobile-nav-footlink mobile-nav-footlink--accent">Book a Private Consultation <span aria-hidden="true">&rarr;</span></a>
         </div>
     </div>
@@ -238,21 +236,21 @@
                                 <label class="form__label">Fulfillment Method:</label>
                                 <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 8px;">
                                     <label style="display: flex; align-items: flex-start; gap: 12px; padding: 14px; border: 1px solid var(--color-gray-light); border-radius: 2px; cursor: pointer;">
-                                        <input type="radio" name="delivery_method" value="express_courier" checked style="margin-top: 4px; accent-color: var(--color-gold);">
+                                        <input type="radio" name="delivery_method" value="express_courier" checked style="margin-top: 4px; accent-color: var(--color-charcoal);">
                                         <div>
                                             <strong>Complimentary Insured Worldwide Delivery (DHL Express)</strong>
                                             <p style="font-size: 0.85rem; color: var(--color-gray); margin-top: 2px;">Delivered in handcrafted wooden preservation box with tracking and direct signature required.</p>
                                         </div>
                                     </label>
                                     <label style="display: flex; align-items: flex-start; gap: 12px; padding: 14px; border: 1px solid var(--color-gray-light); border-radius: 2px; cursor: pointer;">
-                                        <input type="radio" name="delivery_method" value="atelier_dubai" style="margin-top: 4px; accent-color: var(--color-gold);">
+                                        <input type="radio" name="delivery_method" value="atelier_dubai" style="margin-top: 4px; accent-color: var(--color-charcoal);">
                                         <div>
                                             <strong>Atelier Collection &amp; Final Fitting: Dubai Mall (Fashion Avenue)</strong>
                                             <p style="font-size: 0.85rem; color: var(--color-gray); margin-top: 2px;">Private champagne fitting session with our master tailor upon completion.</p>
                                         </div>
                                     </label>
                                     <label style="display: flex; align-items: flex-start; gap: 12px; padding: 14px; border: 1px solid var(--color-gray-light); border-radius: 2px; cursor: pointer;">
-                                        <input type="radio" name="delivery_method" value="atelier_addis" style="margin-top: 4px; accent-color: var(--color-gold);">
+                                        <input type="radio" name="delivery_method" value="atelier_addis" style="margin-top: 4px; accent-color: var(--color-charcoal);">
                                         <div>
                                             <strong>Atelier Collection &amp; Final Fitting: Addis Ababa Flagship (Bole Road)</strong>
                                             <p style="font-size: 0.85rem; color: var(--color-gray); margin-top: 2px;">Private salon fitting and personal garment adjustments.</p>
@@ -318,15 +316,15 @@
                             <h2 class="checkout-step-title">4. Payment &amp; Guarantee</h2>
                             <div style="display: flex; flex-direction: column; gap: 12px;">
                                 <label style="display: flex; align-items: center; gap: 12px; padding: 14px; border: 1px solid var(--color-gray-light); border-radius: 2px; cursor: pointer;">
-                                    <input type="radio" name="payment_method" value="card" checked style="accent-color: var(--color-gold);">
+                                    <input type="radio" name="payment_method" value="card" checked style="accent-color: var(--color-charcoal);">
                                     <span><strong>Credit / Debit Card (Visa, MasterCard, American Express)</strong></span>
                                 </label>
                                 <label style="display: flex; align-items: center; gap: 12px; padding: 14px; border: 1px solid var(--color-gray-light); border-radius: 2px; cursor: pointer;">
-                                    <input type="radio" name="payment_method" value="wire" style="accent-color: var(--color-gold);">
+                                    <input type="radio" name="payment_method" value="wire" style="accent-color: var(--color-charcoal);">
                                     <span><strong>Private Client Bank Wire Transfer (USD / AED)</strong></span>
                                 </label>
                                 <label style="display: flex; align-items: center; gap: 12px; padding: 14px; border: 1px solid var(--color-gray-light); border-radius: 2px; cursor: pointer;">
-                                    <input type="radio" name="payment_method" value="atelier_fitting" style="accent-color: var(--color-gold);">
+                                    <input type="radio" name="payment_method" value="atelier_fitting" style="accent-color: var(--color-charcoal);">
                                     <span><strong>Pay Upon Atelier Fitting &amp; Final Approval</strong></span>
                                 </label>
                             </div>
@@ -352,7 +350,7 @@
                             </div>
                             <div class="cart-summary-row cart-summary-row--total">
                                 <span>Total Investment</span>
-                                <strong data-price-usd="6250" data-cart-subtotal style="color: var(--color-gold);">$6,250</strong>
+                                <strong data-price-usd="6250" data-cart-subtotal style="color: var(--color-charcoal);">$6,250</strong>
                             </div>
 
                             <div style="margin: 20px 0;">
@@ -393,7 +391,7 @@
 
                 <div class="ad-footer__brand">
                     <a href="index.html" class="ad-footer__logo">ADISS</a>
-                    <p class="ad-footer__tagline">Character, made visible. Quietly tailored pieces for the moments that define you.</p>
+                    <p class="ad-footer__tagline">Dress the person you intend to become. Quietly tailored pieces for a life considered.</p>
                 </div>
 
                 <div class="ad-footer__news">
@@ -411,9 +409,8 @@
                 <div class="ad-footer__menu">
                     <p class="ad-footer__label">Explore</p>
                     <ul class="ad-footer__list">
-                        <li><a href="shop.html">Collections</a></li>
-                        <li><a href="products.html">Seasonal</a></li>
-                        <li><a href="product-detail.html">Bespoke</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="products.html">Collections</a></li>
                         <li><a href="about.html">Our Story</a></li>
                         <li><a href="blog.html">Journal</a></li>
                     </ul>

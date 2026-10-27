@@ -66,7 +66,7 @@
         { title: 'The Empress Kemis Evening Gown', category: "Women's Couture", priceUSD: 2850, url: 'product-detail.html', img: 'images/product-garment-01.jpg' },
         { title: 'Arabian Nights Bespoke Tuxedo', category: "Men's Tailoring", priceUSD: 3400, url: 'product-detail.html', img: 'images/product-garment-02.jpg' },
         { title: 'Shemma Weave Heritage Cape', category: 'Ethiopian Craft Line', priceUSD: 1650, url: 'shop.html', img: 'images/lookbook-collection-01.jpg' },
-        { title: 'Dubai Edition Gold-Silk Kimono', category: 'UAE Exclusive', priceUSD: 2200, url: 'shop.html', img: 'images/lookbook-collection-02.jpg' },
+        { title: 'Dubai Edition Silk Kimono', category: 'UAE Exclusive', priceUSD: 2200, url: 'shop.html', img: 'images/lookbook-collection-02.jpg' },
         { title: 'Handwoven Habesha Silk Pocket Square', category: 'Accessories', priceUSD: 195, url: 'shop.html', img: 'images/lookbook-collection-01.jpg' },
         { title: 'The Art of Ethiopian Handweaving', category: 'Journal', priceUSD: 0, url: 'blog.html#art-handweaving', img: 'images/founder-ethiopia.jpg' }
     ];

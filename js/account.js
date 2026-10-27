@@ -15,7 +15,7 @@
 
     const DEFAULTS = {
         profile: {
-            fullName: 'Eliyas Yonas Tekle',
+            fullName: 'Private Client',
             country: 'UAE',
             language: 'English / Amharic / French',
             currency: 'AED'
@@ -60,6 +60,21 @@
     store.measurements = Object.assign({}, DEFAULTS.measurements, store.measurements || {});
     store.preferences = Object.assign({}, DEFAULTS.preferences, store.preferences || {});
     store.profile = Object.assign({}, DEFAULTS.profile, store.profile || {});
+
+    function readSession() {
+        try {
+            const raw = localStorage.getItem('addis_session');
+            const parsed = raw ? JSON.parse(raw) : null;
+            return parsed && parsed.email ? parsed : null;
+        } catch (err) {
+            return null;
+        }
+    }
+
+    const session = readSession();
+    if (session && session.name) {
+        store.profile.fullName = session.name;
+    }
 
     function save() {
         writeStore(store);
@@ -368,7 +383,12 @@
     const signOut = document.getElementById('pc-signout');
     if (signOut) {
         signOut.addEventListener('click', function () {
-            window.location.href = 'login.html';
+            try {
+                localStorage.removeItem('addis_session');
+            } catch (err) {
+                /* storage unavailable - the navigation still leaves the salon */
+            }
+            window.location.replace('index.html');
         });
     }
 
@@ -381,6 +401,12 @@
             const key = dd.getAttribute('data-field');
             if (store.profile[key]) dd.textContent = store.profile[key];
         });
+
+        const signature = document.querySelector('.pc-profile__sig');
+        if (signature) {
+            const name = String(store.profile.fullName || '').trim();
+            signature.textContent = (!name || name === 'Private Client') ? 'ADISS' : name.split(/\s+/)[0];
+        }
 
         // Measurements
         document.querySelectorAll('.pc-measure__value[data-measure]').forEach(function (el) {

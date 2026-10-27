@@ -10,10 +10,10 @@
     --adx-ink: #1a1a1a;
     --adx-ink-soft: rgba(26, 26, 26, 0.60);
     --adx-ink-faint: rgba(26, 26, 26, 0.38);
-    --adx-gold: #c5a059;
+    --adx-accent: #5A5A5A;
     --adx-line: rgba(26, 26, 26, 0.14);
-    --adx-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-    --adx-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --adx-serif: var(--ad-serif);
+    --adx-sans: var(--ad-sans);
     --adx-ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -45,7 +45,7 @@
     font-weight: 600;
     letter-spacing: 0.46em;
     text-transform: uppercase;
-    color: var(--adx-gold);
+    color: var(--adx-accent);
 }
 
 .adx-intro__title {
@@ -54,8 +54,7 @@
     font-weight: 400;
     font-size: clamp(2rem, 3.2vw, 2.9rem);
     line-height: 1.05;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    letter-spacing: 0.02em;
     color: var(--adx-ink);
 }
 
@@ -108,7 +107,7 @@
     right: 0;
     bottom: -7px;
     height: 1px;
-    background-color: var(--adx-gold);
+    background-color: var(--adx-accent);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.4s var(--adx-ease);
@@ -136,7 +135,7 @@
 #adx-cat-essentials:focus-visible ~ .adx-shell .adx-nav label[for="adx-cat-essentials"],
 #adx-cat-knitwear:focus-visible ~ .adx-shell .adx-nav label[for="adx-cat-knitwear"],
 #adx-cat-outerwear:focus-visible ~ .adx-shell .adx-nav label[for="adx-cat-outerwear"] {
-    outline: 1px solid var(--adx-gold);
+    outline: 1px solid var(--adx-accent);
     outline-offset: 6px;
 }
 
@@ -212,7 +211,7 @@
     font-weight: 600;
     letter-spacing: 0.34em;
     text-transform: uppercase;
-    color: var(--adx-gold);
+    color: var(--adx-accent);
 }
 
 .adx-card__name {
@@ -226,8 +225,7 @@
     font-weight: 500;
     font-size: clamp(0.98rem, 1.1vw, 1.22rem);
     line-height: 1.18;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+    letter-spacing: 0.01em;
     color: var(--adx-ink);
 }
 
@@ -269,7 +267,7 @@
 }
 
 .adx-card:focus-within {
-    outline: 1px solid var(--adx-gold);
+    outline: 1px solid var(--adx-accent);
     outline-offset: 8px;
 }
 
@@ -325,7 +323,7 @@
 .adx-statement__text span {
     display: block;
     font-style: italic;
-    color: var(--adx-gold);
+    color: var(--adx-accent);
 }
 
 .adx-statement__link {
@@ -352,8 +350,8 @@
 }
 
 .adx-statement__link:hover {
-    color: var(--adx-gold);
-    border-color: var(--adx-gold);
+    color: var(--adx-accent);
+    border-color: var(--adx-accent);
 }
 
 .adx-statement__link:hover span {

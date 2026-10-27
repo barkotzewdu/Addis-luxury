@@ -23,9 +23,9 @@
     --pa-line: var(--ad-line);
     --pa-line-strong: rgba(26, 26, 26, 0.16);
 
-    --pa-gold: var(--ad-gold);
-    --pa-gold-bright: var(--ad-gold-bright);
-    --pa-gold-wash: rgba(197, 160, 89, 0.12);
+    --pa-accent: #5A5A5A;
+    --pa-accent-strong: #1C1C1C;
+    --pa-accent-wash: rgba(90, 90, 90, 0.10);
     --pa-charcoal: #14110e;
 
     --pa-serif: var(--ad-serif);
@@ -79,7 +79,7 @@
     z-index: -1;
     background:
         linear-gradient(to top, rgba(10, 8, 5, 0.92) 0%, rgba(10, 8, 5, 0.42) 46%, rgba(10, 8, 5, 0.55) 100%),
-        radial-gradient(ellipse 80% 80% at 22% 70%, rgba(197, 160, 89, 0.14), transparent 60%);
+        radial-gradient(ellipse 80% 80% at 22% 70%, rgba(255, 255, 255, 0.08), transparent 60%);
 }
 
 .pc-hero__inner {
@@ -95,7 +95,7 @@
     font-weight: 500;
     letter-spacing: 0.42em;
     text-transform: uppercase;
-    color: var(--pa-gold-bright);
+    color: #E8E3D9;
     margin-bottom: 20px;
 }
 
@@ -173,10 +173,9 @@
     gap: 13px;
     padding: 12px 14px;
     font-family: var(--pa-sans);
-    font-size: 0.72rem;
+    font-size: 0.78rem;
     font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    letter-spacing: 0.04em;
     color: var(--pa-muted);
     border-left: 1px solid transparent;
     transition: color var(--pa-fast), background-color var(--pa-fast), border-color var(--pa-fast);
@@ -206,7 +205,7 @@
 .pc-rail__link.is-active {
     color: var(--pa-ink);
     background-color: rgba(255, 255, 255, 0.55);
-    border-left-color: var(--pa-gold);
+    border-left-color: var(--pa-accent);
 }
 
 .pc-rail__link.is-active svg {
@@ -254,8 +253,8 @@
 }
 
 .pc-rail__signout:hover {
-    color: var(--pa-gold);
-    border-color: var(--pa-gold);
+    color: var(--pa-accent);
+    border-color: var(--pa-accent);
 }
 
 /* -----------------------------------------------------------------------
@@ -322,16 +321,16 @@
 
 .pc-action:hover {
     color: var(--pa-ink);
-    border-color: var(--pa-gold);
+    border-color: var(--pa-accent);
 }
 
-.pc-action--gold {
-    color: var(--pa-gold);
+.pc-action--accent {
+    color: var(--pa-accent);
 }
 
-.pc-action--gold:hover {
-    color: var(--pa-gold-bright);
-    border-color: var(--pa-gold-bright);
+.pc-action--accent:hover {
+    color: var(--pa-accent-strong);
+    border-color: var(--pa-accent-strong);
 }
 
 .pc-tag {
@@ -344,8 +343,8 @@
     white-space: nowrap;
 }
 
-.pc-tag--gold {
-    color: var(--pa-gold);
+.pc-tag--accent {
+    color: var(--pa-accent);
 }
 
 /* -----------------------------------------------------------------------
@@ -430,7 +429,7 @@
 }
 
 .pc-pref dd input:focus {
-    border-bottom-color: var(--pa-gold);
+    border-bottom-color: var(--pa-accent);
 }
 
 /* Anchor offsets so sticky header never covers a section */
@@ -462,7 +461,7 @@
 }
 
 .pc-field input:focus {
-    border-bottom-color: var(--pa-gold);
+    border-bottom-color: var(--pa-accent);
 }
 
 /* -----------------------------------------------------------------------
@@ -531,7 +530,7 @@
 }
 
 .pc-measure__row input:focus {
-    border-bottom-color: var(--pa-gold);
+    border-bottom-color: var(--pa-accent);
 }
 
 .pc-silhouette {
@@ -542,18 +541,18 @@
 .pc-silhouette svg {
     width: 84px;
     height: auto;
-    color: var(--pa-gold);
+    color: var(--pa-accent);
 }
 
 .pc-silhouette svg .sil-fill {
-    fill: rgba(197, 160, 89, 0.07);
+    fill: rgba(90, 90, 90, 0.07);
     stroke: currentColor;
     stroke-width: 1.1;
     transition: fill var(--pa-base);
 }
 
 .pc-panel:hover .pc-silhouette svg .sil-fill {
-    fill: rgba(197, 160, 89, 0.12);
+    fill: rgba(90, 90, 90, 0.12);
 }
 
 /* Luxury button — UPDATE MEASUREMENTS → */
@@ -692,15 +691,15 @@
     font-weight: 600;
     letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: var(--pa-gold);
+    color: var(--pa-accent);
     border-bottom: 1px solid transparent;
     padding-bottom: 2px;
     transition: color var(--pa-fast), border-color var(--pa-fast);
 }
 
 .pc-why:hover {
-    color: var(--pa-gold-bright);
-    border-color: var(--pa-gold-bright);
+    color: var(--pa-accent-strong);
+    border-color: var(--pa-accent-strong);
 }
 
 .pc-reason {
@@ -719,8 +718,8 @@
 
 .pc-reason__inner {
     padding: 18px 20px 4px;
-    border-left: 1px solid var(--pa-gold);
-    background: linear-gradient(90deg, var(--pa-gold-wash), transparent 70%);
+    border-left: 1px solid var(--pa-accent);
+    background: linear-gradient(90deg, var(--pa-accent-wash), transparent 70%);
 }
 
 .pc-reason__lead {
@@ -822,7 +821,7 @@
 
 .pc-card__heart:hover,
 .pc-card__heart.is-saved {
-    background-color: var(--pa-gold);
+    background-color: var(--pa-accent);
     color: var(--pa-charcoal);
 }
 
@@ -910,13 +909,13 @@
 }
 
 .pc-swatch:hover {
-    border-color: var(--pa-gold);
-    background-color: var(--pa-gold-wash);
+    border-color: var(--pa-accent);
+    background-color: var(--pa-accent-wash);
 }
 
 .pc-swatch.is-selected {
-    border-color: var(--pa-gold);
-    background-color: var(--pa-gold-wash);
+    border-color: var(--pa-accent);
+    background-color: var(--pa-accent-wash);
     color: var(--pa-ink);
 }
 
@@ -925,7 +924,7 @@
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background-color: var(--pa-gold);
+    background-color: var(--pa-accent);
 }
 
 .pc-palette {
@@ -948,7 +947,7 @@
 }
 
 .pc-dot.is-selected {
-    box-shadow: 0 0 0 2px var(--pa-cream), 0 0 0 3px var(--pa-gold);
+    box-shadow: 0 0 0 2px var(--pa-cream), 0 0 0 3px var(--pa-accent);
 }
 
 .pc-dot--ivory { background-color: #f3ece1; }
@@ -975,7 +974,7 @@
     width: 20px;
     height: 20px;
     fill: none;
-    stroke: var(--pa-gold);
+    stroke: var(--pa-accent);
     stroke-width: 1.2;
     transition: transform var(--pa-fast);
 }
@@ -1020,7 +1019,7 @@
 
 .pc-access__status strong {
     font-weight: 600;
-    color: var(--pa-gold);
+    color: var(--pa-accent);
 }
 
 /* -----------------------------------------------------------------------
@@ -1072,7 +1071,7 @@
     width: 44px;
     height: 1px;
     margin: 0 auto 24px;
-    background-color: var(--pa-gold);
+    background-color: var(--pa-accent);
 }
 
 .pc-relationship__quote {
@@ -1094,7 +1093,7 @@
     letter-spacing: 0.5em;
     text-indent: 0.5em;
     text-transform: uppercase;
-    color: var(--pa-gold-bright);
+    color: var(--pa-accent-strong);
 }
 
 /* -----------------------------------------------------------------------
@@ -1155,7 +1154,7 @@
 
     .pc-rail__link.is-active {
         border-left-color: transparent;
-        border-bottom-color: var(--pa-gold);
+        border-bottom-color: var(--pa-accent);
         background-color: transparent;
     }
 
